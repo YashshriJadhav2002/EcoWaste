@@ -1,0 +1,89 @@
+.heading {
+  display: flex;
+  align-items: center;  
+  background-color:  linear-gradient(to right , white , green);
+  justify-content: space-between;
+  min-height: 10vh;
+  margin-left: 0vh;
+  margin-right: 5vh;
+  margin-top: 0vh;
+}
+.navbar-menu-container3 {
+  display: none;
+  margin-top: 0vh;
+  
+  
+}
+
+.sellgadgetname{
+  margin-top: 5vh;
+margin-left: -30vh;
+margin-bottom: -8vh;
+}
+
+.profilephoto{
+  width: 8vw;
+  height: 10vh;
+}
+.profilephoto{
+  width: 4vw;
+  height: auto;
+  border-radius: 50%;
+
+}
+.photo img
+{
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+
+}
+
+.navbar-links-container3 a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0vh;
+  margin-left: 70px;
+}
+.navbar-links-container3 a:hover {
+  text-decoration: underline;
+}
+
+.navbar-cart-icon {
+  font-size: 1.15rem;
+}
+
+.devices:hover{
+  transform: scale(1.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.dropdown-menu3 {
+  position: absolute;
+  margin-top: -1vh; /* Adjust the top position as needed */
+  right: 2vh;
+   /* Add your desired background color */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 120px; /* Adjust the minimum width as needed */
+  z-index: 1;
+}
+
+
+
+.dropdown-menu-sellergadget {
+  position: absolute;
+  margin-top: 0vh; /* Adjust the top position as needed */
+  margin-right: 3vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  
+  min-width: 120px; /* Adjust the minimum width as needed */
+}

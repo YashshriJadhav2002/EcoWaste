@@ -1,0 +1,103 @@
+
+.item-container{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width:65vw;
+    background-color: white;
+    margin-top: 10vh;
+    padding-top: 0;
+    padding-left: 50vh;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 10px;
+    height:60vh;  
+     
+}
+
+.product-image{
+    width: 30vh;
+    height: 30vh;
+    margin-left: -40vh;
+    margin-top: 10vh;
+}
+
+.device-name{
+    margin-top: -30vh;
+    margin-left: -5vh;
+}
+
+.sellbutton{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  width:8vw;
+  height:5vh;
+  
+  color:#fff;
+  background:#f80606;
+  border-radius: 5vh;
+  font-size:19px;
+  font-weight: 700;
+  cursor:pointer;
+  margin-left: 0px;
+  font-family: 'Abril Fatface', cursive;
+
+}
+
+
+.verticleline 
+    {
+        width: 0.2vw;
+        height:7vh;
+        background: black; 
+        margin-top: -7vh;
+        margin-left: 15vh;
+    }
+.textclass{
+    margin-left: 20vh;
+    margin-top: -5vh;
+    height: 10vh;
+}
+/* Accordion.css */
+.accordion {
+    width: 65vw; /* Adjust the width according to your design */
+    margin-left: 35vh;
+    margin-top: 2vh;
+    padding-bottom: 10vh;
+  }
+  
+  .accordion-item {
+    
+    opacity: 1;
+  }
+  
+  .accordion-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    opacity: 1;
+
+  }
+  
+  .accordion-item-header.open {
+    background-color: #ddd;
+    opacity: 1;
+  }
+  
+  .accordion-item-toggle {
+    font-size: 20px;
+    
+  }
+  
+  .accordion-item-content {
+    padding: 10px;
+    opacity: 1;
+  }
+  
+  .faq{
+    margin-left: 35vh;
+    margin-top: 5vh;
+  }

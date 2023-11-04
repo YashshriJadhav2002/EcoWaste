@@ -1,0 +1,29 @@
+/* Vision container*/
+.vision-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40vw;
+    width:650px;
+    height: 400px;
+    margin-top: -70vh;
+    background: #fff;
+    padding-bottom:10px;
+    padding-top: 30px;
+    padding-left: 30px;
+    border-radius:60px;
+    font-family: 'Abril Fatface', cursive;
+    text-align: justify;
+    }
+
+    .vision-container p{
+      letter-spacing: 2.0;
+      line-height: 2.0;
+    }
+  
+    .visionimage{
+      margin-left: 10vh;
+      height: 100h;
+      width: 30vw;
+      margin-top: 10vh;
+    }
+  

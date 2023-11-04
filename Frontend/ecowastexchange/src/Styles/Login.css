@@ -1,0 +1,164 @@
+
+
+
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width:550px;
+    margin-top: 100px;
+    background: #fff;
+    padding-bottom:30px;
+    border-radius:60px;
+    margin-top: 40px;
+    font-family: 'Abril Fatface', cursive;
+    height: 520px;
+    }
+
+   
+    .uploadimage
+    {
+      height:25px;
+      background-color: grey;
+      width:30px;
+  
+    }
+    .loginheader
+    {
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        gap:9px;
+        width:100%;
+        
+    }
+    .login-text
+    {
+        margin-top: 30px;
+      font-family: 'Abril Fatface', cursive;
+        color: #0d542f;
+        font-size:38px;
+        font-weight:600;
+    }
+    
+    .login-underline 
+    {
+        width: 61px;
+        height:6px;
+        background: #0d542f;
+        border-radius:9px;
+        gap : 50px;
+        margin-top: 0px;
+        margin-bottom: 50px;
+    }
+    .login-inputs{
+        margin: top 80px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
+    .login-input{
+        display:flex;
+        margin-top: 5px;
+        align-items:center;
+        margin:auto;
+        width:400px;
+        height:50px;
+        background: #eaeaea;
+
+        margin-bottom: 20px;
+    }
+    .input img{
+        margin:0px,30px;
+        margin-right: 20px;
+        margin-left:10px;
+    }
+    
+    .login-input input{
+        height: 50px;
+        width:400px;
+        background: transparent;
+        border:none;
+        color:#797979;  
+        font-size:15px;
+      
+    }
+    .login-submit-container{
+        display:flex;
+        gap:20px;
+        column-gap: 80px;
+        margin:40px;
+        margin-left: 60px;
+    }
+    .login-submit{
+        display:flex;
+        justify-content:center;
+        align-items: center;
+        width:130px;
+        height:59px;
+        column-gap: 30px;
+        color:#fff;
+        background:#0d542f;
+        border-radius: 50px;
+        font-size:19px;
+        font-weight: 700;
+        cursor:pointer;
+        margin-left: 0px;
+        font-family: 'Abril Fatface', cursive;
+  
+    }
+    
+    .submit_Company_register{
+      display:flex;
+      justify-content:center;
+      align-items: center;
+      width:180px;
+      height:59px;
+      color:#fff;
+      background:#0d542f;
+      border-radius: 50px;
+      font-size:19px;
+      font-weight: 700;
+      cursor:pointer;
+      margin-left: 70px;
+  }
+  .upload-image {
+    margin-bottom:20px; /* Adjust the top margin as needed */
+  }
+  
+    .upload-image label {
+      margin-left: 80px;
+      margin-top: 100px;
+      margin-right: 10px;
+      margin-bottom: 50px;
+      font-family:cursive;
+ 
+  
+    }
+    /* Style for the dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  padding: 10px;
+  list-style: none;
+  margin: 0;
+  flex-direction: column;
+  margin-left:450px;
+  padding: 0;
+  display:flex;
+  
+}
+
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.dropdown-menu li {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+}
+

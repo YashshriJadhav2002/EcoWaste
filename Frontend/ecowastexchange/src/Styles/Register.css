@@ -1,0 +1,161 @@
+.spanmsg
+{
+  color: red;
+  margin-left: 4vw;
+  margin-top:-2vh;
+}
+
+.register-container{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width:550px;
+    margin-top: 5vh;
+    background: #fff;
+    border-radius:60px;
+    padding-top: 0px;
+    padding-left: 0px;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 10px;
+    height:auto;
+    }
+.body
+{
+  overflow-y: scroll;
+  
+}
+   
+    .uploadimage
+    {
+      height:25px;
+      background-color: grey;
+      width:30px;
+  
+    }
+    .header
+    {
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        gap:9px;
+        width:100%;
+       
+    }
+    .register-text
+    {
+      font-family: 'Abril Fatface', cursive;
+        margin-top: 0vh;
+        color: #0d542f;
+        font-size:38px;
+        font-weight:600;
+    }
+    
+    .register-underline
+    {
+        width: 61px;
+        height:6px;
+        background: #0d542f;
+        border-radius:9px;
+        margin-top: -1vh;
+        
+    }
+    .register-inputs{
+        margin-top: -20px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+    }
+    .register-input{
+        display:flex;
+        align-items:center;
+        margin:auto;
+        width:400px;
+        height:40px;
+        background: #eaeaea;
+        border-radius:6px;
+        margin-bottom: 20px;
+    }
+    .input img{
+        margin:0px,30px;
+        margin-right: 20px;
+        margin-left:10px;
+    }
+    
+    .register-input input{
+        height: 50px;
+        width:400px;
+        background: transparent;
+        border:none;
+        color:#797979;  
+        font-size:15px;
+        
+    }
+    .register-submit-container{
+        display:flex;
+        gap:20px;
+        margin-top: 20px;
+        column-gap: 0px;
+        margin:40px;
+        margin-left: -100px;
+    }
+    .register-submit{
+        display:flex;
+        justify-content:center;
+        align-items: center;
+        width:150px;
+        height:59px;
+        column-gap: 10px;
+        color:#fff;
+        background:#0d542f;
+        border-radius: 50px;
+        font-size:19px;
+        font-weight: 700;
+        cursor:pointer;
+        margin-left: 150px;
+        font-family: 'Abril Fatface', cursive;
+  
+    }
+    
+  
+  
+  .register-upload-image {
+    margin-bottom:1vh; 
+    margin-left: 50px;
+    margin-top: 10px;/* Adjust the top margin as needed */
+  }
+  
+    .register-upload-image label {
+      margin-left:1px;
+      margin-top: 100px;
+      margin-right: 10vh;
+      margin-bottom: 0px;
+      font-family:cursive;
+ 
+  
+    }
+    /* Style for the dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  padding: 10px;
+  list-style: none;
+  margin: 0;
+  flex-direction: column;
+  margin-left:450px;
+  padding: 0;
+  display:flex;
+  
+}
+
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.dropdown-menu li {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+}
+

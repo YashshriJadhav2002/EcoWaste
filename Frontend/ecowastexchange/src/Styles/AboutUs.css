@@ -1,0 +1,49 @@
+/* About us container*/
+.info-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 45vw;
+    width: 700px;
+    height: 290px;
+    margin-top: -60vh;
+    background: white ;
+    padding-bottom:10px;
+    padding-top: 30px;
+    padding-left: 30px;
+    border-radius:60px;
+    font-size: large;
+    font-family:'Times New Roman', Times, serif;
+    letter-spacing: 10;
+    line-height: 1.5;
+    text-align: justify;
+    }
+
+.info-container p{
+  letter-spacing: 2.0;
+  line-height: 2.0;
+}
+    .aboutus-heading{
+      margin-top: 3vh;
+      margin-left: 75vh;
+      font-size: 50px;
+    }
+  
+    .aboutusimage{
+        margin-left: 10vh;
+      height: 65vh;
+      width: 35vw;
+      margin-top: 1vh;
+    }
+
+    .aboutus-underline 
+    {
+        width: 210px;
+        height:6px;
+        background: black;
+        border-radius:9px;
+        gap : 50px;
+        margin-top: -5vh;
+        margin-left: 75vh;
+    }
+
+    

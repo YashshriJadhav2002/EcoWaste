@@ -1,0 +1,64 @@
+
+.buyitem-container{
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width:65vw;
+    background-color: white;
+    margin-top: 10vh;
+    padding-top: 0;
+    padding-left: 50vh;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: 10px;
+    height:100vh;    
+}
+
+.buyproduct-image{
+    width: 30vh;
+    height: 30vh;
+    margin-left: -40vh;
+    margin-top: 10vh;
+}
+
+.buydevice-name{
+    margin-top: -30vh;
+    margin-left: -5vh;
+}
+
+.buybutton{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  width:8vw;
+  height:5vh;
+  
+  color:#fff;
+  background:#f80606;
+  border-radius: 5vh;
+  font-size:19px;
+  font-weight: 700;
+  cursor:pointer;
+  margin-left: 0px;
+  font-family: 'Abril Fatface', cursive;
+
+}
+
+
+.buyverticleline 
+    {
+        width: 0.2vw;
+        height:7vh;
+        background: black; 
+        margin-top: -7vh;
+        margin-left: 15vh;
+    }
+.buytextclass{
+    margin-left: 20vh;
+    margin-top: -5vh;
+    height: 10vh;
+}
+
+.defectretrivedtext{
+    margin-left: -39vh;
+    margin-top: 10vh;
+}
