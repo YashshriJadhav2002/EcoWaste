@@ -1,7 +1,6 @@
 import './App.css';
 import Home from './Components/landing_page/Home';
 import { Route,Routes } from 'react-router-dom';
-import Navbar from './Components/landing_page/Navbar';
 import Vision from './Components/landing_page/Vision'
 import SellerRegister from './Components/Register/Seller_register';
 import Login from './Components/Login/Login';
@@ -39,6 +38,9 @@ import Company_Settings from './Components/Dashboard/Company_Dashboard/Company_S
 import Company_Logout from './Components/Dashboard/Company_Dashboard/Company_Logout';
 import Company_Exact_Price from './Components/Dashboard/Company_Dashboard/Company_Exact_Price';
 import Vendor_Sell_Refurbished from './Components/Dashboard/Vendor_Dashboard/Vendor_Sell_Refurbished';
+import Success from './Components/Dashboard/Vendor_Dashboard/success';
+import Cancel from './Components/Dashboard/Vendor_Dashboard/cancel';
+import Seller_Verify from './Components/Dashboard/Seller-Dashboard/seller_Verify';
 
 
 function App() {
@@ -68,6 +70,8 @@ function App() {
       <Route path='/Settings' element={<Seller_Settings/>}/>
       <Route path='/Logout' element={<Seller_Logout/>} />
       <Route path='/SellerBuyRefurbished' element={<Seller_Buy_Refurbished />} />
+      <Route path='/verify/:token' element={<Seller_Verify/>} />
+
 
       <Route path='/VendorExactPrice' element={<Vendor_Exact_Price/>} />
       <Route path='/VendorHome' element={<Vendor_Home/>} />
@@ -85,6 +89,9 @@ function App() {
       <Route path="/VendorExactPrice" element={<Vendor_Exact_Price/>}/>
       <Route path="/VendorSellRefurbished" element={<Vendor_Sell_Refurbished/>}/>
 
+      <Route path='/success' element={<Success/>}/>
+      <Route path='/cancel' element={<Cancel/>}/>
+      
       <Route path='/CompanyHome' element={<Company_Home/>} />
       <Route path='/CompanyCart' element={<Company_Cart/>} />
       <Route path='/CompanyHistory' element={<Company_History/>} />

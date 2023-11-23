@@ -5,7 +5,9 @@ import Seller_Navbar from "./Seller_Navbar";
 
 function SmartPhones() {
     
-    let name, buyingPrice, age, display, cond, second;
+    let name, buyingPrice, age, display, cond, second,newfile;
+    const [image, setImage] = useState('');
+    const hiddenFileInput = useRef(null);
 
     const [productData, setProductData] = useState({
 
@@ -25,12 +27,12 @@ function SmartPhones() {
       Age: '',
       isDisplay: '',
       isCond: '',
-      isSecond: ''
+      isSecond: '',
+      Avatar:'',
   
     })
       
-  const [image, setImage] = useState(null);
-  const hiddenFileInput = useRef(null);
+  
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -43,30 +45,56 @@ function SmartPhones() {
       img.src = reader.result;
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        const maxSize = Math.max(img.width, img.height);
+        const maxSize = 400;
         canvas.width = maxSize;
         canvas.height = maxSize;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(
           img,
-          (maxSize - img.width) / 2,
-          (maxSize - img.height) / 2
+          (maxSize-img.width)/2 ,
+          (maxSize-img.height) /2,
         );
         canvas.toBlob(
           (blob) => {
-            const file = new File([blob], imgname, {
-              type: "image/png",
+            newfile = new File([blob], imgname, {
+              type: "image/*",
               lastModified: Date.now(),
             });
-
-            console.log(file);
-            setImage(file);
+           
           },
           "image/jpeg",
           0.8
         );
+        
+
+
       };
+      console.log(file)
+      setImage(file)
+      console.log(image)
+
+      if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG')
+    {
+      const data=new FormData();
+      data.append('file',file);
+      data.append('upload_preset','Ecowastemanagement')
+      data.append('cloud_name','dfjwwbdv6')
+      fetch('https://api.cloudinary.com/v1_1/dfjwwbdv6/image/upload',{
+        method:"post",
+        body:data,
+
+      }).then((res)=>res.json()).then((data)=>{
+        console.log(data)
+        setProductData({...productData,Avatar:data.url.toString()})
+      }).catch((err)=>{
+      })
+    }
+    else
+    setErrors({...errors,Avatar:"Invalid File Format"})
+      
     };
+
+    
   };
 
 
@@ -122,7 +150,6 @@ function SmartPhones() {
     }
     else {
 
-      console.log(productData)
 
       for(let i=0; i<data.error.length; i++) {
 
@@ -144,6 +171,8 @@ function SmartPhones() {
 
         else if(data.error[i].path==="isSecond")
         second="** "+data.error[i].msg
+
+        
 
 
       }

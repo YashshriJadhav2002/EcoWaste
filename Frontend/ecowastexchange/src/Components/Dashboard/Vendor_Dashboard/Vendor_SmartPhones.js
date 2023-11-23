@@ -4,7 +4,7 @@ import Vendor_Navbar from "./Vendor_Navbar";
 
 function Vendor_SmartPhones() {
       
-      let name, buyingPrice, age, display, cond, second;
+     // let name, buyingPrice, age, display, cond, second;
   
       const [productData, setProductData] = useState({
   

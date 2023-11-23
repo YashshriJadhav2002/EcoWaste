@@ -10,6 +10,11 @@ import linkedin from '../../../src/Images/linkedin.png';
 import '../../../src/Styles/Contact.css';
 import Navbar from './Navbar';
 
+
+
+
+
+
 const Contact = () => {
 
   const [formData, setFormData] = useState({
@@ -143,4 +148,11 @@ const Contact = () => {
   
   )}
 
+
+//   const mailOptions = {
+//     from: `"${name}" <${email}>`, // Use the user's name and email as the "from" address
+//     to: 'your-email@gmail.com', // Your email address
+//     subject: 'New Contact Form Submission',
+//     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+// };
 export default Contact; 
