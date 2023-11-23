@@ -25,6 +25,7 @@ const vendorExactPrice=require('./routes/vendor/vendorExactPrice')
 const buyProduct = require('./routes/vendor/buyProduct')
 const vendorHistory = require('./routes/vendor/vendorHistory')
 const deleteVendorHistory = require('./routes/vendor/deleteVendorHistory')
+const sellerVerify=require('./routes/sellerVerify')
 const app = express()
 
 //middleware
@@ -57,7 +58,7 @@ app.use('/api/vendor/exactprice',vendorExactPrice)
 app.use('/api/vendor/product/buy',buyProduct)
 app.use('/api/vendor/history',vendorHistory)
 app.use('/api/vendor/history/delete',deleteVendorHistory)
-
+app.use('/verify/', sellerVerify);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

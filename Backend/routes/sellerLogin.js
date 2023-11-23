@@ -4,6 +4,7 @@ const Seller = require('../models/sellerModel')
 const router = express.Router()
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
+const nodemailer=require('nodemailer')
 
 const { validationResult, body } = require('express-validator')
 //routes
@@ -32,11 +33,43 @@ router.post('/',[
             
         
             if(response)  
-            {
-                const data={user:seller.id}
-                const token=jwt.sign(data,process.env.SECRET_KEY)
+            {   
+                if(!seller.isVerified)
+                {
+                    const transporter = nodemailer.createTransport({
+                        service: 'Gmail', // Use your email service (e.g., 'Gmail', 'Outlook', 'SMTP')
+                        auth: {
+                                user: process.env.EMAIL_ID, // Your email address
+                                pass: process.env.PASSWORD,      // Your email password or an app-specific password
+                              },
+                        });
+                        
+                        const verificationToken = jwt.sign(
+                            { email: req.body.Email },
+                            process.env.SECRET_KEY,
+                            { expiresIn: '1d' }
+                          );
 
-                return res.status(200).json({message:"Login Successfull", data:token})
+                          const verificationLink = `http://localhost:3000/verify/${verificationToken}`;
+                
+                          const mailOptions = {
+                          from: process.env.EMAIL_ID,
+                          to: req.body.Email,
+                          subject: 'Verify Your Email',
+                          text: `Click on the following link to verify your email: ${verificationLink}`,
+                          };
+                          await transporter.sendMail(mailOptions);
+          
+                          res.status(400).json({error:[{path:"Email",msg:"Complete your Email Verification .Link send to Email"}]})
+                }
+                else
+                {
+                    const data={user:seller.id}
+                    const token=jwt.sign(data,process.env.SECRET_KEY)
+    
+                    return res.status(200).json({message:"Login Successfull", data:token})
+                }
+                
 
             }  
             else

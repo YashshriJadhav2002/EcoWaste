@@ -9,7 +9,6 @@ router.post('/',fetchToken,async(req,res)=>{
     try
     {
         const userid=req.user
-        console.log(userid)
         const details=await sellerModel.findById(userid).select("-Password")
         if(details)
         return res.status(200).json({data:details})
