@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react'
 import location from '../../../src/Images/location.png';
 import email from '../../../src/Images/email.png';
 import phone from '../../../src/Images/phone.png';
@@ -10,6 +11,57 @@ import '../../../src/Styles/Contact.css';
 import Navbar from './Navbar';
 
 const Contact = () => {
+
+  const [formData, setFormData] = useState({
+    Email: '',
+    message: '',
+    phone:'',
+    name:''
+  });
+
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    console.log("Hello");
+                const token =localStorage.getItem('auth-token')
+                const {name,Email,message}=formData;
+      
+                const res=await fetch('/api/contact/email',{
+                  method:"POST",
+                  headers:{
+                  "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                  auth_token:token,
+                  Email,message,name
+                })
+              })
+      
+              const data= await res.json();
+      
+              if(res.status===200)
+              {
+                window.alert(data.message)
+                setFormData({
+                  useremail:"",
+                  message:"",
+                  phone: "",
+                  name: ""
+                })
+              }
+              else
+              window.alert(data.error)
+  };
+
   return (
     <div >
     <Navbar></Navbar>
@@ -57,29 +109,33 @@ const Contact = () => {
         </div>
 
         <div class="contact-form">
-          <form action="index.html" autocomplete="off">
+          <form autocomplete="off">
             <h3 class="title">Contact us</h3>
             <div class="inputvalues-container">
-              <input type="text" placeholder="Name" class="contact-input" />
+              <input type="text" placeholder="Name" class="contact-input" name="name" value={formData.name}
+              onChange={handleInputChange} />
               <label for=""></label>
               <span>Username</span>
             </div>
             <div class="inputvalues-container">
-              <input type="email" placeholder="Email" class="contact-input" />
+              <input type="email" placeholder="Email" class="contact-input" name="Email" value={formData.useremail}
+              onChange={handleInputChange} />
               <label for=""></label>
               <span>Email</span>
             </div>
             <div class="inputvalues-container">
-              <input type="tel" placeholder="Phone" class="contact-input" />
+              <input type="tel" placeholder="Phone" class="contact-input" name="phone" value={formData.phone} 
+              onChange={handleInputChange} />
               <label for=""></label>
               <span>Phone</span>
             </div>
             <div class="inputvalues-container textarea">
-              <textarea name="message" placeholder="Message" class="contact-input"></textarea>
+              <textarea name="message" placeholder="Message" class="contact-input" value={formData.message}
+              onChange={handleInputChange}></textarea>
               <label for=""></label>
               <span>Message</span>
             </div>
-            <input type="submit" value="Send" class="btn" />
+            <input type="submit" value="Send" class="btn" onClick={sendEmail}/>
           </form>
         </div>
       </div>
@@ -88,5 +144,3 @@ const Contact = () => {
   )}
 
 export default Contact; 
-
-

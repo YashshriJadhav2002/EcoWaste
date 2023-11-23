@@ -13,13 +13,13 @@ import Seller_Home from './Components/Dashboard/Seller-Dashboard/Seller_Home';
 import Seller_Cart from './Components/Dashboard/Seller-Dashboard/Seller_Cart';
 import Seller_History from './Components/Dashboard/Seller-Dashboard/Seller_History';
 import Seller_Settings from './Components/Dashboard/Seller-Dashboard/Seller_Settings';
+import Seller_Buy_Refurbished from './Components/Dashboard/Seller-Dashboard/Seller_Buy_Refurbished';
 import SmartPhones from './Components/Dashboard/Seller-Dashboard/Seller_SmartPhones';
 import Earbuds from './Components/Dashboard/Seller-Dashboard/Seller_Earbuds';
 import Laptop from './Components/Dashboard/Seller-Dashboard/Seller_Laptop';
 import Seller_Logout from './Components/Dashboard/Seller-Dashboard/Seller_Logout';
 import Exact_Price from './Components/Dashboard/Seller-Dashboard/Seller_Exact_Price';
 import Vendor_Home from './Components/Dashboard/Vendor_Dashboard/Vendor_Home';
-import Vendor_Buy_Refurbished from './Components/Dashboard/Vendor_Dashboard/Vendor_Buy_Refurbished';
 import Vendor_Cart from './Components/Dashboard/Vendor_Dashboard/Vendor_Cart';
 import Vendor_History from './Components/Dashboard/Vendor_Dashboard/Vendor_History';
 import Vendor_SmartPhones from './Components/Dashboard/Vendor_Dashboard/Vendor_SmartPhones';
@@ -38,6 +38,7 @@ import Company_Earbuds from './Components/Dashboard/Company_Dashboard/Company_Ea
 import Company_Settings from './Components/Dashboard/Company_Dashboard/Company_Settings';
 import Company_Logout from './Components/Dashboard/Company_Dashboard/Company_Logout';
 import Company_Exact_Price from './Components/Dashboard/Company_Dashboard/Company_Exact_Price';
+import Vendor_Sell_Refurbished from './Components/Dashboard/Vendor_Dashboard/Vendor_Sell_Refurbished';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
       <Route path="/ExactPrice" element={<Exact_Price/>}/>
       <Route path='/Settings' element={<Seller_Settings/>}/>
       <Route path='/Logout' element={<Seller_Logout/>} />
+      <Route path='/SellerBuyRefurbished' element={<Seller_Buy_Refurbished />} />
 
       <Route path='/VendorExactPrice' element={<Vendor_Exact_Price/>} />
       <Route path='/VendorHome' element={<Vendor_Home/>} />
@@ -75,13 +77,13 @@ function App() {
       <Route path='/VendorHome' element={<Vendor_Home/>} />
       <Route path='/VendorCart' element={<Vendor_Cart/>} />
       <Route path='/VendorHistory' element={<Vendor_History/>} />
-      <Route path='VendorBuyRefurbished' element={<Vendor_Buy_Refurbished />} />
       <Route path='/VendorSmartphones' element={<Vendor_SmartPhones/>} />
       <Route path='/VendorLaptop' element={<Vendor_Laptop/>} />
       <Route path='/VendorEarbud' element={<Vendor_Earbuds/>} />
       <Route path='/VendorSettings' element={<Vendor_Settings/>}/>
       <Route path='/VendorLogout' element={<Vendor_Logout/>} />
       <Route path="/VendorExactPrice" element={<Vendor_Exact_Price/>}/>
+      <Route path="/VendorSellRefurbished" element={<Vendor_Sell_Refurbished/>}/>
 
       <Route path='/CompanyHome' element={<Company_Home/>} />
       <Route path='/CompanyCart' element={<Company_Cart/>} />

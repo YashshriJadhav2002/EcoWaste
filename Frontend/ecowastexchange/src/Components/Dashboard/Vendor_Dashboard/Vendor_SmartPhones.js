@@ -78,17 +78,90 @@ function Vendor_SmartPhones() {
       });
     };
     const handleContinue = async (e) => {
-  
       e.preventDefault()
+
+
+      const auth_token = localStorage.getItem("vendor-token")
   
+      const {Name, BuyingPrice, Age, isDisplay, isCond, isSecond, Avatar} = productData
+      const res = await fetch('/api/refurbishedproduct/prediction', {method:'POST', 
+      headers: {
+  
+        "Content-Type":"application/json",
       
-    
-        window.location.href = '/VendorExactPrice'
+      },
+      body: JSON.stringify({
+  
+        Name, BuyingPrice, Age,isDisplay, isCond, isSecond, Avatar, auth_token
+  
+      })
         
+      
+    })
+  
+      const data = await res.json()
+      if(res.status===200) {
+  
+  
+        localStorage.setItem("RefurbishedProduct-token",data.data)
+  
+        window.alert("Details saved successfully")
+      
+        setErrors({
+          Name : '',
+          BuyingPrice: '',
+          Age: '',
+          isDisplay: '',
+          isCond: '',
+          isSecond: ''
+  
+        })
+        window.location.href = '/VendorSellRefurbished'
+      
+      }
+      else {
+  
+        console.log(productData)
+  
+        for(let i=0; i<data.error.length; i++) {
+  
+          if(data.error[i].path==="Name")
+          name="** "+data.error[i].msg
+        
+          else if(data.error[i].path==="BuyingPrice")
+          buyingPrice ="** "+data.error[i].msg
+  
+          else if(data.error[i].path==="Age")
+          age="** "+data.error[i].msg
+          
+          
+          else if(data.error[i].path==="isDisplay")
+          display="** "+data.error[i].msg
+          
+          else if(data.error[i].path==="isCond")
+            cond="** "+data.error[i].msg
+  
+          else if(data.error[i].path==="isSecond")
+          second="** "+data.error[i].msg
+  
   
         }
   
-        
+        setErrors( {
+  
+          Name : name,
+          BuyingPrice: buyingPrice,
+          Age: age,
+          isDisplay: display,
+          isCond: cond,
+          isSecond: second
+  
+  
+  
+        })
+  
+      }
+    }
   
       
   
@@ -187,7 +260,7 @@ function Vendor_SmartPhones() {
   
           </div>
           
-          <button type='continue' className="smartphone-submit" onClick={handleContinue}>Condition</button>
+          <button type='continue' className="smartphone-submit" onClick={handleContinue}>Continue</button>
         
           
         </form>
