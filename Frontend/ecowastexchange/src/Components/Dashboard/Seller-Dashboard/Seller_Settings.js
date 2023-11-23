@@ -97,6 +97,27 @@ const Seller_Settings = () => {
           setEditMode(!editMode);
         }
       };
+
+      const postDetails=(pics)=>{
+
+        if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg'||pics.type==='image/JPG'||pics.type==='image/PNG'||pics.type==='image/JPEG')
+        {
+          const data=new FormData();
+          data.append('file',pics);
+          data.append('upload_preset','Ecowastemanagement')
+          data.append('cloud_name','dfjwwbdv6')
+          fetch('https://api.cloudinary.com/v1_1/dfjwwbdv6/image/upload',{
+            method:"post",
+            body:data,
+    
+          }).then((res)=>res.json()).then((data)=>{
+            setFormData({...formData,Avatar:data.url.toString()})
+          }).catch((err)=>{
+          })
+        }
+      
+      }
+
       const handleInputChange = (e) => {
         const { name, value } = e.target;
         const file = e.target.files[0];
@@ -114,7 +135,6 @@ const Seller_Settings = () => {
 
       <div className="sellersetting-container">
         <div className="photo">
-          {/* <img src={formData.Avatar} alt="" /> */}
           <label htmlFor="avatarInput">
             <img src={formData.Avatar} alt="" />
             <input
@@ -122,7 +142,7 @@ const Seller_Settings = () => {
               id="avatarInput"
               accept="image/*"
               style={{ display: "none" }}
-              onChange={handleInputChange}
+              onChange={(e)=>postDetails(e.target.files[0])}
             />
           </label>
           <button
