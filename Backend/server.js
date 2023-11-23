@@ -38,6 +38,8 @@ const vendorHistory = require('./routes/vendor/vendorHistory')
 const deleteVendorHistory = require('./routes/vendor/deleteVendorHistory')
 const contactMail = require('./routes/contactMail')
 const sellerVerify=require('./routes/sellerVerify')
+const vendorVerify=require('./routes/vendor/vendor_verify')
+const companyVerify=require('./routes/companyVerify')
 const app = express()
 
 //middleware
@@ -83,6 +85,8 @@ app.use('/api/refurbishedproduct/sell',sellRefurbishedProduct)
 app.use('/api/vendor/cart',vendorCart)
 
 app.use('/verify/', sellerVerify);
+app.use('/verifyVendor/', vendorVerify);
+app.use('/verifyCompany/', companyVerify);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
