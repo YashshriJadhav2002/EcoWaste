@@ -43,7 +43,19 @@ const  Vendor_History = () => {
         
           setProductData([...product,...productData])
           
+          data.data2.forEach((product, index) => {
+            const jsonString = JSON.stringify(product);
+            const dataparse2=JSON.parse(jsonString)
+            productData.push(dataparse2);
+            
+          });
+          console.log(productData)
+
+          setProductData([...product,...productData])
+          
         }
+       
+        
        
     }
     
@@ -56,6 +68,7 @@ const  Vendor_History = () => {
   const handleDelete = async (productId) => {
 
     const product_id = productId
+    alert(product_id)
 
     const res = await fetch('/api/vendor/history/delete',{
       method: "POST",

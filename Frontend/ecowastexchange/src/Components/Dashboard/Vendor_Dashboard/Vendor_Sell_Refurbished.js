@@ -1,12 +1,10 @@
-import React from 'react';
-import '../../../Styles/Seller_Buy_Refurbished.css';
-import phone from "../../../Images/phone_price.png";
+import React from 'react'
+import '../../../Styles/Seller_Exact_Price.css';
+import Vendor_Navbar from './Vendor_Navbar';
 import { useState ,useEffect} from 'react';
-import Seller_Navbar from './Seller_Navbar';
 
-function Buy_Refurbished() {
-
-  
+function Vendor_Sell_Refurbished() {
+   
   const [formData, setFormData] = useState({
     Name: '',
     SellingPrice:'',
@@ -18,9 +16,11 @@ function Buy_Refurbished() {
     const fetchUser = async() => {
 
 
-      const token = localStorage.getItem("refurbishedProduct_id")
-      
-      const res=await fetch('/api/seller/exactprice',
+      const token = localStorage.getItem("RefurbishedProduct-token")
+      console.log(token)
+      //const auth_token=JSON.parse(token)
+      //console.log(auth_token)
+      const res=await fetch('/api/vendor/refurbishedproduct/sell',
       {
         method:"POST",
         headers:
@@ -28,13 +28,12 @@ function Buy_Refurbished() {
         "Content-Type":"application/json",
         },
         body: JSON.stringify({
-        product_id: token
+          product_token: token
         })
       })
 
         const data=await res.json()
         console.log(data)
-       
         if(res.status===200)
         {
           
@@ -55,7 +54,6 @@ function Buy_Refurbished() {
 
   }, [])
 
-
   const [accordionItems, setAccordionItems] = useState([
     { title: 'How did you calculate my device price?', content: 'We evaluate devices on the basis of their condition, age, supply, demand & value in the resale market. All these factors are accounted for by our AI mechanism to determine the best resale value of your device', isOpen: false },
     { title: 'Is it safe to sell my phone on EcoWasteXchange?', content: 'It’s the safest out there. First and foremost, we ensure your device data is erased completely. You will also receive an invoice for the transaction, as a proof of device ownership transfer.', isOpen: false },
@@ -63,37 +61,40 @@ function Buy_Refurbished() {
   ]);
 
 
-  const handleBuy = async() => {
+  const handleSell = async () => {
 
-    const product_id = localStorage.getItem('refurbishedProduct_id')
-    const auth_token = localStorage.getItem('auth-token')
-    const res = await fetch('/api/seller/product/buy', {
-      method:"POST",
-      headers: {
-        'Content-Type':'application/json'
+
+      const token = localStorage.getItem("RefurbishedProduct-token")
+   
+      const res = await fetch('/api/refurbishedproduct/sell', {method:"POST", headers: {
+
+        'Content-Type' : "application/json",
       },
       body: JSON.stringify({
-        product_id:product_id,
-        auth_token:auth_token
+        product_token: token
       })
-  
-  })
+    
+      
+    
+    
+    
+    
+    })
 
-  const data = await res.json()
-  if(res.status === 200) {
-    window.alert(data.message)
-    window.location.href = '/SellerHome'
+    const data = await res.json()
+    if(res.status === 200) {
 
-  }else {
+        window.alert(data.message)
+        window.location.href = '/VendorHome'
 
-    window.alert(data.error)
+    }
+    else {
+        window.alert(data.error)
+    }
 
   }
-        
 
 
-
-  }
   const toggleAccordionItem = (index) => {
     setAccordionItems((prevItems) => {
       const updatedItems = prevItems.map((item, i) => {
@@ -108,7 +109,7 @@ function Buy_Refurbished() {
   };
   return (
     <div>
-        <Seller_Navbar></Seller_Navbar>
+        <Vendor_Navbar></Vendor_Navbar>
     <div className='item-container'>
         <div className='product-image'>
       <img src={formData.Avatar}></img> 
@@ -119,7 +120,7 @@ function Buy_Refurbished() {
       <br></br>
       <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1>
       <br></br>
-      <button className='sellbutton' onClick={handleBuy}>Buy</button>
+      <button className='sellbutton'onClick={handleSell}>Sell</button>
       
       <br></br>
       <text>Fast <br></br>Payments</text>
@@ -153,4 +154,4 @@ function Buy_Refurbished() {
   )
 }
 
-export default Buy_Refurbished
+export default Vendor_Sell_Refurbished

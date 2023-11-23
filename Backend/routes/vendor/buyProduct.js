@@ -57,7 +57,7 @@ router.post('/',fetchAuth,async(req,res)=>{
 
 
               const from = "Vonage APIs"
-                const to = '918459777201'
+                const to = `918459777201`
                 const text = 'Dear User, Congratulations! Your product has been sold. Please check history for further details'
 
                 async function sendSMS() {

@@ -19,7 +19,9 @@ const Contact = () => {
 
   const [formData, setFormData] = useState({
     Email: '',
-    message: ''
+    message: '',
+    phone:'',
+    name:''
   });
 
 
@@ -32,7 +34,39 @@ const Contact = () => {
   };
 
 
-  
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    console.log("Hello");
+                const token =localStorage.getItem('auth-token')
+                const {name,Email,message}=formData;
+      
+                const res=await fetch('/api/contact/email',{
+                  method:"POST",
+                  headers:{
+                  "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                  auth_token:token,
+                  Email,message,name
+                })
+              })
+      
+              const data= await res.json();
+      
+              if(res.status===200)
+              {
+                window.alert(data.message)
+                setFormData({
+                  useremail:"",
+                  message:"",
+                  phone: "",
+                  name: ""
+                })
+              }
+              else
+              window.alert(data.error)
+  };
+
   return (
     <div >
     <Navbar></Navbar>
@@ -83,7 +117,8 @@ const Contact = () => {
           <form autocomplete="off">
             <h3 class="title">Contact us</h3>
             <div class="inputvalues-container">
-              <input type="text" placeholder="Name" class="contact-input" />
+              <input type="text" placeholder="Name" class="contact-input" name="name" value={formData.name}
+              onChange={handleInputChange} />
               <label for=""></label>
               <span>Username</span>
             </div>
@@ -94,7 +129,8 @@ const Contact = () => {
               <span>Email</span>
             </div>
             <div class="inputvalues-container">
-              <input type="tel" placeholder="Phone" class="contact-input" />
+              <input type="tel" placeholder="Phone" class="contact-input" name="phone" value={formData.phone} 
+              onChange={handleInputChange} />
               <label for=""></label>
               <span>Phone</span>
             </div>
@@ -104,7 +140,7 @@ const Contact = () => {
               <label for=""></label>
               <span>Message</span>
             </div>
-            <input type="submit" value="Send" class="btn"/>
+            <input type="submit" value="Send" class="btn" onClick={sendEmail}/>
           </form>
         </div>
       </div>
@@ -120,5 +156,3 @@ const Contact = () => {
 //     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
 // };
 export default Contact; 
-
-

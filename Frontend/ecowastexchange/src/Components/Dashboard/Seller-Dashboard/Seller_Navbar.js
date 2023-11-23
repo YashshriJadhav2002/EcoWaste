@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -120,4 +119,3 @@ const Seller_Navbar = () => {
 };
 
 export default Seller_Navbar;
-  

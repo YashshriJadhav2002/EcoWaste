@@ -16,7 +16,34 @@ const Seller_Settings = () => {
         Avatar: null,
       });
 
-      const [readOnly,setReadonly]=useState(true)
+      const [editMode, setEditMode] = useState(false);
+
+      const postData= async()=>{
+        console.log("Hello");
+              const token =localStorage.getItem('auth-token')
+              const {Name,Email,Phone,Address,City,State,Avatar}=formData;
+    
+              const res=await fetch('/api/seller/update/profile',{
+                method:"POST",
+                headers:{
+                "Content-Type":"application/json"
+              },
+              body:JSON.stringify({
+                auth_token:token,
+                Name,Email,Phone,Address,City,State,Avatar
+              })
+            })
+    
+            const data= await res.json();
+    
+            if(res.status===200)
+            window.alert(data.message)
+            else
+            window.alert(data.error)
+            
+    }
+    
+    
     
       useEffect(()=> {
 
@@ -61,90 +88,149 @@ const Seller_Settings = () => {
 
       }, [])
 
+      const handleEditProfile = () => {
+        if(!editMode){
+        setEditMode(!editMode);
+        }
+        else{
+          postData();
+          setEditMode(!editMode);
+        }
+      };
+
+      const postDetails=(pics)=>{
+
+        if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg'||pics.type==='image/JPG'||pics.type==='image/PNG'||pics.type==='image/JPEG')
+        {
+          const data=new FormData();
+          data.append('file',pics);
+          data.append('upload_preset','Ecowastemanagement')
+          data.append('cloud_name','dfjwwbdv6')
+          fetch('https://api.cloudinary.com/v1_1/dfjwwbdv6/image/upload',{
+            method:"post",
+            body:data,
+    
+          }).then((res)=>res.json()).then((data)=>{
+            setFormData({...formData,Avatar:data.url.toString()})
+          }).catch((err)=>{
+          })
+        }
+      
+      }
+
       const handleInputChange = (e) => {
         const { name, value } = e.target;
+        const file = e.target.files[0];
         setFormData({
           ...formData,
           [name]: value,
+           Avatar: URL.createObjectURL(file),
+           avatarFile: file,
         });
       };
-    
-      // const postDetails=(pics)=>{
-    
-      //   if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg'||pics.type==='image/JPG'||pics.type==='image/PNG'||pics.type==='image/JPEG')
-      //   {
-      //     const data=new FormData();
-      //     data.append('file',pics);
-      //     data.append('upload_preset','Ecowastemanagement')
-      //     data.append('cloud_name','dfjwwbdv6')
-      //     fetch('https://api.cloudinary.com/v1_1/dfjwwbdv6/image/upload',{
-      //       method:"post",
-      //       body:data,
-    
-      //     }).then((res)=>res.json()).then((data)=>{
-      //       setFormData({...formData,Avatar:data.url.toString()})
-      //     }).catch((err)=>{
-      //     })
-      //   }
-      //   else
-      //   setErrors({...errors,Avatar:"Invalid File Format"})
-      // }
-
-      
 
     return (
+        <div>
+      <Seller_Navbar></Seller_Navbar>
 
-        <div >
-        <Seller_Navbar></Seller_Navbar>
-          
-          <div class="sellersetting-container">
-            <div class="photo">
-              
-              <img src={formData.Avatar} alt=""/>
-              <button
-              type="Edit_profile"
-              className="Edit_profile"  >Edit Profile</button>
-              
-              </div>
-  
-            <div class="contact-form">
-              <form autocomplete="off">
-                <h3 class="title">User data</h3>
-                <label for="">Seller Name</label>
-                <div class="inputvalues-container">
-                  <input type="text" name="name" value={formData.Name} class="contact-input" readOnly={readOnly} onChange={()=>handleInputChange} />
-                  
-                </div>
-                <label for="">Phone Number</label>
-                <div class="inputvalues-container">
-                  <input type="text" name="phone" value={formData.Phone} class="contact-input" readOnly={readOnly} onChange={()=>handleInputChange} />
-                </div>
-
-                <label for="">Address</label>
-                <div class="inputvalues-container textarea">
-                <textarea type="text" name="address" value={formData.Address} class="contact-input" readOnly={readOnly} onChange={()=>handleInputChange}></textarea>
-                </div>
-
-                <label for="">Email</label>
-                <div class="inputvalues-container">
-                <input type="text" name="email" value={formData.Email} class="contact-input" readOnly={readOnly} onChange={()=>handleInputChange} />
-                </div>
-
-                <label for="">City</label>
-                <div class="inputvalues-container">
-                <input type="text" name="city" value={formData.City} class="contact-input" readOnly={readOnly} onChange={()=>handleInputChange}/>
-                </div>
-
-                <label for="">State</label>
-                <div class="inputvalues-container">
-                <input  type="text" name="state" value={formData.State} class="contact-input" readOnly={readOnly} onChange={()=>handleInputChange}/>
-                </div>
-
-               
-              </form>
-            </div>
-          </div>
+      <div className="sellersetting-container">
+        <div className="photo">
+          <label htmlFor="avatarInput">
+            <img src={formData.Avatar} alt="" />
+            <input
+              type="file"
+              id="avatarInput"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={(e)=>postDetails(e.target.files[0])}
+            />
+          </label>
+          <button
+            type="button"
+            className="login-submit"
+            onClick={handleEditProfile}
+          >
+            {editMode ? "Save" : "Edit profile"}
+          </button>
         </div>
+
+        <div className="contact-form">
+          <form action="index.html" autoComplete="off">
+            <h3 className="title">User data</h3>
+            <label htmlFor="">Seller Name</label>
+            <div className="inputvalues-container">
+              <input
+                type="text"
+                name="Name"
+                value={formData.Name}
+                className={`contact-input ${editMode ? 'editable' : ''}`}
+                readOnly={!editMode}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <label htmlFor="">Phone Number</label>
+            <div className="inputvalues-container">
+              <input
+                type="tel"
+                name="Phone"
+                value={formData.Phone}
+                className={`contact-input ${editMode ? 'editable' : ''}`}
+                readOnly={!editMode}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <label htmlFor="">Address</label>
+            <div className="inputvalues-container textarea">
+              <textarea
+                name="Address"
+                value={formData.Address}
+                className={`contact-input ${editMode ? 'editable' : ''}`}
+                readOnly={!editMode}
+                onChange={handleInputChange}
+              ></textarea>
+            </div>
+
+            <label htmlFor="">Email</label>
+            <div className="inputvalues-container">
+              <input
+                type="email"
+                name="Email"
+                value={formData.Email}
+                className={`contact-input ${editMode ? 'editable' : ''}`}
+                readOnly={!editMode}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <label htmlFor="">City</label>
+            <div className="inputvalues-container">
+              <input
+                type="city"
+                name="City"
+                value={formData.City}
+                className={`contact-input ${editMode ? 'editable' : ''}`}
+                readOnly={!editMode}
+                onChange={handleInputChange}
+              />
+            </div>
+
+            <label htmlFor="">State</label>
+            <div className="inputvalues-container">
+              <input
+                type="state"
+                name="State"
+                value={formData.State}
+                className={`contact-input ${editMode ? 'editable' : ''}`}
+                readOnly={!editMode}
+                onChange={handleInputChange}
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     )
 }
 
