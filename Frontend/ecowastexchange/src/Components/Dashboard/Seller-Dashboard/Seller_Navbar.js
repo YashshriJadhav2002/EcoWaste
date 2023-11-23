@@ -13,9 +13,6 @@ const Seller_Navbar = () => {
     Avatar:''
 
   });
- 
-
-
 
   
   useEffect(()=> {
