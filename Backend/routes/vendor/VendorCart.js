@@ -1,7 +1,7 @@
 const express=require('express')
-const auth=require('../middleware/authentication')
+const auth=require('../../middleware/authentication')
 const router=express.Router()
-const product=require('../models/productModel')
+const product=require('../../models/refurbishedProductModel')
 
 router.post('/',auth,async(req,res)=>{
 

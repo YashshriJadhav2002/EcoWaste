@@ -1,8 +1,8 @@
 const express=require('express')
-const fetchAuth = require('../../middleware/authentication')
+const fetchAuth = require('../middleware/authentication')
 const router=express.Router()
-const product=require('./../../models/productModel')
-const user = require("./../../models/sellerModel")
+const product=require('./../models/refurbishedProductModel')
+const user = require("./../models/buyerModel")
 const { Vonage } = require('@vonage/server-sdk')
 
 
