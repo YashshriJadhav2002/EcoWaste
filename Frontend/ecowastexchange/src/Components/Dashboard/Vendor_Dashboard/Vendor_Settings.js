@@ -1,6 +1,5 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import seller from "../../../Images/seller.jpg";
 import "../../../Styles/Seller_Settings.css";
 import Vendor_Navbar from "./Vendor_Navbar";
 const Vendor_Settings = () => {

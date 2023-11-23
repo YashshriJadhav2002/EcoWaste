@@ -17,9 +17,7 @@ function Exact_Price() {
 
 
       const token = localStorage.getItem("product-token")
-      console.log(token)
-      //const auth_token=JSON.parse(token)
-      //console.log(auth_token)
+     
       const res=await fetch('/api/product/exactPrice',
       {
         method:"POST",
@@ -33,7 +31,6 @@ function Exact_Price() {
       })
 
         const data=await res.json()
-        console.log(data)
         if(res.status===200)
         {
           
@@ -66,7 +63,8 @@ function Exact_Price() {
 
       const token = localStorage.getItem("product-token")
    
-      const res = await fetch('/api/product/sell', {method:"POST", headers: {
+      const res = await fetch('/api/product/sell', {
+        method:"POST", headers: {
 
         'Content-Type' : "application/json",
       },
@@ -74,10 +72,7 @@ function Exact_Price() {
         product_token: token
       })
     
-      
-    
-    
-    
+
     
     })
 

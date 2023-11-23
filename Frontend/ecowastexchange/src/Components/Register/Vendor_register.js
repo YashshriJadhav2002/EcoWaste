@@ -3,7 +3,7 @@ import '../../../src/Styles/Register.css'
 import Navbar from '../landing_page/Navbar';
 
 const VendorRegister = () => {
-  let name,email,phone,address,city,state,password,database,Image
+  let name,email,phone,address,city,state,password,database
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -13,7 +13,7 @@ const VendorRegister = () => {
     City: '',
     State: '',
     Password:'',
-    Image: '',
+    Avatar:'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg',
     Document:null,
   });
 
@@ -25,7 +25,7 @@ const VendorRegister = () => {
     City: '',
     State: '',
     Password:'',
-    Image: '',
+    Avatar: '',
     Document:null,
     Database:"",
 
@@ -42,7 +42,7 @@ const VendorRegister = () => {
 
   const postDetails=(pics)=>{
   
-    if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg')
+    if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg'||pics.type==='image/JPG'||pics.type==='image/PNG'||pics.type==='image/JPEG')
     {
       const data=new FormData();
       data.append('file',pics);
@@ -66,7 +66,7 @@ const VendorRegister = () => {
   const postData= async(e)=>{
     e.preventDefault()
 
-    if(errors.Image=='')
+    if(errors.Avatar==='')
     {
     const {Name,Email,Phone,Address,City,State,Password,Avatar}=formData;
 
@@ -80,7 +80,7 @@ const VendorRegister = () => {
   const data = await res.json()
   if(res.status===200)
   {
-    console.log(data.message)
+    
     window.alert(data.message)
     setErrors({Name: '',
     Phone: '',
@@ -89,7 +89,7 @@ const VendorRegister = () => {
     City: '',
     State: '',
     Password:'',
-    Image: null,
+    Image: '',
     Database:"",
     
 })
@@ -132,6 +132,7 @@ window.location.href='/Vendor'
         Phone:phone,
         Password:password,
         Database:database,
+
       })
 
     }
