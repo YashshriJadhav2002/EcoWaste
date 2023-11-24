@@ -2,6 +2,9 @@ import React from 'react'
 import '../../../Styles/Seller_Exact_Price.css';
 import Seller_Navbar from './Seller_Navbar';
 import { useState,useEffect } from 'react';
+import Modal from 'react-modal';
+
+
 
 function Exact_Price() {
 
@@ -89,6 +92,48 @@ function Exact_Price() {
 
   }
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [userInput, setUserInput] = useState('');
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleInputChange = (e) => {
+    setUserInput(e.target.value);
+  };
+
+  const handleFormSubmit = async(e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("product-token")
+    setFormData({...formData,SellingPrice:userInput})
+    const {SellingPrice}=formData.SellingPrice;
+
+    const res=await fetch('/api/seller/sellerSellingPrice',{
+      method:"POST",
+      headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+      product_token:token,
+      SellingPrice,
+    })
+  })
+
+  const data= await res.json();
+
+  if(res.status===200)
+  window.alert(data.message)
+  else
+  window.alert(data.error)
+  
+    
+    closeModal();
+  }; 
 
   const toggleAccordionItem = (index) => {
     setAccordionItems((prevItems) => {
@@ -113,7 +158,26 @@ function Exact_Price() {
       <h1>{formData.Name}</h1>
       <h3>Selling Price:</h3>
       <br></br>
-      <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1>
+      <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1><button onClick={openModal}>Edit</button>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Input Modal"
+      >
+        <h2>Enter Selling Price:</h2>
+        <form >
+          <input
+            type="text"
+            value={userInput}
+            onChange={handleInputChange}
+          /><br></br>
+          <button type="submit" onClick={handleFormSubmit}>Submit</button>
+          <br></br>
+          <button onClick={closeModal}>Cancel</button>
+        </form>
+       
+      </Modal>
       <br></br>
       <button className='sellbutton'onClick={handleSell}>Sell</button>
       

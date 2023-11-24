@@ -86,11 +86,11 @@ const Contact = () => {
             </div>
             <div class="information">
               <img src={email} class="icon" alt="" />
-              <p>rutuja.bhoyar@cumminscollege.in</p>
+              <p>ecowastexchange2023@gmail.com</p>
             </div>
             <div class="information">
               <img src={phone} class="icon" alt="" />
-              <p>9579385191</p>
+              <p>8459777201</p>
             </div>
           </div>
 
@@ -149,10 +149,5 @@ const Contact = () => {
   )}
 
 
-//   const mailOptions = {
-//     from: `"${name}" <${email}>`, // Use the user's name and email as the "from" address
-//     to: 'your-email@gmail.com', // Your email address
-//     subject: 'New Contact Form Submission',
-//     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-// };
+
 export default Contact; 
