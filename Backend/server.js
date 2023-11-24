@@ -40,6 +40,10 @@ const contactMail = require('./routes/contactMail')
 const sellerVerify=require('./routes/sellerVerify')
 const vendorVerify=require('./routes/vendor/vendor_verify')
 const companyVerify=require('./routes/companyVerify')
+
+const companyProfile=require('./routes/companyProfile')
+const companyupdateprofile=require('./routes/cUpdateProfile')
+
 const app = express()
 
 //middleware
@@ -87,6 +91,9 @@ app.use('/api/vendor/cart',vendorCart)
 app.use('/verify/', sellerVerify);
 app.use('/verifyVendor/', vendorVerify);
 app.use('/verifyCompany/', companyVerify);
+
+app.use('/api/company/profile',companyProfile)
+app.use('/api/company/update/profile',companyupdateprofile)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
