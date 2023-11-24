@@ -6,7 +6,7 @@ const user = require("./../../models/sellerModel")
 const { Vonage } = require('@vonage/server-sdk')
 const nodemailer = require('nodemailer')
 const vendor=require('./../../models/buyerModel')
-const stripe=require('stripe')('sk_test_51OA6VNSBOVYSI690yxeBca5IRIJoGvpL0G1XhctCk1UPJd8to3W4l4xHyVitIALkhnklFT8jcXsXM0aKvYSIzQ7U00LrZblotA')
+const stripe=require('stripe')('sk_test_51OA6VNSBOVYSI690jPwAb9szLozVjvdrI9TQd3REdDJl2yxtG9hZ68Bc27gxjrUK70EYnY94NXPV1hrYPXPPw8oM00merBSC8u')
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -14,7 +14,8 @@ router.post('/',fetchAuth,async(req,res)=>{
       const vendor_id = req.user
       const product_id = req.body.product_id;
       const data = await product.findById({ _id: product_id });
-      const amount = data.SellingPrice * 100;
+      const a_amount = data.SellingPrice * 100;
+      const amount = Math.ceil( a_amount ); 
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types:['card'],
@@ -33,7 +34,7 @@ router.post('/',fetchAuth,async(req,res)=>{
         cancel_url: "http://localhost:3000/cancel",
       });
      
-      if (session.success_url === 'http://loalhost:3000/success') {
+      if (session.success_url === 'http://localhost:3000/success') {
           console.log(session.success_url)
             const timestamp = new Date(Date.now()); 
             const year = timestamp.getFullYear();
