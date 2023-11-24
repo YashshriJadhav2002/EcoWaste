@@ -41,7 +41,8 @@ import Vendor_Sell_Refurbished from './Components/Dashboard/Vendor_Dashboard/Ven
 import Success from './Components/Dashboard/Vendor_Dashboard/success';
 import Cancel from './Components/Dashboard/Vendor_Dashboard/cancel';
 import Seller_Verify from './Components/Dashboard/Seller-Dashboard/seller_Verify';
-
+import VendorVerify from './Components/Dashboard/Vendor_Dashboard/vendor_verify';
+import CompanyVerify from './Components/Dashboard/Company_Dashboard/Company_Verify';
 
 function App() {
   return (
@@ -71,6 +72,8 @@ function App() {
       <Route path='/Logout' element={<Seller_Logout/>} />
       <Route path='/SellerBuyRefurbished' element={<Seller_Buy_Refurbished />} />
       <Route path='/verify/:token' element={<Seller_Verify/>} />
+      <Route path='/verifyVendor/:token' element={<VendorVerify/>} />
+      <Route path='/verifyCompany/:token' element={<CompanyVerify/>} />
 
 
       <Route path='/VendorExactPrice' element={<Vendor_Exact_Price/>} />
