@@ -19,7 +19,6 @@ const Seller_Settings = () => {
       const [editMode, setEditMode] = useState(false);
 
       const postData= async()=>{
-        console.log("Hello");
               const token =localStorage.getItem('auth-token')
               const {Name,Email,Phone,Address,City,State,Avatar}=formData;
     
@@ -120,12 +119,10 @@ const Seller_Settings = () => {
 
       const handleInputChange = (e) => {
         const { name, value } = e.target;
-        const file = e.target.files[0];
         setFormData({
           ...formData,
           [name]: value,
-           Avatar: URL.createObjectURL(file),
-           avatarFile: file,
+           
         });
       };
 

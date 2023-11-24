@@ -72,8 +72,8 @@ const handleImageChange = (event) => {
     setImage(file)
     console.log(image)
 
-    if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG')
-  {
+    if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
+    {
     const data=new FormData();
     data.append('file',file);
     data.append('upload_preset','Ecowastemanagement')

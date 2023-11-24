@@ -2,8 +2,7 @@ import React from "react";
 import {useState, useEffect} from "react";
 import "../../../Styles/Seller_Settings.css";
 import Vendor_Navbar from "./Vendor_Navbar";
-import Axios from 'axios'
-import axios from "axios";
+
 const Vendor_Settings = () => {
 
     

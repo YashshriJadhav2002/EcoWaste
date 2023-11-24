@@ -66,7 +66,7 @@ function  Vendor_Exact_Price() {
 
     const auth_token=localStorage.getItem('vendor-token')
     const product_id = localStorage.getItem('product_id')
-    const stripe=await loadStripe('pk_test_51OA6VNSBOVYSI690Pyi0RFljCu3mJaFUeTezUUDxfrpsmAnEQsln21CrSeprUV2oCyjnfp6MuIZMxb8Mf7tZ6NCw00lWmpyT6N')
+    const stripe=await loadStripe('pk_test_51OA6VNSBOVYSI6906LeR8tlp1rY2vRPDCGBX8VzqA1mimmrm8dekOrR09S5oq0r9gOsrgA8OW9NpuXp5liGKuoWx002DnlMiyO')
     const res = await fetch('api/vendor/product/buy', {
       method:"POST",
       headers: {
