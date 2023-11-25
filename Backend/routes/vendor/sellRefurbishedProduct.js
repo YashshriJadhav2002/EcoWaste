@@ -1,6 +1,6 @@
 const express = require('express')
 const product = require('../../models/refurbishedProductModel')
-const productToken = require('../../middleware/productAuth')
+const productToken = require('../../middleware/refurbishedProductAuth')
 
 
 const router = express.Router()
@@ -17,7 +17,7 @@ router.post('/',productToken, async (req,res)=> {
 
 
 
-        const productId = req.product
+        const productId = req.refurbishedproduct
         const value=await product.findOneAndUpdate({_id:productId},{ Status1:0,Status2:true, selling_date: formattedDate })
 
         if(value)

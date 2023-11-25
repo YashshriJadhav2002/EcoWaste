@@ -44,6 +44,8 @@ const companyVerify=require('./routes/companyVerify')
 
 const companyProfile=require('./routes/companyProfile')
 const companyupdateprofile=require('./routes/cUpdateProfile')
+const companyHome=require('./routes/companyHome')
+const vendorProductList=require('./routes/vendorProductList')
 
 const app = express()
 
@@ -96,6 +98,9 @@ app.use('/verifyCompany/', companyVerify);
 
 app.use('/api/company/profile',companyProfile)
 app.use('/api/company/update/profile',companyupdateprofile)
+app.use('/api/company/home',companyHome)
+app.use('/api/vendor/productlist',vendorProductList)
+
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
