@@ -43,6 +43,7 @@ import Cancel from './Components/Dashboard/Vendor_Dashboard/cancel';
 import Seller_Verify from './Components/Dashboard/Seller-Dashboard/seller_Verify';
 import VendorVerify from './Components/Dashboard/Vendor_Dashboard/vendor_verify';
 import CompanyVerify from './Components/Dashboard/Company_Dashboard/Company_Verify';
+import CallVendor from './Components/Dashboard/Seller-Dashboard/call_vendor';
 
 function App() {
   return (
@@ -74,7 +75,7 @@ function App() {
       <Route path='/verify/:token' element={<Seller_Verify/>} />
       <Route path='/verifyVendor/:token' element={<VendorVerify/>} />
       <Route path='/verifyCompany/:token' element={<CompanyVerify/>} />
-
+      <Route path='/call/vendor' element={<CallVendor/>}/>
 
       <Route path='/VendorExactPrice' element={<Vendor_Exact_Price/>} />
       <Route path='/VendorHome' element={<Vendor_Home/>} />

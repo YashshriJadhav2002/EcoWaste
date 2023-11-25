@@ -4,12 +4,12 @@ import Vendor_Navbar from "./Vendor_Navbar";
 
 function Vendor_SmartPhones() {
       
-      let name, buyingPrice, age, display, cond, second,newfile;
+      let name, sellingPrice, age, display, cond, second,newfile;
   
       const [productData, setProductData] = useState({
   
         Name : '',
-        BuyingPrice: '',
+        SellingPrice: '',
         Age: '',
         isDisplay: '',
         isCond: '',
@@ -20,9 +20,8 @@ function Vendor_SmartPhones() {
       const [errors,setErrors]=useState({
         
         Name : '',
-        BuyingPrice: '',
+        SellingPrice: '',
         Age: '',
-       
         isDisplay: '',
         isCond: '',
         isSecond: ''
@@ -69,7 +68,6 @@ function Vendor_SmartPhones() {
         };
         console.log(file)
         setImage(file)
-        console.log(image)
   
         if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
       {
@@ -109,8 +107,9 @@ function Vendor_SmartPhones() {
 
       const auth_token = localStorage.getItem("vendor-token")
   
-      const {Name, BuyingPrice, Age, isDisplay, isCond, isSecond, Avatar} = productData
-      const res = await fetch('/api/refurbishedproduct/prediction', {method:'POST', 
+      const {Name, SellingPrice, Age, isDisplay, isCond, isSecond, Avatar} = productData
+      const res = await fetch('/api/refurbishedproduct/prediction', {
+      method:'POST', 
       headers: {
   
         "Content-Type":"application/json",
@@ -118,7 +117,7 @@ function Vendor_SmartPhones() {
       },
       body: JSON.stringify({
   
-        Name, BuyingPrice, Age,isDisplay, isCond, isSecond, Avatar, auth_token
+        Name, SellingPrice, Age,isDisplay, isCond, isSecond, Avatar, auth_token
   
       })
         
@@ -135,7 +134,7 @@ function Vendor_SmartPhones() {
       
         setErrors({
           Name : '',
-          BuyingPrice: '',
+          SellingPrice: '',
           Age: '',
           isDisplay: '',
           isCond: '',
@@ -154,8 +153,8 @@ function Vendor_SmartPhones() {
           if(data.error[i].path==="Name")
           name="** "+data.error[i].msg
         
-          else if(data.error[i].path==="BuyingPrice")
-          buyingPrice ="** "+data.error[i].msg
+          else if(data.error[i].path==="SellingPrice")
+          sellingPrice ="** "+data.error[i].msg
   
           else if(data.error[i].path==="Age")
           age="** "+data.error[i].msg
@@ -176,7 +175,7 @@ function Vendor_SmartPhones() {
         setErrors( {
   
           Name : name,
-          BuyingPrice: buyingPrice,
+          SellingPrice: sellingPrice,
           Age: age,
           isDisplay: display,
           isCond: cond,
@@ -219,12 +218,7 @@ function Vendor_SmartPhones() {
               style={{ display: "none" }}
             />
           </div>
-          {/* <button
-            className="image-upload-button"
-            onClick={handleUploadButtonClick}
-          >
-            Upload
-          </button> */}
+ 
           </div>
         </div>
         <div className='smartphone-container'>
@@ -240,15 +234,15 @@ function Vendor_SmartPhones() {
             </div>
             <span className='spanmsg'>{errors.Name}</span>
   
-          <label>What is Buying cost of product?</label>
+          <label>What is Selling cost of product?</label>
             <div className="smartphone-input">
               <input
                 type="text"
-                name="BuyingPrice"
+                name="SellingPrice"
                 onChange={handleInputChange}
               />
             </div>
-            <label>What is the Age of your product</label>
+            <label>How long will product will work fine</label>
             <div className="smartphone-input">
               <input
                 type="text"
@@ -259,7 +253,7 @@ function Vendor_SmartPhones() {
             <span className='spanmsg'>{errors.Age}</span>
            
             
-            <label>Is ths dislay of phone real?</label>
+            <label>Is ths display of the phone real?</label>
             <div>
             <input type="radio" value="Yes" name="isDisplay" checked={productData.isDisplay === 'Yes'} onChange={handleInputChange}/>Yes<br></br>
               <input type="radio" value="No" name="isDisplay" checked={productData.isDisplay=== 'No'} onChange={handleInputChange}/> No
@@ -277,7 +271,7 @@ function Vendor_SmartPhones() {
             </div>
             <span className='spanmsg'>{errors.isCond}</span>
   
-            <label>Is product is second handed?</label>
+            <label>Is the internal sytem of the phone real ?</label>
             <div>
             <input type="radio" value="Yes" name="isSecond" checked={productData.isSecond === 'Yes'} onChange={handleInputChange} />Yes<br></br>
               <input type="radio" value="No" name="isSecond" checked={productData.isSecond === 'No'} onChange={handleInputChange}/> No

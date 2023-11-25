@@ -17,9 +17,7 @@ function Vendor_Sell_Refurbished() {
 
 
       const token = localStorage.getItem("RefurbishedProduct-token")
-      console.log(token)
-      //const auth_token=JSON.parse(token)
-      //console.log(auth_token)
+      
       const res=await fetch('/api/vendor/refurbishedproduct/sell',
       {
         method:"POST",

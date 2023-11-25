@@ -89,11 +89,17 @@ function Buy_Refurbished() {
     window.alert(data.error)
 
   }
-        
+      
+  }
 
+  const handleCall=()=>{
+    window.location.href = '/call/vendor'
+  }
 
+  const handleGmail=()=>{
 
   }
+
   const toggleAccordionItem = (index) => {
     setAccordionItems((prevItems) => {
       const updatedItems = prevItems.map((item, i) => {
@@ -120,7 +126,8 @@ function Buy_Refurbished() {
       <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1>
       <br></br>
       <button className='sellbutton' onClick={handleBuy}>Buy</button>
-      
+      <button className='callbutton' onClick={handleCall}>Connect through Call with vendor</button>
+      <button className='gmailbutton' onClick={handleGmail}>Connect through Gmail</button>
       <br></br>
       <text>Fast <br></br>Payments</text>
       <div className="verticleline">
