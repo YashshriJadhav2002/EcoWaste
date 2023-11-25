@@ -44,6 +44,7 @@ import Seller_Verify from './Components/Dashboard/Seller-Dashboard/seller_Verify
 import VendorVerify from './Components/Dashboard/Vendor_Dashboard/vendor_verify';
 import CompanyVerify from './Components/Dashboard/Company_Dashboard/Company_Verify';
 import CallVendor from './Components/Dashboard/Seller-Dashboard/call_vendor';
+import VendorProductList from './Components/Dashboard/Company_Dashboard/vendorProductList';
 
 function App() {
   return (
@@ -106,6 +107,8 @@ function App() {
       <Route path='/CompanySettings' element={<Company_Settings/>}/>
       <Route path='/CompanyLogout' element={<Company_Logout/>} />
       <Route path="/CompanyExactPrice" element={<Company_Exact_Price/>}/>
+
+      <Route path='/vendorProductList' element={<VendorProductList/>} />
 
     </Routes>
     

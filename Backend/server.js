@@ -95,6 +95,12 @@ const sellerVerify=require('./routes/sellerVerify')
 const vendorVerify=require('./routes/vendor/vendor_verify')
 const companyVerify=require('./routes/companyVerify')
 
+const companyProfile=require('./routes/companyProfile')
+const companyupdateprofile=require('./routes/cUpdateProfile')
+const companyHome=require('./routes/companyHome')
+const vendorProductList=require('./routes/vendorProductList')
+
+
 //middleware
 
 app.use(cors());
@@ -143,6 +149,12 @@ app.use('/api/vendor/cart',vendorCart)
 app.use('/verify/', sellerVerify);
 app.use('/verifyVendor/', vendorVerify);
 app.use('/verifyCompany/', companyVerify);
+
+app.use('/api/company/profile',companyProfile)
+app.use('/api/company/update/profile',companyupdateprofile)
+app.use('/api/company/home',companyHome)
+app.use('/api/vendor/productlist',vendorProductList)
+
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

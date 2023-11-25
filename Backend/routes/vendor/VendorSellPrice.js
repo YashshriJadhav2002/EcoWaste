@@ -1,15 +1,15 @@
 const express = require('express')
 
 const Product = require('../../models/refurbishedProductModel')
-const fetchProduct=require('../../middleware/productAuth')
+const fetchProduct=require('../../middleware/refurbishedProductAuth')
 
 const router = express.Router()
 
 router.post('/',fetchProduct, async(req, res) => {
 
     try{
-        const product_id=req.product;
-        
+        const product_id=req.refurbishedproduct;
+        console.log(product_id)
         const product = await Product.findById(product_id)
 
         console.log(product);

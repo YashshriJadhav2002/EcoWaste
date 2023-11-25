@@ -26,7 +26,7 @@ function Vendor_Sell_Refurbished() {
         "Content-Type":"application/json",
         },
         body: JSON.stringify({
-          product_token: token
+          refurbishedproduct_token: token
         })
       })
 
@@ -69,7 +69,7 @@ function Vendor_Sell_Refurbished() {
         'Content-Type' : "application/json",
       },
       body: JSON.stringify({
-        product_token: token
+        refurbishedproduct_token: token
       })
     
       

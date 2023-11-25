@@ -36,7 +36,8 @@ router.post('/',[
 
 
             const product = await Product.create({Name, SellingPrice, Age,isDisplay, isCond, isSecond, Avatar, user_id})
-            const data={product:product.id}
+            
+            const data={refurbishedproduct:product.id}
             const token=jwt.sign(data,process.env.SECRET_KEY)
             res.status(200).json({message:"Product Saved Successfully",data:token})
            

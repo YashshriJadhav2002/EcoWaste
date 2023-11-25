@@ -74,6 +74,7 @@ const Login = () => {
       }
       else if(page === "Company"){
  
+        localStorage.setItem("company-token", data.data)
         window.location.href = '/CompanyHome'
       }
       
