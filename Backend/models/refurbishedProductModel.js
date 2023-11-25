@@ -9,12 +9,7 @@ const refurbishedProductSchema = new schema({
       
     },
 
-    BuyingPrice: {
-        type: Number,
-        
-        
-    },
-
+   
     Age: {
         type: Number
         
@@ -23,7 +18,7 @@ const refurbishedProductSchema = new schema({
 
     SellingPrice: {
         type: Number,
-        default:2000
+        
     },
 
     

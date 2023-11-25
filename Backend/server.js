@@ -1,9 +1,62 @@
 
 require('dotenv').config() //attach the environment variables to process object
 
-const express = require('express')
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
+const express = require("express");
+const app = express();
+const http = require("http");
+const cors = require("cors");
+const { Server } = require("socket.io");
 
+
+// const server = http.createServer(app);
+// const io = new Server(server, {
+//   cors: {
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST"],
+//   },
+// });
+
+// console.log(io)
+
+// // Listen for when the client connects via socket.io-client
+// // io.on('connection', (socket) => {
+// //   console.log(`User connected ${socket.id}`);
+
+// //   socket.on("disconnect",()=>{
+// //     console.log("User Disconnected",socket.id);
+// //   })
+
+// // });
+
+
+//   io.on('connection', (socket) => {
+//     console.log("user Connected",socket.id)
+//     try {
+//       socket.on('join', (userId) => {
+//         users[userId] = socket.id;
+//         console.log(socket.id);
+//       });
+  
+//       socket.on('offer', (data) => {
+//         io.to(users[data.callee]).emit('offer', { offer: data.offer, caller: data.caller });
+//       });
+  
+//       socket.on('answer', (data) => {
+//         io.to(users[data.caller]).emit('answer', { answer: data.answer });
+//       });
+  
+//       socket.on('ice-candidate', (data) => {
+//         io.to(users[data.target]).emit('ice-candidate', { candidate: data.candidate });
+//       });
+  
+      
+//     } catch (error) {
+//       console.error('Socket event error:', error);
+//     }
+// });
+  
+  
 //Importing routes
 const buyerRegister = require('./routes/vendor/buyerRegister')
 const sellerRegister = require('./routes/sellerRegister')
@@ -41,15 +94,16 @@ const contactMail = require('./routes/contactMail')
 const sellerVerify=require('./routes/sellerVerify')
 const vendorVerify=require('./routes/vendor/vendor_verify')
 const companyVerify=require('./routes/companyVerify')
-const app = express()
 
 //middleware
+
+app.use(cors());
+
+
+
 app.use(express.json())
 app.use((req, res, next) => {
-
-    console.log(req.path, req.method)
     next()
-
 })
 
 //route 
