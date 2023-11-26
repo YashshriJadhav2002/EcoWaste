@@ -3,10 +3,10 @@ const auth=require('../middleware/authentication')
 const router=express.Router()
 const product=require('../models/productModel')
 
-router.post('/',async(req,res)=>{
+router.post('/',auth,async(req,res)=>{
 
-    const user_id=req.body.user_id
-    const product_details=await product.find({vendor_id:user_id , companybuy : false})
+    const user_id=req.user
+    const product_details=await product.find({user_id:user_id,Status1:0,Status2:true, companybuy:true})
     if(product_details){
 
         const dataArray = Object.values(product_details);

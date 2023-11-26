@@ -98,6 +98,7 @@ const companyProfile=require('./routes/companyProfile')
 const companyupdateprofile=require('./routes/cUpdateProfile')
 const companyHome=require('./routes/companyHome')
 const vendorProductList=require('./routes/vendorProductList')
+const companyAddToCart=require('./routes/companyAddToCart')
 
 
 //middleware
@@ -153,6 +154,7 @@ app.use('/api/company/profile',companyProfile)
 app.use('/api/company/update/profile',companyupdateprofile)
 app.use('/api/company/home',companyHome)
 app.use('/api/vendor/productlist',vendorProductList)
+app.use('/api/company/addtocart',companyAddToCart)
 
 
 mongoose.connect(process.env.MONGO_URI)

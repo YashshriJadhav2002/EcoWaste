@@ -1,4 +1,3 @@
-
 import React from "react";
 import {useState, useEffect} from "react";
 import seller from "../../../Images/seller.jpg";
@@ -243,5 +242,6 @@ const Seller_Settings = () => {
     </div>
   );
 }
+
 
 export default Seller_Settings;

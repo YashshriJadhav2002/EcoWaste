@@ -41,6 +41,11 @@
     width: 20vw;
     height: 40vh;
 }
+.img-display-after
+{
+    width: 20vw;
+    height: 40vh;
+}
 
 .image-upload-button {
     background-color: #00a49c;
@@ -148,7 +153,8 @@
         font-size:19px;
         font-weight: 700;
         cursor:pointer;
-        margin-left: 150px;
+        margin-left: 1px;
+        margin-top: 20px;
         font-family: 'Spectral';
   
     }
