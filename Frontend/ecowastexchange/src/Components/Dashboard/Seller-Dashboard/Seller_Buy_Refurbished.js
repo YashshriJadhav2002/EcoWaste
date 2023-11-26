@@ -97,6 +97,8 @@ function Buy_Refurbished() {
   }
 
   const handleGmail=()=>{
+    window.location.href = '/message/vendor'
+
 
   }
 

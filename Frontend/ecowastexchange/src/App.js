@@ -45,6 +45,7 @@ import VendorVerify from './Components/Dashboard/Vendor_Dashboard/vendor_verify'
 import CompanyVerify from './Components/Dashboard/Company_Dashboard/Company_Verify';
 import CallVendor from './Components/Dashboard/Seller-Dashboard/call_vendor';
 import VendorProductList from './Components/Dashboard/Company_Dashboard/vendorProductList';
+import MessgaeVendor from './Components/Dashboard/Seller-Dashboard/message_vendor';
 
 function App() {
   return (
@@ -77,6 +78,7 @@ function App() {
       <Route path='/verifyVendor/:token' element={<VendorVerify/>} />
       <Route path='/verifyCompany/:token' element={<CompanyVerify/>} />
       <Route path='/call/vendor' element={<CallVendor/>}/>
+      <Route path='/message/vendor' element={<MessgaeVendor/>}/>
 
       <Route path='/VendorExactPrice' element={<Vendor_Exact_Price/>} />
       <Route path='/VendorHome' element={<Vendor_Home/>} />
