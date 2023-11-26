@@ -4,7 +4,7 @@ const jwt=require('jsonwebtoken')
 const fetchProductToken=(req,res,next)=>{
 
     const token=req.body.product_token
-    console.log(token)
+    console.log("Token"+token)
     if(!token)
     return res.status(400).json({message:"Unauthorized Token"})
 

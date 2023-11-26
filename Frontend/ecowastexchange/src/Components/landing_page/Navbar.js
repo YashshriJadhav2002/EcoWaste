@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../../../src/Styles/Home.css';
-
+import Logo from '../../../src/Images/Logo.png';
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 const Navbar = () => {
   const [loginMenuOpen, setLoginMenuOpen] = useState(false);
   const dropdownContainerRef = useRef(null);

@@ -2,6 +2,8 @@ import React from 'react'
 import '../../../Styles/Seller_Exact_Price.css';
 import Vendor_Navbar from './Vendor_Navbar';
 import { useState ,useEffect} from 'react';
+import StripeCheckout from 'react-stripe-checkout'
+import {loadStripe} from '@stripe/stripe-js'
 
 function  Vendor_Exact_Price() {
 
@@ -31,7 +33,6 @@ function  Vendor_Exact_Price() {
       })
 
         const data=await res.json()
-        console.log(data)
        
         if(res.status===200)
         {
@@ -63,8 +64,9 @@ function  Vendor_Exact_Price() {
 
   const handleBuy = async() => {
 
+    const auth_token=localStorage.getItem('vendor-token')
     const product_id = localStorage.getItem('product_id')
-    const auth_token = localStorage.getItem('vendor-token')
+    const stripe=await loadStripe('pk_test_51OA6VNSBOVYSI6906LeR8tlp1rY2vRPDCGBX8VzqA1mimmrm8dekOrR09S5oq0r9gOsrgA8OW9NpuXp5liGKuoWx002DnlMiyO')
     const res = await fetch('api/vendor/product/buy', {
       method:"POST",
       headers: {
@@ -72,22 +74,21 @@ function  Vendor_Exact_Price() {
       },
       body: JSON.stringify({
         product_id:product_id,
-        auth_token:auth_token
+        auth_token:auth_token,
       })
   
   })
 
   const data = await res.json()
-  if(res.status === 200) {
-    window.alert(data.message)
-    window.location.href = '/VendorHome'
+  const result=stripe.redirectToCheckout({
+    sessionId:data.id
+  });
 
-  }else {
-
-    window.alert(data.error)
-
+  if(result.error)
+  {
+    console.log(result.error)
   }
-        
+ 
 
 
 
@@ -104,6 +105,8 @@ function  Vendor_Exact_Price() {
       return updatedItems;
     });
   };
+
+  
   return (
     <div>
         <Vendor_Navbar></Vendor_Navbar>
@@ -118,8 +121,9 @@ function  Vendor_Exact_Price() {
       <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1>
       <br></br>
       <button className='sellbutton' onClick={handleBuy}>Buy</button>
-      
-      <br></br>
+
+       
+             <br></br>
       <text>Fast <br></br>Payments</text>
       <div className="verticleline">
       </div>

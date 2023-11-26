@@ -3,7 +3,7 @@ import '../../../src/Styles/Register.css';
 import Navbar from '../landing_page/Navbar';
 
 const SellerRegister = () => {
-  let name,email,phone,address,city,state,password,database,Image
+  let name,email,phone,address,city,state,password,database
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -41,8 +41,8 @@ const SellerRegister = () => {
   };
 
   const postDetails=(pics)=>{
-  
-    if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg')
+
+    if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg'||pics.type==='image/JPG'||pics.type==='image/PNG'||pics.type==='image/JPEG')
     {
       const data=new FormData();
       data.append('file',pics);
@@ -53,10 +53,8 @@ const SellerRegister = () => {
         body:data,
 
       }).then((res)=>res.json()).then((data)=>{
-        console.log(data)
         setFormData({...formData,Avatar:data.url.toString()})
       }).catch((err)=>{
-        console.log(err);
       })
     }
     else
@@ -66,7 +64,7 @@ const SellerRegister = () => {
   const postData= async(e)=>{
     
     e.preventDefault()
-    if(errors.Avatar=="")
+    if(errors.Avatar==="")
     {
     const {Name,Email,Phone,Address,City,State,Password,Avatar}=formData;
   
@@ -91,10 +89,10 @@ const SellerRegister = () => {
     City: '',
     State: '',
     Password:'',
-    Image: '',
+    Avatar: '',
     database:"",
 })
-    window.location.href='/Seller'
+    window.location.href='/login'
     
   }
   else
@@ -122,11 +120,8 @@ const SellerRegister = () => {
       
       else if(data.error[i].path==="Phone")
         phone="** "+data.error[i].msg
-      else if(data.error[i].path=="Database")
+      else if(data.error[i].path==="Database")
         database="** "+data.error[i].msg
-      else if(data.error[i].path=="Avatar")
-      Image="** "+data.error[i].msg
-
       
     }
       setErrors({
@@ -138,7 +133,6 @@ const SellerRegister = () => {
         Phone:phone,
         Password:password,
         database:database,
-        Avatar:Image,
       })
 
       

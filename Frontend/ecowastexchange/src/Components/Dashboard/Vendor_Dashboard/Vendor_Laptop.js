@@ -5,7 +5,7 @@ import Vendor_Navbar from "./Vendor_Navbar";
 
 function  Vendor_Laptop() {
         
-  let name, buyingPrice, age, display, cond, second;
+  let name, buyingPrice, age, display, cond, second,newfile;
   
   const [productData, setProductData] = useState({
 
@@ -44,30 +44,56 @@ const handleImageChange = (event) => {
     img.src = reader.result;
     img.onload = () => {
       const canvas = document.createElement("canvas");
-      const maxSize = Math.max(img.width, img.height);
+      const maxSize = 400;
       canvas.width = maxSize;
       canvas.height = maxSize;
       const ctx = canvas.getContext("2d");
       ctx.drawImage(
         img,
-        (maxSize - img.width) / 2,
-        (maxSize - img.height) / 2
+        (maxSize-img.width)/2 ,
+        (maxSize-img.height) /2,
       );
       canvas.toBlob(
         (blob) => {
-          const file = new File([blob], imgname, {
-            type: "image/png",
+          newfile = new File([blob], imgname, {
+            type: "image/*",
             lastModified: Date.now(),
           });
-
-          console.log(file);
-          setImage(file);
+         
         },
         "image/jpeg",
         0.8
       );
+      
+
+
     };
+    console.log(file)
+    setImage(file)
+    console.log(image)
+
+    if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
+  {
+    const data=new FormData();
+    data.append('file',file);
+    data.append('upload_preset','Ecowastemanagement')
+    data.append('cloud_name','dfjwwbdv6')
+    fetch('https://api.cloudinary.com/v1_1/dfjwwbdv6/image/upload',{
+      method:"post",
+      body:data,
+
+    }).then((res)=>res.json()).then((data)=>{
+      console.log(data)
+      setProductData({...productData,Avatar:data.url.toString()})
+    }).catch((err)=>{
+    })
+  }
+  else
+  setErrors({...errors,Avatar:"Invalid File Format"})
+    
   };
+
+  
 };
 
 
@@ -79,17 +105,90 @@ const handleInputChange = (e) => {
   });
 };
 const handleContinue = async (e) => {
-
   e.preventDefault()
 
-  
 
-    window.location.href = '/VendorExactPrice'
+  const auth_token = localStorage.getItem("vendor-token")
+
+  const {Name, BuyingPrice, Age, isDisplay, isCond, isSecond, Avatar} = productData
+  const res = await fetch('/api/refurbishedproduct/prediction', {method:'POST', 
+  headers: {
+
+    "Content-Type":"application/json",
+  
+  },
+  body: JSON.stringify({
+
+    Name, BuyingPrice, Age,isDisplay, isCond, isSecond, Avatar, auth_token
+
+  })
     
+  
+})
+
+  const data = await res.json()
+  if(res.status===200) {
+
+
+    localStorage.setItem("RefurbishedProduct-token",data.data)
+
+    window.alert("Details saved successfully")
+  
+    setErrors({
+      Name : '',
+      BuyingPrice: '',
+      Age: '',
+      isDisplay: '',
+      isCond: '',
+      isSecond: ''
+
+    })
+    window.location.href = '/VendorSellRefurbished'
+  
+  }
+  else {
+
+    console.log(productData)
+
+    for(let i=0; i<data.error.length; i++) {
+
+      if(data.error[i].path==="Name")
+      name="** "+data.error[i].msg
+    
+      else if(data.error[i].path==="BuyingPrice")
+      buyingPrice ="** "+data.error[i].msg
+
+      else if(data.error[i].path==="Age")
+      age="** "+data.error[i].msg
+      
+      
+      else if(data.error[i].path==="isDisplay")
+      display="** "+data.error[i].msg
+      
+      else if(data.error[i].path==="isCond")
+        cond="** "+data.error[i].msg
+
+      else if(data.error[i].path==="isSecond")
+      second="** "+data.error[i].msg
+
 
     }
 
-    
+    setErrors( {
+
+      Name : name,
+      BuyingPrice: buyingPrice,
+      Age: age,
+      isDisplay: display,
+      isCond: cond,
+      isSecond: second
+
+
+
+    })
+
+  }
+}
 
   
 
@@ -188,7 +287,7 @@ return (
 
       </div>
       
-      <button type='continue' className="smartphone-submit" onClick={handleContinue}>Condition</button>
+      <button type='continue' className="smartphone-submit" onClick={handleContinue}>Continue</button>
     
       
     </form>
@@ -196,6 +295,7 @@ return (
   </div>
 );
 }
+
 
 export default  Vendor_Laptop;
 
