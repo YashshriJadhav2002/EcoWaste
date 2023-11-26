@@ -1,49 +1,257 @@
-/* About us container*/
-.info-container{
-    display: flex;
-    flex-direction: column;
-    margin-left: 45vw;
-    width: 700px;
-    height: 290px;
-    margin-top: -60vh;
-    background: white ;
-    padding-bottom:10px;
-    padding-top: 30px;
-    padding-left: 30px;
-    border-radius:60px;
-    font-size: large;
-    font-family:'Times New Roman', Times, serif;
-    letter-spacing: 10;
-    line-height: 1.5;
-    text-align: justify;
-    }
 
-.info-container p{
-  letter-spacing: 2.0;
-  line-height: 2.0;
-}
-    .aboutus-heading{
-      margin-top: 3vh;
-      margin-left: 75vh;
-      font-size: 50px;
-    }
-  
-    .aboutusimage{
-        margin-left: 10vh;
-      height: 65vh;
-      width: 35vw;
-      margin-top: 1vh;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
 
-    .aboutus-underline 
-    {
-        width: 210px;
-        height:6px;
-        background: black;
-        border-radius:9px;
-        gap : 50px;
-        margin-top: -5vh;
-        margin-left: 75vh;
+
+    .strip-section1 {
+    
+      background : #00a49c; 
+      position: absolute;
+      margin-top: 55vh;
+      left: 0;
+      top:3vh;
+      width: 100%;
+      height: 45vh;
+      opacity: 0.8;
+      z-index: -1;
+      font-size: 3rem;
+    }
+    
+    .strip-section2 {
+    
+      background : #00a49c; 
+      position: absolute;
+      margin-top: 55vh;
+      left: 0;
+      top:70vh;
+      width: 100%;
+      height: 80vh;
+      opacity: 0.8;
+      z-index: -1;
+      /* font-size: 3rem; */
+    }
+   
+    .img-about1 {
+
+        /* padding-top: 0.01vh; */
+        margin-top: 0.5vh;
+        margin-left: 14vw;
+        z-index: -2;
     }
 
     
+
+    .line1 {
+
+      
+      font-family: "Courgette";
+      color: white;
+      margin-left: 39vw; 
+      margin-top: 2vh;
+
+      font-size: 1.7rem;
+      font-weight: 500;
+      /* z-index: 0; */
+
+      overflow: hidden; /* Ensures the text is initially hidden */
+      white-space: nowrap; /* Prevents the text from wrapping */
+      animation: typing 6s steps(30, end);
+    }
+  
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 45%; }
+    }
+
+    .line2 {
+
+      margin-top: 11vh;
+        margin-left: 23vw;
+        /* height: 55vh; */
+        font-size: 4rem;
+        font-family: "Kanit";
+
+      
+
+    }
+
+    .info-container {
+
+
+      display: flex;
+      flex-direction: row;
+
+    }
+
+    .text-part {
+      display: flex;
+      flex-direction: column;
+    }
+    .line3{
+
+      font-family: 'Spectral';
+      margin-top: 15vh;
+      margin-left: 4.5vw;
+      font-size: 3rem;
+      color:white;
+      /* width: 30vw; */
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+    }
+
+    .line4 {
+
+      font-family: 'Spectral';
+      margin-top: 1vh;
+      margin-left: 4.5vw;
+      font-size: 2rem;
+      color:white;
+      /* width: 30vw; */
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+
+    }
+
+    .img-about2 {
+
+      /* flex: 0 0 auto; This ensures the child doesn't grow or shrink */
+
+      margin-top: 20vh;
+      margin-left: 11vw;
+      width: 40vw;
+      height: 50vh;
+     
+    }
+
+    .line5 {
+
+        margin-top: 17vh;
+        margin-left: 40vw;
+        /* height: 55vh; */
+        font-size: 4rem;
+        font-family: "Kanit";
+
+    }
+  
+    .strip-section3 {
+
+      background : #00a49c; 
+      position: absolute;
+      margin-top: 3vh;
+      left: 0;
+      /* top:70vh; */
+      width: 100%;
+      height: 70vh;
+      opacity: 0.8;
+      z-index: -1;
+      
+
+    }
+
+    .founder-container {
+
+      display: flex;
+      flex-direction: row;
+      
+    }
+
+    .fcontainer1 {
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    .founder1 {
+
+      margin-top: 12vh;
+      margin-left: 12vw;
+      height: 30vh;
+      width: 15vw;
+      margin-right: 5vw;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+
+
+    }
+
+    .fname1 {
+
+      margin-top: 2.5vh;
+      margin-left: 12vw;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+      font-family: 'Spectral';
+      font-style: italic;
+      color: white;
+      font-size: 1.5rem;
+
+    }
+
+    
+    .founder2 {
+
+      margin-top: 12vh;
+      left: 0;
+      height: 30vh;
+      width: 15vw;
+      margin-right: 5vw;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+
+
+    }
+
+    .fname2 {
+
+      margin-top: 2vh;
+      left:0;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+      font-family: 'Spectral';
+      font-style: italic;
+      color: white;
+      font-size: 1.5rem;
+
+    }
+    
+    .founder3 {
+
+      margin-top: 12vh;
+      left: 0;
+      height: 30vh;
+      width: 15vw;
+      margin-right: 5vw;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+
+
+    }
+
+    .fname3 {
+
+      margin-top: 2vh;
+      left:0;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+      font-family: 'Spectral';
+      font-style: italic;
+      color: white;
+      font-size: 1.5rem;
+
+    }
+
+    .founder4
+     {
+
+      margin-top: 12vh;
+      left: 0;
+      height: 30vh;
+      width: 15vw;
+      margin-right: 5vw;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+
+
+    }
+    
+    .fname4 {
+
+      margin-top: 2vh;
+      left:0;
+      flex: 0 0 auto; /* This ensures the child doesn't grow or shrink */
+      font-family: 'Spectral';
+      font-style: italic;
+      color: white;
+      font-size: 1.5rem;
+
+    }

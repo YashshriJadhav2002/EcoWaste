@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../../../src/Styles/Home.css';
-import Logo from '../../../src/Images/Logo.png';
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 const Navbar = () => {
   const [loginMenuOpen, setLoginMenuOpen] = useState(false);
   const dropdownContainerRef = useRef(null);
@@ -25,9 +24,9 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="">
-        <img src={Logo} alt="" />
-      </div>
+      {/* <div className="">
+        <a href='./Home.js'>EcoWasteXchange</a>
+      </div> */}
       <div className="navbar-links-container" ref={dropdownContainerRef}>
         <a href="/">Home</a>
         <a href="aboutUs">About Us</a>
