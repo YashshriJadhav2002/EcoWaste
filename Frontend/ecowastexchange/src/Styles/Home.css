@@ -1,80 +1,102 @@
-nav {
-    display: flex;
-    align-items: center;  
-    margin-top: 20px;
-    justify-content: space-between;
-    min-height: 10px;
-    margin-left: 10vh;
-    margin-right: 10vh;
-  }
-  .navbar-menu-container {
-    display: none;
-    
-  }
   
+@import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
+
+
+  .navbar-links-container {
+
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    font-weight: 900;
+    font-family: 'Spectral';
+    font-style: italic;
+   
+
+  }
+
+
+  .home-image-section {
+
+    /* background: #245501; */
+    /* background: #379237; */
+    
+
+    background : #00a49c; 
+
+    position: absolute;
+    margin-top: 10vh;
+    left: 0;
+    width: 100%;
+    height: 30vh;
+
+    opacity: 0.8;
+    z-index: -1;
+
+
+  }  
+  
+
   .navbar-links-container a {
     margin-right: 3rem;
     text-decoration: none;
     color: black;
-    font-size: 1.2rem;
-    font-weight: 600;
     
   }
+
   .navbar-links-container a:hover {
-    text-decoration: underline;
+    
+    
+    /* color: green; */
+    color : #00a49c; 
+
+    transform: scale(1.2); /* Increase the size on hover */
+
   }
+  
+  
   
   .navbar-cart-icon {
     font-size: 1.15rem;
   }
-  .home-banner-container {
-    position: relative;
+
+  .home-text-section {
+
     display: flex;
-    margin-top: 55px;
-    padding-top: 3rem;
-    margin-left: 10vh;
-  }
-  .home-bannerImage-container {
-    position: absolute;
-    top: -100px;
-    right: -170px;
-    z-index: -2;
-    max-width: 700px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    margin-top: 25vh;
 
   }
   
   .primary-heading {
-    font-size: clamp(2rem, 5vw, 4rem);
+
+    font-size: 5rem;
     color: black;
-    /* line-height: 5rem; */
-    max-width: 600px;
-  
+    font-family: 'Kanit';
+
   }
+
   .primary-text {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    max-width: 500px;
+  
     color: black;
-    margin: 1.5rem 0rem;
+    overflow: hidden; /* Ensures the text is initially hidden */
+    white-space: nowrap; /* Prevents the text from wrapping */
+    animation: typing 6s steps(30, end);
+    font-family: 'Courgette';
+    font-size: 1.7rem;
+    font-weight: 500;
+    
     
   }
-  
-  
-  .home-text-section,
-    .about-section-text-container {
-      justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
-      
-    }
-  
-    .home-image-section,
-    .about-section-image-container {
-      width: 100%;
-      max-width: 600px;
-      
-    }
-  
-      /* Style for the dropdown menu */
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 45%; }
+}
+
   .dropdown-menu {
     position: absolute;
     padding: 10px;

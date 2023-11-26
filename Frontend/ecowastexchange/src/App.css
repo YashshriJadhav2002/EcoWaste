@@ -1,8 +1,10 @@
-* {
+* 
+
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Reem Kufi", sans-serif !important;
+  /* font-family: "Spectral", sans-serif !important;  */
 
   letter-spacing: 1.5;
   line-height: 1.5;
@@ -14,7 +16,17 @@ body {
   margin: 0;
   padding: 0;
   height: 80vh;
-  background: linear-gradient(to right , white , green);
-  /* This creates a diagonal gradient from red to blue */
-}
+  /* background:#7CFEF0 ; */
+    /* background: #6BFFB8; */
+    /* background: #2CEAA3; */
 
+  /* This creates a diagonal gradient from red to blue */
+  background-size: cover;
+  
+  background-position: center; /* Optional: Adjust the position of the background image */
+  background-repeat: no-repeat;
+  background-position-y:center;
+}
+/* background: #7CFEF0; */
+
+  

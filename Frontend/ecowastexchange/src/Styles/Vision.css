@@ -1,29 +1,127 @@
-/* Vision container*/
-.vision-container{
-    display: flex;
-    flex-direction: column;
-    margin-left: 40vw;
-    width:650px;
-    height: 400px;
-    margin-top: -70vh;
-    background: #fff;
-    padding-bottom:10px;
-    padding-top: 30px;
-    padding-left: 30px;
-    border-radius:60px;
-    font-family: 'Abril Fatface', cursive;
-    text-align: justify;
+@import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
+
+    .strip1 {
+        
+      background : #00a49c; 
+      position: absolute;
+      margin-top: 44vh;
+      left: 0;
+      
+      width: 100%;
+      height: 30vh;
+      opacity: 0.8;
+      z-index: -1;
+      
     }
 
-    .vision-container p{
+    .vision-container1{
+
+      display: flex;
+      flex-direction: row;
+      margin-top: 8vh;
+      margin-left: 5vw;
+      margin-right: 5vw;
+      
+    }
+
+    .vision-info1 {
+
+      font-family: 'Kanit';
+      font-size: 1.5rem;
+      color: black;
       letter-spacing: 2.0;
       line-height: 2.0;
+      width: 60vw;
+      margin-right: 5vw;
+      margin-top: 7vh;
+      justify-content: center;
+
     }
   
-    .visionimage{
-      margin-left: 10vh;
-      height: 100h;
+    .img-vision1 {
+
+      margin-top: 5vh;
+      height: 40vh;
       width: 30vw;
-      margin-top: 10vh;
+
     }
-  
+
+    .vision-container2 {
+
+      display: flex;
+      flex-direction: row;
+     
+      margin-top: 2vh;
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
+
+    .img-vision2 {
+
+      margin-top: 14vh;
+      height: 45vh;
+      width: 35vw;
+      margin-right: 7vw;
+
+    }
+
+    .vision-info2 {
+
+      font-family: 'Kanit';
+      font-size: 1.5rem;
+      color: black;
+      letter-spacing: 2.0;
+      line-height: 2.0;
+      width: 60vw;
+      margin-right: 5vw;
+      margin-top: 25vh;
+      justify-content: center;
+
+    }
+
+
+    .strip2 {
+        
+      background : #00a49c; 
+      position: absolute;
+      left: 0;
+      
+      width: 100%;
+      height: 30vh;
+      opacity: 0.8;
+      z-index: -1;
+      
+    }
+
+    .vision-container3 {
+
+      display: flex;
+      flex-direction: row;
+     
+      margin-top: 18vh;
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
+
+    .img-vision3 {
+
+      margin-top: 6vh;
+      height: 40vh;
+      width: 35vw;
+      margin-right: 7vw;
+
+    }
+
+    .vision-info3 {
+
+      font-family: 'Kanit';
+      font-size: 1.5rem;
+      color: black;
+      letter-spacing: 2.0;
+      line-height: 2.0;
+      width: 60vw;
+      margin-right: 5vw;
+      margin-top: 20vh;
+      justify-content: center;
+
+    }
