@@ -75,7 +75,7 @@ const handleSubmit=()=>{
       {product.map(product => (
         <div key={product._id} style={{ backgroundColor: '#fff', border: '0.1vh solid #ddd', padding: '5vh', textAlign: 'center' }} className='devices' onClick={function() 
         {
-          localStorage.setItem("product_id",product._id)
+          localStorage.setItem("vendor_id",product._id)
           window.location.href = '/vendorProductList'
         }
         }>
