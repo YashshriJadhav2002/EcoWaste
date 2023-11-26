@@ -4,6 +4,8 @@ const Seller = require('../models/sellerModel')
 const { validationResult, body } = require('express-validator')
 const router = express.Router()
 const bcrypt=require('bcrypt')
+const jwt=require('jsonwebtoken')
+const nodemailer=require('nodemailer')
 
 let Avatar;
 
@@ -44,15 +46,38 @@ router.post('/', [
                 message="Email already Registered"
                 else 
                 {
+
                     const existingUser1=await Seller.findOne({Phone:req.body.Phone})
                     if(existingUser1)
                     message="Phone no already Registered"
                 }
                 
+                const transporter = nodemailer.createTransport({
+                    service: 'Gmail', // Use your email service (e.g., 'Gmail', 'Outlook', 'SMTP')
+                    auth: {
+                            user: process.env.EMAIL_ID, // Your email address
+                            pass: process.env.PASSWORD,      // Your email password or an app-specific password
+                          },
+                    });
+                    
+                    const verificationToken = jwt.sign(
+                        { email: req.body.Email },
+                        process.env.SECRET_KEY,
+                        { expiresIn: '1d' }
+                      );
+                const seller = await Seller.create({ Name, Phone, Address, Email ,Password,City,State,Avatar,verificationToken})
                 
-                const seller = await Seller.create({ Name, Phone, Address, Email ,Password,City,State,Avatar})
+                const verificationLink = `http://localhost:3000/verify/${verificationToken}`;
                 
-                res.status(200).json({message:"Data Inserted Successfully"})
+                const mailOptions = {
+                from: process.env.EMAIL_ID,
+                to: req.body.Email,
+                subject: 'Verify Your Email',
+                text: `Click on the following link to verify your email: ${verificationLink}`,
+                };
+                await transporter.sendMail(mailOptions);
+
+                res.status(200).json({message:"An Email verification link sent to your mail.Verify to register"})
 
             } catch (e) {
 
@@ -63,4 +88,6 @@ router.post('/', [
 
     })
 
+   
+    
 module.exports = router

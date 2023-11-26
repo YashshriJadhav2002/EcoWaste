@@ -12,10 +12,7 @@ router.post('/',auth,async(req,res)=>{
         const dataArray = Object.values(product_details);
         res.status(200).json({data:dataArray})
 
-
-    }
-
-   
+    }   
     else
     res.status(400).json({message: "Cart is empty"})
 })

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../../src/Styles/Register.css';
 import Navbar from '../landing_page/Navbar';
 const CompanyRegister = () => {
-  let name,email,phone,address,city,state,password,database,Image
+  let name,email,phone,address,city,state,password,database
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -12,7 +12,7 @@ const CompanyRegister = () => {
     City: '',
     State: '',
     Password:'',
-    Avatar: '',
+    Avatar:'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg',
     Document:null,
   });
 
@@ -24,7 +24,7 @@ const CompanyRegister = () => {
     City: '',
     State: '',
     Password:'',
-    Image: '',
+    Avatar: '',
     Document:null,
     Database:"",
 
@@ -41,7 +41,7 @@ const CompanyRegister = () => {
 
   const postDetails=(pics)=>{
   
-    if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg')
+    if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg'||pics.type==='image/JPG'||pics.type==='image/PNG'||pics.type==='image/JPEG')
     {
       const data=new FormData();
       data.append('file',pics);
@@ -52,10 +52,8 @@ const CompanyRegister = () => {
         body:data,
 
       }).then((res)=>res.json()).then((data)=>{
-        console.log(data)
         setFormData({...formData,Avatar:data.url.toString()})
       }).catch((err)=>{
-        console.log(err);
       })
     }
     else
@@ -66,13 +64,13 @@ const CompanyRegister = () => {
     
     e.preventDefault()
 
-    if(errors.Image=="")
+    if(errors.Avatar==="")
     {
-    const {Name,Email,Phone,Address,City,State,Password}=formData;
+    const {Name,Email,Phone,Address,City,State,Password,Avatar}=formData;
 
     const res = await fetch("/api/company/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify
     ({
-        Name,Email,Phone,Address,City,State,Password
+        Name,Email,Phone,Address,City,State,Password,Avatar
     })
   
   })
@@ -89,7 +87,7 @@ const CompanyRegister = () => {
     City: '',
     State: '',
     Password:'',
-    Image: null,
+    Avatar: '',
     Database:"",
 })
 window.location.href='/Company'

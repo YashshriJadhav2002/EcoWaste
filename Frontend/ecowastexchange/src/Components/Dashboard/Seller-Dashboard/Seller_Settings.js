@@ -78,29 +78,121 @@ const Seller_Settings = () => {
         body: formDataToSend,
       });
 
-      const data = await res.json();
-      if (res.status === 200) {
-        // Handle success, if needed
-      } else {
-        // Handle error, if needed
+      const [editMode, setEditMode] = useState(false);
+
+      const postData= async()=>{
+              const token =localStorage.getItem('auth-token')
+              const {Name,Email,Phone,Address,City,State,Avatar}=formData;
+    
+              const res=await fetch('/api/seller/update/profile',{
+                method:"POST",
+                headers:{
+                "Content-Type":"application/json"
+              },
+              body:JSON.stringify({
+                auth_token:token,
+                Name,Email,Phone,Address,City,State,Avatar
+              })
+            })
+    
+            const data= await res.json();
+    
+            if(res.status===200)
+            window.alert(data.message)
+            else
+            window.alert(data.error)
+            
+    }
+    
+    
+    
+      useEffect(()=> {
+
+        const fetchUser = async() => {
+
+
+          const token = localStorage.getItem("auth-token")
+          const res=await fetch('/api/seller/profile',
+          {
+            method:"POST",
+            headers:
+            {
+            "Content-Type":"application/json",
+            },
+            body: JSON.stringify({
+              auth_token: token
+            })
+          })
+
+            const data=await res.json()
+            if(res.status===200)
+            {
+              
+              setFormData({
+
+                  Name: data.data.Name,
+                  Phone: data.data.Phone,
+                  Address: data.data.Address,
+                  Email: data.data.Email,
+                  City: data.data.City,
+                  State: data.data.State,
+                  Avatar: data.data.Avatar,
+
+
+              })
+
+
+            }
+        }
+        
+        fetchUser()
+
+      }, [])
+
+      const handleEditProfile = () => {
+        if(!editMode){
+        setEditMode(!editMode);
+        }
+        else{
+          postData();
+          setEditMode(!editMode);
+        }
+      };
+
+      const postDetails=(pics)=>{
+
+        if(pics.type==='image/jpg'||pics.type==='image/png'||pics.type==='image/jpeg'||pics.type==='image/JPG'||pics.type==='image/PNG'||pics.type==='image/JPEG')
+        {
+          const data=new FormData();
+          data.append('file',pics);
+          data.append('upload_preset','Ecowastemanagement')
+          data.append('cloud_name','dfjwwbdv6')
+          fetch('https://api.cloudinary.com/v1_1/dfjwwbdv6/image/upload',{
+            method:"post",
+            body:data,
+    
+          }).then((res)=>res.json()).then((data)=>{
+            setFormData({...formData,Avatar:data.url.toString()})
+          }).catch((err)=>{
+          })
+        }
+      
       }
+
+      const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+          ...formData,
+          [name]: value,
+           
+        });
+      };
     }
 
-    // Toggle edit mode
-    setEditMode(!editMode);
-  };
+    return (
+        <div>
+      <Seller_Navbar></Seller_Navbar>
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  return (
-    <div>
-      <Seller_Navbar />
       <div className="sellersetting-container">
         <div className="photo">
           <label htmlFor="avatarInput">
@@ -110,8 +202,7 @@ const Seller_Settings = () => {
               id="avatarInput"
               accept="image/*"
               style={{ display: "none" }}
-              onChange={handleFileChange}
-              disabled={!editMode}
+              onChange={(e)=>postDetails(e.target.files[0])}
             />
           </label>
           <button
@@ -201,5 +292,7 @@ const Seller_Settings = () => {
     </div>
   );
 };
+    
+}
 
 export default Seller_Settings;

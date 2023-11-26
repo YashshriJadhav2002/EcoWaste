@@ -29,18 +29,33 @@ const Seller_History = () => {
       })
 
         const data=await res.json()
+        console.log(data)
         if(res.status===200)
         {
           
           data.data.forEach((product, index) => {
             const jsonString = JSON.stringify(product);
             const dataparse=JSON.parse(jsonString)
-
             productData.push(dataparse);
+
+          
+
+          
             
           });
-         
-         
+          console.log(productData)
+
+          setProductData([...product,...productData])
+
+
+          data.data2.forEach((product, index) => {
+            const jsonString = JSON.stringify(product);
+            const dataparse2=JSON.parse(jsonString)
+            productData.push(dataparse2);
+            
+          });
+          console.log(productData)
+
           setProductData([...product,...productData])
           
         }

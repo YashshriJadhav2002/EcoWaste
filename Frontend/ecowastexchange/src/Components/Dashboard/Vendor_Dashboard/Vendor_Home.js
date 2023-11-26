@@ -3,18 +3,12 @@ import Vendor_Sidebar from './Vendor_Sidebar';
 import Vendor_Navbar from './Vendor_Navbar';
 import '../../../Styles/Seller_Navbar.css';
 
-
-
 const  Vendor_Home = () => {
-
-
   const [product, setProductData] = useState([])
   
   useEffect(()=> {
 
     const fetchUser = async() => {
-
-
       let productData = []
       const token = localStorage.getItem("vendor-token")
  
@@ -67,7 +61,7 @@ const  Vendor_Home = () => {
           <div style={{ fontWeight: 'bold' }}>{product.SellingPrice}</div>
   
 
-        </div>
+        </div>  
       ))}
     </div>
       

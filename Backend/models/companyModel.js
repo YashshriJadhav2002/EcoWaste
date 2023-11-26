@@ -4,32 +4,25 @@ const schema = mongoose.Schema
 
 const  CompanySchema = new schema({
 
-    Name: {
+    Name : {
         type: String,
-        required: true
+        
+    },
+
+    isVerified:{
+        type:Boolean,
+        default:false
+    },
+    
+    Phone: {
+        type: Number,
+        
+        unique:true
     },
 
     Address: {
         type: String,
-        required: true
-
-    },
-
-    Email: {
-        type: String,
-        required: true
-
-    },
-
-    Phone: {
-        type: String,
-        required: true
-
-    },
-
-    Password: {
-        type: String,
-        
+     
     },
     City:
     {
@@ -41,14 +34,24 @@ const  CompanySchema = new schema({
         type:String,
     
     },
+
+    Email:{
+        type: String,
+        unique:true
+    },
+    Password:{
+        type:String,
+        
+    },
     Avatar:{
         type:String,
         default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
-
+    }
+    ,
+    verificationToken:{
+        type:String
     }
 
-    
 
 })
-
 module.exports = mongoose.model('Company', CompanySchema)

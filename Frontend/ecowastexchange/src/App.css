@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+  /* font-family: "Spectral", sans-serif !important;  */
 
   letter-spacing: 1.5;
   line-height: 1.5;
@@ -16,7 +16,9 @@ body {
   margin: 0;
   padding: 0;
   height: 80vh;
-  
+  /* background:#7CFEF0 ; */
+    /* background: #6BFFB8; */
+    /* background: #2CEAA3; */
 
   /* This creates a diagonal gradient from red to blue */
   background-size: cover;
@@ -25,4 +27,6 @@ body {
   background-repeat: no-repeat;
   background-position-y:center;
 }
+/* background: #7CFEF0; */
 
+  

@@ -9,7 +9,7 @@ const Login = () => {
   const location = useLocation();
   const page = location.pathname.split('/').pop();
 
-  let Email, Password,databaseapi,database
+  let Email, Password,databaseapi
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +27,7 @@ const Login = () => {
   {
 
     e.preventDefault();
-    if(page=='Seller')
+    if(page==='Seller')
     databaseapi="/api/seller/login"
     else if(page==='Vendor')
     databaseapi="/api/buyer/login"
@@ -74,6 +74,7 @@ const Login = () => {
       }
       else if(page === "Company"){
  
+        localStorage.setItem("company-token", data.data)
         window.location.href = '/CompanyHome'
       }
       
@@ -89,7 +90,7 @@ const Login = () => {
         else if (data.error[i].path === "Password")
           Password = "** " + data.error[i].msg
         
-
+        
 
       }
       setErrors({

@@ -8,6 +8,11 @@ const SellerSchema = new schema({
         
     },
 
+    isVerified:{
+        type:Boolean,
+        default:false
+    },
+    
     Phone: {
         type: Number,
         
@@ -40,6 +45,10 @@ const SellerSchema = new schema({
     Avatar:{
         type:String,
         default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    }
+    ,
+    verificationToken:{
+        type:String
     }
 
 

@@ -25,9 +25,9 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="">
-        <img src={Logo} alt="" />
-      </div>
+      {/* <div className="">
+        <a href='./Home.js'>EcoWasteXchange</a>
+      </div> */}
       <div className="navbar-links-container" ref={dropdownContainerRef}>
         <a href="/">Home</a>
         <a href="aboutUs">About Us</a>
