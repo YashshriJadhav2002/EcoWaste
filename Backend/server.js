@@ -9,25 +9,24 @@ const cors = require("cors");
 const { Server } = require("socket.io");
 
 
-// const server = http.createServer(app);
-// const io = new Server(server, {
-//   cors: {
-//     origin: "http://localhost:3000",
-//     methods: ["GET", "POST"],
-//   },
-// });
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
 
-// console.log(io)
 
-// // Listen for when the client connects via socket.io-client
-// // io.on('connection', (socket) => {
-// //   console.log(`User connected ${socket.id}`);
+// Listen for when the client connects via socket.io-client
+io.on('connection', (socket) => {
+  console.log(`User connected ${socket.id}`);
 
-// //   socket.on("disconnect",()=>{
-// //     console.log("User Disconnected",socket.id);
-// //   })
+  socket.on("disconnect",()=>{
+    console.log("User Disconnected",socket.id);
+  })
 
-// // });
+});
 
 
 //   io.on('connection', (socket) => {
@@ -160,7 +159,7 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => {
 
         //Start the express server
-        app.listen(process.env.PORT, () => {
+        server.listen(process.env.PORT, () => {
         console.log('Connected to DB and listening on port', process.env.PORT)
 
 })
