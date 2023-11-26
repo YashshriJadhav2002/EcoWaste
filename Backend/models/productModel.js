@@ -54,6 +54,11 @@ const ProductSchema = new schema({
         default:false
 
     },
+    companybuy: {
+        type: Boolean,
+        default:false
+
+    },
     user_id: {
 
         type:String
