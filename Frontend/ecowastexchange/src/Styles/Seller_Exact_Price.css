@@ -1,38 +1,120 @@
+.centered-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20vh;
+  justify-content: center;
+  text-align: center; /* This centers text inside the modal */
+  /* Additional styling if needed */
+}
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 450px;
+  margin-top: 50px;
+  background: transparent; /* Set background to transparent */
+  padding: 30px;
+  border: 5px solid #00a49c; /* Set border style and color */
+  border-radius: 60px;
+  height: 450px;
+}
+.editsubmitbutton{
+  width: 4.5vw;
+  height:5vh;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  background: #00a49c;
+  border-radius: 5vh;
+  color: #fff;
+  font-size:19px;
+  font-weight: 700;
+  cursor:pointer;
+  font-family:'Times New Roman', Times, serif;
+  margin-left: 4vh;
+  margin-top: 3vh;
+  column-gap: 10vh;
+  
+
+}
+.inputtext{
+  margin-top: 1vh;
+  height: 5vh;
+  width: 8vw;
+}
+.editcancelbutton{
+  display:flex;
+  margin-left: 4vh;
+  justify-content:center;
+  align-items: center;
+  width:4.5vw;
+  height:5vh;
+  margin-top: -1vh;
+  color:#fff;
+  background:#00a49c;
+  border-radius: 5vh;
+  font-size:19px;
+  font-weight: 700;
+  cursor:pointer;
+  
+  font-family:'Times New Roman', Times, serif;
+}
+
 
 .item-container{
     display: flex;
     flex-direction: column;
     margin:auto;
-    width:65vw;
+    width:30vw;
     background-color: white;
     margin-top: 10vh;
     padding-top: 0;
     padding-left: 50vh;
     font-family: 'Abril Fatface', cursive;
     margin-bottom: 10px;
-    height:60vh;  
+    height:30vh;  
      
 }
 
 .product-image{
     width: 30vh;
-    height: 30vh;
-    margin-left: -40vh;
-    margin-top: 10vh;
+    height: 40vh;
+    margin-left: 70vh;
+    margin-top: 30vh;
+    
 }
 
 .device-name{
-    margin-top: -30vh;
+    margin-top: -50vh;
     margin-left: -5vh;
 }
 
+.editname{
+  width: 8vw;
+  height:5vh;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  background: #00a49c;
+  border-radius: 5vh;
+  color: #fff;
+  font-size:19px;
+  font-weight: 700;
+  cursor:pointer;
+  font-family:'Times New Roman', Times, serif;
+
+
+}
 .sellbutton{
   display:flex;
   justify-content:center;
   align-items: center;
   width:8vw;
   height:5vh;
-  
+  margin-top: 1vh;
   color:#fff;
   background:#f80606;
   border-radius: 5vh;
@@ -40,7 +122,8 @@
   font-weight: 700;
   cursor:pointer;
   margin-left: 0px;
-  font-family: 'Abril Fatface', cursive;
+  font-family:'Times New Roman', Times, serif;
+
 
 }
 

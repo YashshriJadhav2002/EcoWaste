@@ -187,7 +187,6 @@ const Seller_Settings = () => {
            
         });
       };
-    }
 
     return (
         <div>
@@ -293,6 +292,7 @@ const Seller_Settings = () => {
   );
 };
     
+}
 }
 
 export default Seller_Settings;
