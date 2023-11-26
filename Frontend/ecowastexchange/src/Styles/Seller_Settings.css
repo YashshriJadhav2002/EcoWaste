@@ -13,24 +13,18 @@ textarea {
   font-family: "Poppins", sans-serif;
   margin: 5px;
 }
-
-.submit-button
+.contact-form
 {
-        display:flex;
-        justify-content:center;    
-        width:130px;
-        height:59px;
-        margin-top: 40px;
-        color:#fff;
-        background:#2e8f3e;
-        border-radius: 50px;
-        font-size:19px;
-        font-weight: 700;
-        cursor:pointer;
-        margin-left: 90px;
-        font-family: 'Abril Fatface', cursive;
-  
+  background-color: #00a49c;
 }
+.login-submit1{
+  color:#fff;
+  background: #00a49c;
+  margin-top: 10vh;
+  margin-left: 10vh;
+}
+
+
 .sellersetting-container {
   width: 100%;
   margin-top: 5vh;
@@ -84,26 +78,7 @@ textarea {
     overflow-y: auto;
   }
   
-.Edit_profile {
-  padding: 0.6rem 1.3rem;
-  background-color: #2e8f3e;
-  border: 2px solid #fafafa;
-  font-size: 0.95rem;
-  color:white;
-  line-height: 1;
-  border-radius: 25px;
-  outline: none;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-top: 30px;
-  margin-left:90px;
-  height:50px;
-}
 
-.Edir_profile:hover {
-  background-color: transparent;
-  color: #fff;
-}
 
 .text {
   color: #333;

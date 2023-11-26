@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap'); 
+
 .spanmsg
 {
   color: red;
@@ -11,11 +13,11 @@
     margin:auto;
     width:550px;
     margin-top: 5vh;
-    background: #fff;
+    background: #00a49c;
     border-radius:60px;
     padding-top: 0px;
     padding-left: 0px;
-    font-family: 'Abril Fatface', cursive;
+    font-family: 'Spectral';
     margin-bottom: 10px;
     height:auto;
     }
@@ -41,11 +43,11 @@
         width:100%;
        
     }
-    .register-text
+    .register-text  
     {
-      font-family: 'Abril Fatface', cursive;
-        margin-top: 0vh;
-        color: #0d542f;
+      font-family: 'Spectral';
+        margin-top: 2vh;
+        color: #fff;
         font-size:38px;
         font-weight:600;
     }
@@ -54,13 +56,13 @@
     {
         width: 61px;
         height:6px;
-        background: #0d542f;
+        background: #fff;
         border-radius:9px;
         margin-top: -1vh;
         
     }
     .register-inputs{
-        margin-top: -20px;
+        margin-top: -5px;
         display:flex;
         flex-direction:column;
         gap:10px;
@@ -96,6 +98,7 @@
         margin-top: 20px;
         column-gap: 0px;
         margin:40px;
+        
         margin-left: -100px;
     }
     .register-submit{
@@ -105,14 +108,14 @@
         width:150px;
         height:59px;
         column-gap: 10px;
-        color:#fff;
-        background:#0d542f;
+        color:#00a49c;
+        background:#fff;
         border-radius: 50px;
-        font-size:19px;
+        font-size:22px;
         font-weight: 700;
         cursor:pointer;
         margin-left: 150px;
-        font-family: 'Abril Fatface', cursive;
+        font-family: 'Spectral';
   
     }
     

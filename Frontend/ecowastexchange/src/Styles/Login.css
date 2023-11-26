@@ -1,19 +1,18 @@
 
-
+@import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap'); 
 
 
 .login-container{
     display: flex;
     flex-direction: column;
     margin:auto;
-    width:550px;
+    width:500px;
     margin-top: 100px;
-    background: #fff;
+    background : #00a49c;
     padding-bottom:30px;
     border-radius:60px;
-    margin-top: 40px;
-    font-family: 'Abril Fatface', cursive;
-    height: 520px;
+  
+    height: 450px;
     }
 
    
@@ -35,10 +34,10 @@
     }
     .login-text
     {
-        margin-top: 30px;
-      font-family: 'Abril Fatface', cursive;
-        color: #0d542f;
-        font-size:38px;
+        margin-top: 40px;
+        font-family:'Spectral';
+        color: #fff;
+        font-size:40px;
         font-weight:600;
     }
     
@@ -46,21 +45,21 @@
     {
         width: 61px;
         height:6px;
-        background: #0d542f;
+        background: #fff;
         border-radius:9px;
         gap : 50px;
         margin-top: 0px;
-        margin-bottom: 50px;
+        
     }
     .login-inputs{
-        margin: top 80px;
+        margin-top: 10px;
         display:flex;
         flex-direction:column;
         gap:10px;
     }
     .login-input{
         display:flex;
-        margin-top: 5px;
+        margin-top: 1px;
         align-items:center;
         margin:auto;
         width:400px;
@@ -98,14 +97,14 @@
         width:130px;
         height:59px;
         column-gap: 30px;
-        color:#fff;
-        background:#0d542f;
+        color:#00a49c;
+        background:#fff;
         border-radius: 50px;
-        font-size:19px;
+        font-size:22px;
         font-weight: 700;
         cursor:pointer;
         margin-left: 0px;
-        font-family: 'Abril Fatface', cursive;
+        font-family:'Spectral';
   
     }
     
