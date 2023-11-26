@@ -13,7 +13,7 @@ main{
     padding: 20px;
 }
 .sidebar{
-    background:  linear-gradient(to bottom , white , green);;
+    background:  linear-gradient(to bottom , white , #00a49c);;
     color: black;
     height: auto;
     width: 200px;
