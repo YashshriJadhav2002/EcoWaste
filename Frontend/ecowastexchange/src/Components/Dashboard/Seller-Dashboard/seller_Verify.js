@@ -27,7 +27,7 @@ const SellerVerify = () => {
     verifyEmail();
   }, [token]);
 
-  // Inline styles
+  
   const styles = {
     centerContainer: {
       display: "flex",
@@ -52,7 +52,7 @@ const SellerVerify = () => {
       padding: "10px 20px",
       borderRadius: "5px",
       cursor: "pointer",
-      marginTop: "8vh", // Adjust as needed
+      marginTop: "8vh", 
     },
   };
 

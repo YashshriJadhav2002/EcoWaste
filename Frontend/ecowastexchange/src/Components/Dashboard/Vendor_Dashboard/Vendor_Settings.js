@@ -152,7 +152,7 @@ const Vendor_Settings = () => {
           </label>
           <button
             type="button"
-            className="login-submit"
+            className="login-submit1"
             onClick={handleEditProfile}
           >
             {editMode ? "Save" : "Edit profile"}

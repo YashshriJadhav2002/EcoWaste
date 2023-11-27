@@ -151,7 +151,7 @@ function Exact_Price() {
     <div>
         <Seller_Navbar></Seller_Navbar>
          <div className='product-image'>
-      <img className='image' src={formData.Avatar}></img> 
+      <img className='image'    src={formData.Avatar}></img> 
       </div> 
     <div className='item-container'>
        
