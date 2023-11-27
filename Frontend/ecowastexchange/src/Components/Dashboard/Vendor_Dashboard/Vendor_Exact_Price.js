@@ -112,7 +112,7 @@ function  Vendor_Exact_Price() {
         <Vendor_Navbar></Vendor_Navbar>
     <div className='item-container'>
         <div className='product-image'>
-      <img src={formData.Avatar}></img> 
+      <img classname='image1' src={formData.Avatar}></img> 
       </div> 
       <div className='device-name'>
       <h1>{formData.Name}</h1>

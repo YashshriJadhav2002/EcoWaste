@@ -106,11 +106,12 @@ const Seller_History = () => {
       <div>
         <Seller_Navbar/>
         <Seller_Sidebar>
+        <div><h2>My History</h2></div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
       {product.map((p)=> (
        
         <div key={p._id} style={{ display: 'flex', backgroundColor: '#00a49c', border: '0.1vh solid #ddd', padding: '5vh' }} className='devices'>
-          <img src={p.Avatar} style={{ maxWidth: '100%', height: 'auto', borderRadius: '1vh', marginBottom: '5vh' }} />
+          <img src={p.Avatar} style={{ maxWidth: '30vh', height: '30vh', borderRadius: '1vh', marginBottom: '5vh' }} />
           <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10vh', marginTop: '5vh' }}>
 
           <div style={{ fontWeight: 'bold' }}>{p.Name}</div>

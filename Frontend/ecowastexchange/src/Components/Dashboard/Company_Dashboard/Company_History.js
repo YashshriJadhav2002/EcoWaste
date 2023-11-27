@@ -27,6 +27,7 @@ const Company_History = () => {
       <div>
       <Company_Navbar/>
       <Company_Sidebar>
+      <div><h2>My History</h2></div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }}>
         {photosData.map(photo => (
         <div key={photo.id} style={{ display: 'flex', backgroundColor: '#00a49c', border: '0.1vh solid #ddd', padding: '5vh' }} className='devices' onClick={() => window.location.href = '/BuyRefurbished'}>

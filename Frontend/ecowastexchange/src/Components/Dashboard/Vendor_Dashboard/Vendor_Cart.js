@@ -58,6 +58,7 @@ const  Vendor_Cart = () => {
       <div>
         <Vendor_Navbar/>
         <Vendor_Sidebar>
+        <div><h2>My Cart</h2></div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
       {product.map((p)=> (
        
