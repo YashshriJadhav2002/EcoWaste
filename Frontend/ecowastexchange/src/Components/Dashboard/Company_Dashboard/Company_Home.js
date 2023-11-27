@@ -65,9 +65,30 @@ const handleSubmit=()=>{
        <Company_Navbar> </Company_Navbar>
       <Company_Sidebar> 
          <div>
-          <FaSearch></FaSearch>
-          <input placeholder='type to search' value={cityName} onChange={(e)=>handleChange(e.target.value)}></input>
-          <button onClick={handleSubmit}>submit</button>
+         <FaSearch style={{ fontSize: '26px', marginBottom: '-10px' }}></FaSearch>
+          <input
+            placeholder='Type to search'
+            value={cityName}
+            onChange={(e)=>handleChange(e.target.value)}
+            style={{
+              height: '40px', 
+              padding: '5px',
+              width:'300px',
+            }}
+          ></input>
+          <button
+            onClick={handleSubmit}
+            style={{
+              backgroundColor: 'green',
+              color: 'white',
+              padding: '5px',
+              cursor: 'pointer',
+              height: '40px',
+              marginTop:'7vh',
+            }}
+          >
+            Submit
+          </button>
          </div>
       <div>
       {/* <text>Search Result of Vendors for city {cityName}</text> */}

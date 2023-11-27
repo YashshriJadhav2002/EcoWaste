@@ -18,11 +18,25 @@ textarea {
   background-color: #00a49c;
 }
 .login-submit1{
-  color:#fff;
-  background: #00a49c;
-  margin-top: 10vh;
-  margin-left: 10vh;
+  display:flex;
+        justify-content:center;
+        align-items: center;
+        width:130px;
+        height:59px;
+        column-gap: 30px;
+        color:#00a49c;
+        background:#fff;
+        border-radius: 50px;
+        font-size:22px;
+        font-weight: 700;
+        cursor:pointer;
+        margin-left: 0px;
+        font-family:'Spectral';
+        margin-left: 12vh;
+        margin-top: 5vh;
+        
 }
+
 
 
 .sellersetting-container {

@@ -5,8 +5,10 @@ const product=require('../models/productModel')
 
 router.post('/',auth,async(req,res)=>{
 
+
     const user_id=req.user
-    const product_details=await product.find({user_id:user_id,Status1:0,Status2:true, companybuy:true})
+    console.log(user_id)
+    const product_details=await product.find({company_id:user_id, companybuy:true})
     if(product_details){
 
         const dataArray = Object.values(product_details);

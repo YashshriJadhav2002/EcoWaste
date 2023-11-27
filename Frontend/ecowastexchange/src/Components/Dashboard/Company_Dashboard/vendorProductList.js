@@ -63,7 +63,7 @@ const VendorProductList = () => {
         },
         body: JSON.stringify({
           product_id:product_id,
-        
+          auth_token : auth_token
         })
     
     })

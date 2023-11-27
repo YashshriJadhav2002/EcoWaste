@@ -24,17 +24,16 @@ margin-bottom: -8vh;
 .profilephoto{
   width: 8vw;
   height: 10vh;
-}
-.profilephoto{
   width: 4vw;
   height: auto;
   border-radius: 50%;
 
 }
+
 .photo img
 {
   width: 50px;
-  height: auto;
+  height: 50px;
   border-radius: 50%;
 
 }
