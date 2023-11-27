@@ -14,7 +14,7 @@ const Seller_Home = () => {
 
     const fetchUser = async() => {
       let refurbishedProductData = []
-      const token = localStorage.getItem("seller-token")
+      const token = localStorage.getItem("auth-token")
  
       const res=await fetch('/api/seller/home',
       {

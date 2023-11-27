@@ -45,7 +45,7 @@ import VendorVerify from './Components/Dashboard/Vendor_Dashboard/vendor_verify'
 import CompanyVerify from './Components/Dashboard/Company_Dashboard/Company_Verify';
 import CallVendor from './Components/Dashboard/Seller-Dashboard/call_vendor';
 import VendorProductList from './Components/Dashboard/Company_Dashboard/vendorProductList';
-import MessgaeVendor from './Components/Dashboard/Seller-Dashboard/message_vendor';
+import MessgaeVendor from  './Components/chatBox/chatbox/index';
 
 function App() {
   return (

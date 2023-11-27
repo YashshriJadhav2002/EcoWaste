@@ -92,8 +92,12 @@ function Buy_Refurbished() {
       
   }
 
-  const handleCall=()=>{
-    window.location.href = '/call/vendor'
+  const handleCall=async ()=>{
+    
+      window.location.href = '/call/vendor'
+
+    
+
   }
 
   const handleGmail=()=>{
