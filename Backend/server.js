@@ -100,6 +100,9 @@ const companyupdateprofile=require('./routes/cUpdateProfile')
 const companyHome=require('./routes/companyHome')
 const vendorProductList=require('./routes/vendorProductList')
 const companyAddToCart=require('./routes/companyAddToCart')
+const companyCart=require('./routes/companyCart')
+const companyHistory=require('./routes/companyHistory')
+const companyDeleteHistory=require('./routes/deleteCompanyHistory')
 
 
 //middleware
@@ -156,7 +159,9 @@ app.use('/api/company/update/profile',companyupdateprofile)
 app.use('/api/company/home',companyHome)
 app.use('/api/vendor/productlist',vendorProductList)
 app.use('/api/company/addtocart',companyAddToCart)
-
+app.use('/api/company/cart',companyCart)
+app.use('/api/company/history',companyHistory)
+app.use('/api/company/deletehistory',companyDeleteHistory)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

@@ -54,6 +54,11 @@ const ProductSchema = new schema({
         default:false
 
     },
+    Status3 : {
+        type: Number,
+        default:0
+    },
+    
     companybuy: {
         type: Boolean,
         default:false
@@ -77,6 +82,10 @@ const ProductSchema = new schema({
 
     vendor_id: {
         type:String
+    },
+
+    company_id: {
+        type:String,
     }
 
  

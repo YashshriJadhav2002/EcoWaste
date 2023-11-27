@@ -3,11 +3,12 @@ const auth=require('../middleware/authentication')
 const router=express.Router()
 const product=require('../models/productModel')
 
-router.post('/',async(req,res)=>{
+router.post('/',auth,async(req,res)=>{
 
-    const user_id=req.body.user_id
+
+    const user_id=req.user
     console.log(user_id)
-    const product_details=await product.find({vendor_id:user_id , companybuy : false})
+    const product_details=await product.find({company_id:user_id, companybuy:true ,Status1:1,Status3:1,Status2:true})
     if(product_details){
 
         const dataArray = Object.values(product_details);
@@ -15,7 +16,7 @@ router.post('/',async(req,res)=>{
 
     }   
     else
-    res.status(400).json({message: "Cart is empty"})
+    res.status(400).json({message: "Product Sold"})
 })
 
 module.exports=router;
