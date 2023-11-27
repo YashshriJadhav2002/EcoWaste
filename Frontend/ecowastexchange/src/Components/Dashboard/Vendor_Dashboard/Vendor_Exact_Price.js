@@ -110,10 +110,10 @@ function  Vendor_Exact_Price() {
   return (
     <div>
         <Vendor_Navbar></Vendor_Navbar>
-    <div className='item-container'>
         <div className='product-image'>
-      <img classname='image1' src={formData.Avatar}></img> 
+      <img className='image' src={formData.Avatar}></img> 
       </div> 
+    <div className='item-container'>
       <div className='device-name'>
       <h1>{formData.Name}</h1>
       <h3>Selling Price:</h3>
