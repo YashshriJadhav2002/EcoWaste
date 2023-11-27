@@ -57,11 +57,6 @@ const Company_Cart = () => {
       <div>
         <Company_Navbar/>
         <Company_Sidebar>
-<<<<<<< HEAD
-        <div><h2>My Cart</h2></div>
-=======
-
->>>>>>> 60863d9d2c47a9cbd3127aba229d77c3a1c2b740
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
       {product.map((p)=> (
        

@@ -98,13 +98,16 @@
 }
 
   .dropdown-menu {
+    
     position: absolute;
+    margin-top: -1vh; /* Adjust the top position as needed */
+    right: 2vh;
+     /* Add your desired background color */
     padding: 10px;
-    list-style: none;
-    margin: 0;
+    display: flex;
     flex-direction: column;
-    margin-left:450px;
-    display:flex;
+    min-width: 120px; /* Adjust the minimum width as needed */
+    z-index: 1;
     
   }
   
@@ -112,12 +115,12 @@
     list-style: none;
     padding: 0;
     display: flex;
+    margin-top: 90vh;
   }
   
   .dropdown-menu li {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 5px;
+    
+    margin-top: 40vh;
   }
   
   
