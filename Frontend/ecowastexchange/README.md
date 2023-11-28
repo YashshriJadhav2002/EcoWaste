@@ -6,4 +6,7 @@ npm install react-router-dom --save
 npm install react-stripe-checkout
 npm install @stripe/stripe-js
 npm install axios
+<<<<<<< HEAD
 
+=======
+>>>>>>> 84bc7bf2904c9807c0415047af3d4904248cd816

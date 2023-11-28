@@ -10,4 +10,3 @@ npm install @tensorflow/tfjs
 npm install csv-parser
 npm install stripe
 npm install nodemailer
-npm install socket.io

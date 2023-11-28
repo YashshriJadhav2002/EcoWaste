@@ -1,19 +1,81 @@
-import React from "react";
-import {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import seller from "../../../Images/seller.jpg";
 import "../../../Styles/Seller_Settings.css";
 import Seller_Navbar from "./Seller_Navbar";
-const Seller_Settings = () => {
 
-    
-    const [formData, setFormData] = useState({
-        Name: '',
-        Phone: '',
-        Address: '',
-        Email: '',
-        City: '',
-        State: '',
-        Avatar: null,
+const Seller_Settings = () => {
+  const [formData, setFormData] = useState({
+    Name: "",
+    Phone: "",
+    Address: "",
+    Email: "",
+    City: "",
+    State: "",
+    Avatar: null,
+    avatarFile: null, // Added to store the selected avatar file
+  });
+
+  const [editMode, setEditMode] = useState(false);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("auth-token");
+      const auth_token = JSON.parse(token);
+      const res = await fetch("/api/seller/profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          auth_token: auth_token,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.status === 200) {
+        setFormData({
+          Name: data.data.Name,
+          Phone: data.data.Phone,
+          Address: data.data.Address,
+          Email: data.data.Email,
+          City: data.data.City,
+          State: data.data.State,
+          Avatar: data.data.Avatar,
+        });
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({
+      ...formData,
+      Avatar: URL.createObjectURL(file),
+      avatarFile: file,
+    });
+  };
+
+  const handleEditProfile = async () => {
+    if (editMode) {
+      // Handle saving the profile changes, including avatar upload
+      const token = localStorage.getItem("auth-token");
+      const auth_token = JSON.parse(token);
+
+      const formDataToSend = new FormData();
+      formDataToSend.append("auth_token", auth_token);
+      formDataToSend.append("Name", formData.Name);
+      formDataToSend.append("Phone", formData.Phone);
+      formDataToSend.append("Address", formData.Address);
+      formDataToSend.append("Email", formData.Email);
+      formDataToSend.append("City", formData.City);
+      formDataToSend.append("State", formData.State);
+      formDataToSend.append("Avatar", formData.avatarFile);
+
+      const res = await fetch("/api/seller/profile", {
+        method: "POST",
+        body: formDataToSend,
       });
 
       const [editMode, setEditMode] = useState(false);
@@ -125,6 +187,7 @@ const Seller_Settings = () => {
            
         });
       };
+    }
 
     return (
         <div>
@@ -150,7 +213,6 @@ const Seller_Settings = () => {
             {editMode ? "Save" : "Edit profile"}
           </button>
         </div>
-
         <div className="contact-form">
           <form action="index.html" autoComplete="off">
             <h3 className="title">User data</h3>
@@ -228,7 +290,9 @@ const Seller_Settings = () => {
         </div>
       </div>
     </div>
-    )
+  );
+};
+    
 }
 
 export default Seller_Settings;
