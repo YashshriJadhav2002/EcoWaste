@@ -150,34 +150,42 @@ function Exact_Price() {
   return (
     <div>
         <Seller_Navbar></Seller_Navbar>
-    <div className='item-container'>
-        <div className='product-image'>
-      <img src={formData.Avatar}></img> 
+         <div className='product-image'>
+      <img className='image'    src={formData.Avatar}></img> 
       </div> 
+    <div className='item-container'>
+       
       <div className='device-name'>
       <h1>{formData.Name}</h1>
       <h3>Selling Price:</h3>
       <br></br>
-      <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1><button onClick={openModal}>Edit</button>
+      <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1><button className='editname' onClick={openModal}>Edit</button>
 
+      
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Input Modal"
-      >
-        <h2>Enter Selling Price:</h2>
+        className="centered-modal" // Add a custom class for styling
+        >
+          <div className="modal-container">
+          <h2 style={{ textAlign: 'center' }}>Enter Selling Price:</h2>
+          
         <form >
           <input
             type="text"
+            className='inputtext'
             value={userInput}
             onChange={handleInputChange}
           /><br></br>
-          <button type="submit" onClick={handleFormSubmit}>Submit</button>
+          <button type="submit" className='editsubmitbutton' onClick={handleFormSubmit}>Submit</button>
           <br></br>
-          <button onClick={closeModal}>Cancel</button>
+          <button className='editcancelbutton' onClick={closeModal}>Cancel</button>
         </form>
+        </div>
        
       </Modal>
+      
       <br></br>
       <button className='sellbutton'onClick={handleSell}>Sell</button>
       
@@ -213,4 +221,4 @@ function Exact_Price() {
   )
 }
 
-export default Exact_Price
+export default Exact_Price;

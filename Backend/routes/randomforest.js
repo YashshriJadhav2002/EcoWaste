@@ -33,7 +33,6 @@ class MyRandomForestRegressor {
         .on('end', () => {
           console.log('Training data loaded from CSV file');
           resolve(trainingData);
-          console.log(trainingData)
         })
         .on('error', (error) => {
           reject(error);
@@ -65,7 +64,6 @@ class MyRandomForestRegressor {
         epochs: 200,  // Adjust as needed
         callbacks: {
           onEpochEnd: (epoch, logs) => {
-            console.log(`Epoch ${epoch + 1}, Loss: ${logs.loss}`);
           },
         },
       });

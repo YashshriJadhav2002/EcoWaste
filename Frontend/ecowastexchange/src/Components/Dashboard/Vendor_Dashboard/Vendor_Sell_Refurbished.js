@@ -108,10 +108,10 @@ function Vendor_Sell_Refurbished() {
   return (
     <div>
         <Vendor_Navbar></Vendor_Navbar>
-    <div className='item-container'>
         <div className='product-image'>
-      <img src={formData.Avatar}></img> 
+      <img src={formData.Avatar} className='image'></img> 
       </div> 
+    <div className='item-container'>
       <div className='device-name'>
       <h1>{formData.Name}</h1>
       <h3>Selling Price:</h3>

@@ -4,7 +4,6 @@ import Seller_Navbar from "./Seller_Navbar";
 
 
 function SmartPhones() {
-    
     let name, buyingPrice, age, display, cond, second,newfile;
     const [image, setImage] = useState('');
     const hiddenFileInput = useRef(null);

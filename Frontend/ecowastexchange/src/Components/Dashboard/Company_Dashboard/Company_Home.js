@@ -65,9 +65,30 @@ const handleSubmit=()=>{
        <Company_Navbar> </Company_Navbar>
       <Company_Sidebar> 
          <div>
-          <FaSearch></FaSearch>
-          <input placeholder='type to search' value={cityName} onChange={(e)=>handleChange(e.target.value)}></input>
-          <button onClick={handleSubmit}>submit</button>
+         <FaSearch style={{ fontSize: '26px', marginBottom: '-10px' }}></FaSearch>
+          <input
+            placeholder='Type to search'
+            value={cityName}
+            onChange={(e)=>handleChange(e.target.value)}
+            style={{
+              height: '40px', 
+              padding: '5px',
+              width:'300px',
+            }}
+          ></input>
+          <button
+            onClick={handleSubmit}
+            style={{
+              backgroundColor: 'green',
+              color: 'white',
+              padding: '5px',
+              cursor: 'pointer',
+              height: '40px',
+              marginTop:'7vh',
+            }}
+          >
+            Submit
+          </button>
          </div>
       <div>
       {/* <text>Search Result of Vendors for city {cityName}</text> */}
@@ -75,7 +96,7 @@ const handleSubmit=()=>{
       {product.map(product => (
         <div key={product._id} style={{ backgroundColor: '#fff', border: '0.1vh solid #ddd', padding: '5vh', textAlign: 'center' }} className='devices' onClick={function() 
         {
-          localStorage.setItem("product_id",product._id)
+          localStorage.setItem("vendor_id",product._id)
           window.location.href = '/vendorProductList'
         }
         }>

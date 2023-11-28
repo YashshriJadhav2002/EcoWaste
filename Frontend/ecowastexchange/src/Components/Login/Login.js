@@ -61,6 +61,7 @@ const Login = () => {
       window.alert(data.message)
       if (page === "Seller") {
         localStorage.setItem("auth-token", data.data)
+        localStorage.setItem("user",data._id)
 
         window.location.href = '/SellerHome'
       }
