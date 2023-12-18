@@ -37,7 +37,7 @@ const Navbar = () => {
           Login 
         </a>
         {loginMenuOpen && (
-          <div className="dropdown-menu" style={{ marginTop:"5vh" , marginRight:"-5vh"}}>
+          <div className="dropdown-menu" style={{ marginTop:"5vh" , marginRight:"-5vh",display:'flex',flexDirection:'column'}}>
             {loginMenuOptions.map((option, index) => (
               <a href={option} key={option}>
                 {option}

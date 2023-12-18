@@ -96,6 +96,7 @@ const Company_History = () => {
       <Company_Navbar/>
       <Company_Sidebar>
 
+      <div><h2>My History</h2></div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
       {product.map((p) => (

@@ -18,11 +18,7 @@ const Home = () => {
             "Don't trash it, recycle your e-waste and make a difference!"
             </p>
           </div>
-          <div className='home-image-section'>
-          
-            {/* <img class="img-absolute1" src="https://img.freepik.com/free-photo/abstract-blur-empty-green-gradient-studio-well-use-as-background-website-template-frame-business-report_1258-54628.jpg" alt="City 1" /> */}
-            {/* <img class="img-absolute" src="https://wallpapers.com/images/hd/green-color-background-rjcb20gvutpekeyn.jpg" alt="City 1" /> */}
-          </div>
+          <div className='home-image-section'></div>
            
         </div>
      </div>

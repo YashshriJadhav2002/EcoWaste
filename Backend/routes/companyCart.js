@@ -8,7 +8,7 @@ router.post('/',auth,async(req,res)=>{
 
     const user_id=req.user
     console.log(user_id)
-    const product_details=await product.find({company_id:user_id, companybuy:true})
+    const product_details=await product.find({company_id:user_id, companybuy:true,Status3:0})
     if(product_details){
 
         const dataArray = Object.values(product_details);

@@ -10,7 +10,7 @@ const Company_Logout = () => {
             "Logged out"
         )
         localStorage.clear()
-        window.location.href = '/Login';
+        window.location.href = '/';
 
     }
     return (

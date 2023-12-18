@@ -67,7 +67,7 @@ router.post('/',[
                     const data={user:seller.id}
                     const token=jwt.sign(data,process.env.SECRET_KEY)
     
-                    return res.status(200).json({message:"Login Successfull", data:token,_id:seller.id})
+                    return res.status(200).json({message:"Login Successfull", data:token,id:seller.id})
                 }
                 
 

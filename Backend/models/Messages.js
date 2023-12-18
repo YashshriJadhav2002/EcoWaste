@@ -9,8 +9,11 @@ const messageSchema = mongoose.Schema({
     },
     message: {
         type: String
-    }
-});
+    }, 
+    
+},{
+    timestamps: true  // This option adds createdAt and updatedAt fields
+  });
 
 const Messages = mongoose.model('Message', messageSchema);
 

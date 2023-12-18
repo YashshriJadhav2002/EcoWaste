@@ -3,6 +3,12 @@ import '../../../src/Styles/AboutUs.css'
 import AboutUs1 from '../../../src/Images/about-img.png';
 import AboutUs2 from '../../../src/Images/img-about2.png';
 import seller from '../../../src/Images/seller.jpg';
+import sakshi from '../../../src/Images/sakshi.jpg';
+import khushi from '../../../src/Images/Khushi.jpg';
+import rutuja from '../../../src/Images/rutuja.jpg';
+
+
+
 import Navbar from './Navbar';
 
 
@@ -63,21 +69,21 @@ const InfoContainer = () =>
 
                   <div className='fcontainer1'>
                       <img className='founder1' src={seller}  alt="" /> 
-                      <h2 className='fname1'>Yashshri Jadhav</h2>
+                      <h2 className='fname1'>   Yashshri Jadhav</h2>
                   </div>
                   <div className='fcontainer2'>
-                      <img className='founder2' src={seller}  alt="" /> 
-                      <h2 className='fname2'>Yashshri Jadhav</h2>
+                      <img className='founder2' src={sakshi}  alt="" /> 
+                      <h2 className='fname2'>Sakshi Chaudhari</h2>
 
                   </div>
                   <div className='fcontainer3'>
-                      <img className='founder3' src={seller}  alt="" /> 
-                      <h2 className='fname3'>Yashshri Jadhav</h2>
+                      <img className='founder3' src={khushi}  alt="" /> 
+                      <h2 className='fname3'>Khushi Agrawal</h2>
 
                   </div>
                   <div className='fcontainer4'>
-                      <img className='founder4' src={seller}  alt="" /> 
-                      <h2 className='fname4'>Yashshri Jadhav</h2>
+                      <img className='founder4' src={rutuja}  alt="" /> 
+                      <h2 className='fname4'>Rutuja Bhoyar</h2>
 
                   </div>
 

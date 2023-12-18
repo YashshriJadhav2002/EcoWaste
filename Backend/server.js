@@ -5,9 +5,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
-
-
+const Vendor=require("./models/buyerModel")
 
 const io = require('socket.io')(8000, {
   cors: {
@@ -22,6 +20,7 @@ let users = [];
 io.on('connection', socket => {
   console.log('User connected', socket.id);
   socket.on('addUser', userId => {
+    
       const isUserExist = users.find(user => user.userId === userId);
       if (!isUserExist) {
           const user = { userId, socketId: socket.id };
@@ -31,28 +30,33 @@ io.on('connection', socket => {
   });
 
   socket.on('sendMessage', async ({ senderId, receiverId, message, conversationId }) => {
+    let user;
       const receiver = users.find(user => user.userId === receiverId);
       const sender = users.find(user => user.userId === senderId);
-      const user = await Users.findById(senderId);
-      console.log('sender :>> ', sender, receiver);
-      if (receiver) {
+      user = await Users.findById(senderId);
+      if(!user)
+      user=await Vendor.find({_id:senderId});
+
+    //   if (receiver) {
           io.to(receiver.socketId).to(sender.socketId).emit('getMessage', {
               senderId,
               message,
               conversationId,
               receiverId,
-              user: { id: user._id, fullName: user.fullName, email: user.email }
+              user: { id: user._id, Name: user.Name, Email: user.Email }
           });
-          }else {
-              io.to(sender.socketId).emit('getMessage', {
-                  senderId,
-                  message,
-                  conversationId,
-                  receiverId,
-                  user: { id: user._id, fullName: user.fullName, email: user.email }
-              });
-          }
+        //   }else {
+        //       io.to(sender.socketId).emit('getMessage', {
+        //           senderId,
+        //           message,
+        //           conversationId,
+        //           receiverId,
+        //           user: { id: user._id, Name: user.Name, Email: user.Email }
+        //       });
+        //   }
       });
+
+    
 
   socket.on('disconnect', () => {
       users = users.filter(user => user.socketId !== socket.id);
@@ -116,6 +120,7 @@ const companyAddToCart=require('./routes/companyAddToCart')
 const companyCart=require('./routes/companyCart')
 const companyHistory=require('./routes/companyHistory')
 const companyDeleteHistory=require('./routes/deleteCompanyHistory')
+const companyBuy=require('./routes/companybuyProduct')
 
 
 //middleware
@@ -145,8 +150,8 @@ app.use('/api/seller/exactprice',sellerExactPrice)
 app.use('/api/seller/product/buy',sellerBuyRefurbishedProduct)
 app.use('/api/seller/sellerSellingPrice',sellerSellingPrice)
 app.use('/api/message',sendMessage)
-app.use('/api/conversations/:userId',userConversation)
-app.use('/api/message/:conversationId',sendConversation)
+app.use('/api/conversations/',userConversation)
+app.use('/api/message/',sendConversation)
 app.use('/api/conversation',vendorConversation)
 app.use('/api/users/',userData)
 
@@ -180,6 +185,7 @@ app.use('/api/company/addtocart',companyAddToCart)
 app.use('/api/company/cart',companyCart)
 app.use('/api/company/history',companyHistory)
 app.use('/api/company/deletehistory',companyDeleteHistory)
+app.use('/api/buy/product/list',companyBuy)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

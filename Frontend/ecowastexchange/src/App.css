@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
 
 
-* 
-{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -27,6 +27,11 @@ body {
   background-position: center; /* Optional: Adjust the position of the background image */
   background-repeat: no-repeat;
   background-position-y:center;
+}
+.head{
+  font-family: 'Spectral';
+  font-size:x-large;
+  font-weight: 700;
 }
 
 
