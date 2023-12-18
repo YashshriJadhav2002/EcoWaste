@@ -1,6 +1,11 @@
 import React from 'react'
+import { useParams } from "react-router-dom";
 
-const success=()=>{
+
+const Success=()=>{
+
+    const { name } = useParams();
+
     const centeredContainerStyle = {
         textAlign: 'center',
         margin: '50px',
@@ -40,10 +45,13 @@ const success=()=>{
                 <h1>
                     <p style={greenTextStyle}>Order Placed Successfully !!</p>
                 </h1>
-                <button style={buttonStyle}>Go to home</button>
+                <button style={buttonStyle} onClick={function(){
+                    if(name=="company")window.location.href='/CompanyHome'
+                    else window.location.href='/SellerHome'
+                }}>Go to home</button>
             </div>
         </div>
     );
 
 }
-export default success;
+export default Success;

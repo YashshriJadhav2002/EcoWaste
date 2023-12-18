@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import Input from '../Input'
+import Input from '../../chatBox/Input'
 import '../../../Styles/chat.css'
 import { io } from 'socket.io-client'
 
 const Dashboard = () => {
 	const [currentuser, setUser] = useState(localStorage.getItem('user'))
-	const [auth_token,setToken]=useState(localStorage.getItem('vendor-id'))
-	
 	const [conversations, setConversations] = useState([])
 	const [messages, setMessages] = useState({})
 	const [message, setMessage] = useState('')
@@ -31,9 +29,9 @@ const Dashboard = () => {
 		const fetchUser = async() => {
 	
 	
-		  const token = localStorage.getItem("auth-token")
+		  const token = localStorage.getItem("vendor-token")
 		  
-		  const res=await fetch('/api/seller/profile',
+		  const res=await fetch('/api/vendor/profile',
 		  {
 			method:"POST",
 			headers:
@@ -46,13 +44,18 @@ const Dashboard = () => {
 		  })
 	
 			const data=await res.json()
+			console.log(data)
 			if(res.status===200)
 			{
 			  
 			  setFormData({
+	
 				  Name: data.data.Name,
+			
+				 
 				  Avatar: data.data.Avatar,
-				
+				  
+	
 			  })
 	
 	
@@ -93,15 +96,17 @@ const Dashboard = () => {
 				}
 			});
 			const resData = await res.json()
+			localStorage.setItem('vendor-id',resData[0].user.receiverId)
+			console.log(resData)
 			setConversations(resData)
-			
 		}
 		fetchConversations()
 	}, [])
 
 	useEffect(() => {
 		const fetchUsers = async () => {
-			const res = await fetch(`/api/users/?userId=${auth_token}`, {
+			const userId=localStorage.getItem('vendor-id')
+			const res = await fetch(`/api/users/?userId=${userId}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
@@ -109,12 +114,14 @@ const Dashboard = () => {
 				
 			});
 			const resData = await res.json()
+			console.log(resData)
 			setUsers(resData)
 		}
 		fetchUsers()
 	}, [])
 
 	const fetchMessages = async (conversationId, receiver) => {
+		
 		const res = await fetch(`/api/message/?conversationId=${conversationId}&senderId=${currentuser}&receiverId=${receiver?.receiverId}`, {
 			method: 'GET',
 			headers: {
@@ -122,7 +129,6 @@ const Dashboard = () => {
 			}
 		});
 		const resData = await res.json()
-		
 		setMessages({ messages: resData, receiver, conversationId})
 	}
 
@@ -133,7 +139,6 @@ const Dashboard = () => {
 			receiver: messages.receiver, 
 			conversationId: messages.conversationId // You might need to update the conversationId as well
 		}));
-
 		socket?.emit('sendMessage', {
 			senderId: currentuser,
 			receiverId: messages?.receiver?.receiverId,
@@ -152,7 +157,11 @@ const Dashboard = () => {
 				receiverId: messages?.receiver?.receiverId
 			})
 		});
+
 		setMessage('')
+
+
+
 	}
 
 	return (
@@ -175,8 +184,15 @@ const Dashboard = () => {
 								conversations.map(({ conversationId, user }) => {
 									return (
 										<div className=' flex items-center py-8 border-b border-b-gray-300'>
-											<div className=' cursor-pointer flex items-center' onClick={() => fetchMessages(conversationId, user)}>
-												<div><img src={user?.Avatar} className=" w-[60px] h-[60px] rounded-full p-[2px] border border-primary" /></div>
+											<div className=' cursor-pointer flex items-center' onClick={function()
+											{
+												
+												 fetchMessages(conversationId, user)
+												
+											}
+											}>
+
+												<div><img src={user?.Avatar} className="w-[60px] h-[60px] rounded-full p-[2px] border border-primary" /></div>
 												<div className='ml-6'>
 													<h3 className='text-lg font-semibold'>{user?.Name}</h3>
 													<p className='text-sm font-light text-gray-600'>{user?.Email}</p>
@@ -193,7 +209,7 @@ const Dashboard = () => {
 				{
 					messages?.receiver?.Name &&
 					<div className='w-[75%] bg-secondary h-[80px] my-14 rounded-full flex items-center px-14 py-2'>
-						<div className=' cursor-pointer'><img src={messages?.receiver?.Avatar} width={60} height={60} className=" w-[60px] h-[60px] rounded-full"  /></div>
+						<div className=' cursor-pointer'><img src={messages?.receiver?.Avatar} width={60} height={60} className=" w-[60px] h-[60px] rounded-full" /></div>
 						<div className=' ml-6 mr-auto'>
 							<h3 className=' text-lg'>{messages?.receiver?.Name}</h3>
 							<p className=' text-sm font-light text-gray-600'>{messages?.receiver?.Email}</p>
@@ -210,7 +226,7 @@ const Dashboard = () => {
 				}
 				<div className=' h-[75%] w-full overflow-scroll shadow-sm'>
 					<div className=' p-14'>
-						{
+					{
 							messages?.messages?.length > 0 ?
 								messages.messages.map(({ message, user}) => {
 									return (
@@ -241,7 +257,9 @@ const Dashboard = () => {
 					messages?.receiver?.Name &&
 					<div className=' p-14 w-full flex items-center'>
 						<Input placeholder='Type a message...' value={message} onChange={(e) => setMessage(e.target.value)} className='w-[75%]' inputClassName='p-4 border-0 shadow-md rounded-full bg-light focus:ring-0 focus:border-0 outline-none' />
-						<div className={` ml-4 p-2 cursor-pointer bg-light rounded-full ${!message && 'pointer-events-none'}`} onClick={() => sendMessage()}>
+						<div className={` ml-4 p-2 cursor-pointer bg-light rounded-full ${!message && 'pointer-events-none'}`} onClick={function(){
+							sendMessage()
+						}}>
 							<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
 								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 								<line x1="10" y1="14" x2="21" y2="3" />
@@ -265,10 +283,10 @@ const Dashboard = () => {
 					{
 						
 						users.length > 0 ?
-							users.map(({ userId, user }) => {
-								return (
+						users.map(({ user }) => {
+									return (
 									<div className=' flex items-center py-8 border-b border-b-gray-300'>
-										<div className=' cursor-pointer flex items-center' onClick={() => fetchMessages('new', user)}>
+										<div className=' cursor-pointer flex items-center' onClick={() => fetchMessages('new', user.receiverId)}>
 											<div><img src={user?.Avatar} className=" w-[60px] h-[60px] rounded-full p-[2px] border border-primary" /></div>
 											<div className=' ml-6'>
 												<h3 className=' text-lg font-semibold'>{user?.Name}</h3>
@@ -276,8 +294,9 @@ const Dashboard = () => {
 											</div>
 										</div>
 									</div>
-								)
-							}) : <div className=' text-center text-lg font-semibold mt-24'>No Conversations</div>
+									)
+								})
+							 : <div className=' text-center text-lg font-semibold mt-24'>No Conversations</div>
 					}
 				</div>
 			</div>

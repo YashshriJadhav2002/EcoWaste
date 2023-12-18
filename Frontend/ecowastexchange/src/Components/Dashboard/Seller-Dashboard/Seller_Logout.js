@@ -10,7 +10,7 @@ const Seller_Logout = () => {
             "Logged out"
         )
         localStorage.removeItem("auth-token")
-        window.location.href = '/Login';
+        window.location.href = '/';
 
     }
     return (

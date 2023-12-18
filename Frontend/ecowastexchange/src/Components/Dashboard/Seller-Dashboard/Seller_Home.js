@@ -54,12 +54,13 @@ const Seller_Home = () => {
       <div>
        <Seller_Navbar> </Seller_Navbar>
       <Seller_Sidebar> 
-      <div><h2>Refurbished Products </h2></div>
+      <div><h2 className='head'>Refurbished Products </h2></div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', padding: '20px' }} >
       {refurbishedProduct.map(refurbishedProduct => (
         <div key={refurbishedProduct._id} style={{ backgroundColor: '#fff', border: '0.1vh solid #ddd', padding: '5vh', textAlign: 'center' }} className='devices' onClick={function() 
         {
           localStorage.setItem("refurbishedProduct_id",refurbishedProduct._id)
+          localStorage.setItem("vendor-id",refurbishedProduct.user_id)
           window.location.href = '/SellerBuyRefurbished'
         }
         }>

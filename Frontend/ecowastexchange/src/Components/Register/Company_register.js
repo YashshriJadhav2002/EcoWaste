@@ -139,114 +139,121 @@ window.location.href='/Company'
 
   return (
     <div>
-      <Navbar></Navbar>
-    <div className='register-container'>
-      <div className="header">
-        <div className="register-text">Register</div>
-        <div className="register-underline"></div>
-      </div>
-      <form method='post' encType='multipart/form-data'>
-        <div className="register-inputs">
-        <span className='spanmsg'>{errors.Database}</span>
-          <div className="register-input">
-            <input
-              type="text"
-              name="Name"
-              placeholder="Name"
-              value={formData.Name}
-              onChange={handleInputChange}
-            />
-          </div>
-          <span className='spanmsg'>{errors.Name}</span>
-          <div className="register-input">
-            <input
-              type="text"
-              name="Phone"
-              placeholder="Phone"   
-              value={formData.Phone}
-              onChange={handleInputChange}
-            />
-          </div>
-          <span className='spanmsg'>{errors.Phone}</span>
-          <div className="register-input">
-            <input
-              type="text"
-              name="Address"
-              placeholder="Address"
-              value={formData.Address}
-              onChange={handleInputChange}
-            />
-          </div>
-          <span className='spanmsg'>{errors.Address}</span>
-          <div className="register-input">
-            <input
-              type="email"
-              name="Email"
-              placeholder="Email"
-              value={formData.Email}
-              onChange={handleInputChange}
-            />
-          </div>
-          <span className='spanmsg'>{errors.Email}</span>
-          <div className="register-input">
-            <input
-              type="city"
-              name="City"
-              placeholder="City"
-              value={formData.City}
-              onChange={handleInputChange}
-            />
-          </div>
-          <span className='spanmsg'>{errors.City}</span>
-          <div className="register-input">
-            <input
-              type="state"
+    <Navbar></Navbar>
+    
+  <div className="container mx-auto mt-10 " style={{ maxWidth: '70%' }}>
+
+      <div className=" rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-headings">
+        <div className="grid gap-6 gap-y-2 text-sm grid-cols-1 bg-headings">
+          <div className="text-white">
+            <p className="font-semibold lg:font-medium xl:font-bold text-xl lg:text-2xl xl:text-3xl">Register</p>
+            <p className="mt-2">Please fill out all the fields.</p>
+          
+            <form method='Post' encType='multipart/form-data'>
+
+          <div className="lg:col-span-2">
+            <div className="grid gap-4 gap-y-5 text-sm grid-cols-1 md:grid-cols-5">
+            <span classNameName='"text-sm font-bold text-red-700 tracking-wide"'>{errors.database}</span>
+
+              <div className="md:col-span-5">
+                <label for="Name" className="text-lg">Full Name</label>
+                <input  id="full_name" className="h-10 border mt-0.5 rounded px-4 w-full text-black bg-gray-50" type="text" name="Name"  placeholder="Name"  required  value={formData.Name}  onChange={handleInputChange}/>
+                <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.Name}</span>
+
+              </div>
+
+              <div className="md:col-span-5">
+                <label for="email" className="text-lg">Email Address</label>
+                <input  id="email" className="h-10 border mt-1 rounded px-4 w-full text-black bg-gray-50" type="email" name="Email" placeholder="Email" required value={formData.Email} onChange={handleInputChange} />
+                <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.Email}</span>
+
+              </div>
+
+              <div className="md:col-span-2">
+                <label for="phone" className="text-lg">Phone No</label>
+                <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                <input type="number" name="Phone" placeholder="Phone" required  className="px-4 appearance-none outline-none text-black w-full bg-transparent" value={formData.Phone} onChange={handleInputChange}/>
+              </div>
+              <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.Phone}</span>
+
+              </div>
+
+
+              <div className="md:col-span-2">
+                <label for="address" className="text-lg">Address / Street</label>
+                <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                <input  id="address" className="px-4 appearance-none outline-none text-black w-full bg-transparent" type="text" name="Address" placeholder="Address" value={formData.Address} required  onChange={handleInputChange} />
+              </div>
+              <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.Address}</span>
+
+              </div>
+
+
+
+              <div className="md:col-span-1">
+                <label for="city" className="text-lg">City</label>
+                <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                <input  id="city" className="px-4 appearance-none outline-none text-black w-full bg-transparent" type="text" name="City"  placeholder="City"  requir  value={formData.City}  onChange={handleInputChange}/>
+              </div>
+              <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.City}</span>
+
+              </div>
+
+
+             
+
+              <div className="md:col-span-2">
+                <label for="state" className="text-lg">State / province</label>
+                <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                  <input id="state"  className="px-4 appearance-none outline-none text-black w-full bg-transparent" type="text"
+              required
               name="State"
               placeholder="State"
               value={formData.State}
-              onChange={handleInputChange}
-            />
+              onChange={handleInputChange}/>
+
+                </div>
+                <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.State}</span>
+
+              </div>
+
+             
+
+              <div className="md:col-span-2">
+                <label for="state" className="text-lg">Password</label>
+                <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
+                  <input id="state"  className="px-4 appearance-none outline-none text-black  w-full bg-transparent" type="password"  name="Password"  required  placeholder="Password"  value={formData.Password}  onChange={handleInputChange}  />
+                </div>
+                <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.Password}</span>
+              </div>
+
+            <div classNameName="md:col-span-2">
+            <label htmlFor="image" className="text-lg">Upload profile photo</label><br></br>
+            <input id="image" type="file" accept="image/*" onChange={(e)=>postDetails(e.target.files[0])} />
+            </div>
+          <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.Avatar}</span>
+
+          <div classNameName="md:col-span-2">
+            <label htmlFor="image" className="text-lg">Upload Document</label><br></br>
+            <input  id="document"  type="file"  accept="image/*"  onChange={(e)=>postDetails(e.target.files[0])} />
           </div>
-          <span className='spanmsg'>{errors.State}</span>
-          <div className="register-input">
-            <input
-              type="password"
-              name="Password"
-              required
-              placeholder="Password"
-              value={formData.Password}
-              onChange={handleInputChange}
-            />
+          <span className='"text-sm font-bold text-red-700 tracking-wide"'>{errors.Avatar}</span>
+
+          <div className="md:col-span-5 text-right">
+            <div className="inline-flex items-end">
+              <button className="bg-white hover:bg-white text-black text-md font-bold py-2 px-4 rounded" onClick={postData} type="register-submit">Submit</button>
+            </div>
           </div>
-          <span className='spanmsg'>{errors.Password}</span>
+
         </div>
-        
-        <div>
-          <div className="register-upload-image">
-            <label htmlFor="profile-photo">Upload profile photo</label>
-            <input
-              id="profile-photo"
-              type="file"
-              accept="image/*"
-              onChange={(e)=>postDetails(e.target.files[0])}
-            />
-          </div>
-          <div className="register-upload-image">
-            <label htmlFor="Document">Upload Document</label>
-            <input
-              id="Document"
-              type="file"
-              accept="image/*"
-              onChange={(e)=>postDetails(e.target.files[0])}
-            />
-          </div>
         </div>
-        <div className="register-submit-container">
-          <button type="register-submit" className="register-submit" onClick={postData}>Sign Up</button>
+        </form>
         </div>
-      </form>
+      </div>
     </div>
-    </div>
+  </div>
+</div>
+
   );
 };
 

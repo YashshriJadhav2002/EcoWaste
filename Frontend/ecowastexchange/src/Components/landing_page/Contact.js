@@ -12,9 +12,6 @@ import Navbar from './Navbar';
 
 
 
-
-
-
 const Contact = () => {
 
   const [formData, setFormData] = useState({

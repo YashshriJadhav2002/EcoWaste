@@ -101,7 +101,7 @@ const  Vendor_History = () => {
       <Vendor_Navbar/>
       <Vendor_Sidebar>
 
-      <div><h2>My History</h2></div>
+      <div><h2 className='head'>My History</h2></div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
       {product.map((p) => (
         <div key={p._id} style={{ display: 'flex', backgroundColor: '#00a49c', border: '0.1vh solid #ddd', padding: '5vh' }} className='devices'>

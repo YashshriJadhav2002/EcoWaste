@@ -1,4 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
+/* 
 @import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap'); 
 
 
@@ -124,9 +128,9 @@
   }
   .upload-image {
     margin-bottom:20px; /* Adjust the top margin as needed */
-  }
+  /* } */
   
-    .upload-image label {
+    /* .upload-image label {
       margin-left: 80px;
       margin-top: 100px;
       margin-right: 10px;
@@ -136,7 +140,7 @@
   
     }
     /* Style for the dropdown menu */
-.dropdown-menu {
+/* .dropdown-menu {
   position: absolute;
   padding: 10px;
   list-style: none;
@@ -146,10 +150,10 @@
   padding: 0;
   display:flex;
   
-}
+} */
 
 
-.dropdown-menu ul {
+/* .dropdown-menu ul {
   list-style: none;
   padding: 0;
   display: flex;
@@ -160,4 +164,4 @@
   padding: 0;
   margin-bottom: 5px;
 }
-
+  */

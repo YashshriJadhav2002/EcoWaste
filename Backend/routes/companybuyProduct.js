@@ -1,51 +1,64 @@
 const express=require('express')
-const fetchAuth = require('../../middleware/authentication')
 const router=express.Router()
-const product=require('./../../models/productModel')
-const user = require("./../../models/sellerModel")
+const productModel=require('../models/productModel')
 const { Vonage } = require('@vonage/server-sdk')
 const nodemailer = require('nodemailer')
-const vendor=require('./../../models/buyerModel')
+const vendor=require('../models/buyerModel')
 const stripe=require('stripe')('sk_test_51OA6VNSBOVYSI690jPwAb9szLozVjvdrI9TQd3REdDJl2yxtG9hZ68Bc27gxjrUK70EYnY94NXPV1hrYPXPPw8oM00merBSC8u')
 const { v4: uuidv4 } = require('uuid');
 
 
-router.post('/',fetchAuth,async(req,res)=>{
-      const vendor_id = req.user
-      const product_id = req.body.product_id;
-      const data = await product.findById({ _id: product_id });
-      const a_amount = data.SellingPrice * 100;
-      const amount = Math.ceil( a_amount ); 
+router.post('/',async(req,res)=>{
+    const {product}=req.body;
+    let productDetails;
+
+    const lineItems=product.map((product)=>({
+
+        price_data: {
+            currency:"inr",
+            product_data:{name:product.Name},
+            unit_amount:Math.ceil(product.SellingPrice*100),
+            },
+          quantity: 1,
+    }));
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types:['card'],
-        line_items: [
-          {
-            price_data: {
-              currency:"inr",
-              product_data:{name:data.Name},
-              unit_amount:amount
-              },
-            quantity: 1,
-          },
-        ],
+        line_items:lineItems,
         mode: 'payment',
-        success_url: "http://localhost:3000/success/vendor",
-        cancel_url: "http://localhost:3000/cancel/vendor",
+        success_url: "http://localhost:3000/success/company",
+        cancel_url: "http://localhost:3000/cancel/company",
       });
      
       if (session.success_url === 'http://localhost:3000/success') {
-          console.log(session.success_url)
             const timestamp = new Date(Date.now()); 
             const year = timestamp.getFullYear();
             const month = timestamp.getMonth() + 1; // Months are 0-indexed, so add 1
             const day = timestamp.getDate();
             const formattedDate = `${day}-${String(month).padStart(2, '0')}-${String(year).padStart(2, '0')}`;
+            const update = async () => {
+              try {
+                await Promise.all(
+                  product.map(async (product) => {
+                    console.log(product._id)
+                    const productDetails = await productModel.findOneAndUpdate(
+                      { _id: product._id },
+                      { Status3: 1, buying_date: formattedDate }
+                    );
+                    return productDetails;
+                  })
+                );
+              } catch (error) {
+                console.error("Error updating products:", error);
+              }
+            };
+            
+            await update();
+            
+            
 
-    const productDetails = await product.findOneAndUpdate({_id:product_id},{Status1:1,vendor_id:vendor_id,buying_date:formattedDate})
-  
-        const user_id = productDetails.user_id;
-        const userDetails = await user.findOne({_id:user_id})
+        const user_id = product[0].vendor_id;
+        const userDetails = await vendor.findOne({_id:user_id})
         if(userDetails) {
 
             // const phone = userDetails.Phone

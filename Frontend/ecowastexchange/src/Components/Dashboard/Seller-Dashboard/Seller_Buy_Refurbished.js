@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../../Styles/Seller_Buy_Refurbished.css';
 import phone from "../../../Images/phone_price.png";
+import message from '../../../Images/Messages.png'
 import { useState ,useEffect} from 'react';
 import Seller_Navbar from './Seller_Navbar';
 
@@ -92,13 +93,6 @@ function Buy_Refurbished() {
       
   }
 
-  const handleCall=async ()=>{
-    
-      window.location.href = '/call/vendor'
-
-    
-
-  }
 
   const handleGmail=()=>{
     window.location.href = '/message/vendor'
@@ -132,8 +126,7 @@ function Buy_Refurbished() {
       <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1>
       <br></br>
       <button className='sellbutton' onClick={handleBuy}>Buy</button>
-      <button className='callbutton' onClick={handleCall}>Connect through Call with vendor</button>
-      <button className='gmailbutton' onClick={handleGmail}>Connect through Gmail</button>
+      <button className='gmailbutton' onClick={handleGmail}><img src={message}></img></button>
       <br></br>
       <text>Fast <br></br>Payments</text>
       <div className="verticleline">

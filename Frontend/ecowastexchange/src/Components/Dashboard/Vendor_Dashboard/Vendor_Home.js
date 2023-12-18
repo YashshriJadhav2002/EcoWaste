@@ -48,7 +48,7 @@ const  Vendor_Home = () => {
       <div>
        <Vendor_Navbar></Vendor_Navbar>
       <Vendor_Sidebar>
-      <div><h2>Electronic Products </h2></div> 
+      <div><h2 className='head'>Electronic Products </h2></div> 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', padding: '20px' }} >
       {product.map(product => (
         <div key={product._id} style={{ backgroundColor: '#fff', border: '0.1vh solid #ddd', padding: '5vh', textAlign: 'center' }} className='devices' onClick={function() 

@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+body {
+    margin: 0;
+    font-family: 'Spectral';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height:auto;
+    
+  }
+  
+  
+  code {
+    font-family: 'Spectral','source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New',
+      monospace;
+  }
