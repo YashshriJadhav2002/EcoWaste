@@ -1,8 +1,14 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
+
+
 .heading {
   display: flex;
   align-items: center;  
   background-color:  linear-gradient(to right , white , green);
   justify-content: space-between;
+  font-family: 'Spectral';
   min-height: 10vh;
   margin-left: 0vh;
   margin-right: 5vh;

@@ -5,6 +5,8 @@ import phone from "../../../Images/phone_price.png"
 import About_us from "../../../Images/About_us.jpg"
 import {useEffect, useState} from 'react'
 import '../../../Styles/Seller_Navbar.css';
+import {loadStripe} from '@stripe/stripe-js'
+
 
 const Company_Cart = () => {
   
@@ -52,6 +54,37 @@ const Company_Cart = () => {
 
   }, [])
 
+
+  const handleBuy = async() => {
+
+
+    const stripe=await loadStripe('pk_test_51OA6VNSBOVYSI6906LeR8tlp1rY2vRPDCGBX8VzqA1mimmrm8dekOrR09S5oq0r9gOsrgA8OW9NpuXp5liGKuoWx002DnlMiyO')
+    const res = await fetch('/api/buy/product/list', {
+      method:"POST",
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+      product:product
+      })
+  
+  })
+
+  const data = await res.json()
+  const result=stripe.redirectToCheckout({
+    sessionId:data.id
+  });
+
+  if(result.error)
+  {
+    console.log(result.error)
+  }
+ 
+
+
+
+  }
+
     return (
       
       <div>
@@ -73,6 +106,8 @@ const Company_Cart = () => {
         </div>
         </div>
       ))}
+
+      <div className='sellbutton' onClick={handleBuy}>Buy Products</div>
     </div>
 
         </Company_Sidebar>

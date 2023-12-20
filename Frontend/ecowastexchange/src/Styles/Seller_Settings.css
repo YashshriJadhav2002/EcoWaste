@@ -10,7 +10,7 @@
 body,
 input,
 textarea {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif,'Spectral';
   margin: 5px;
 }
 .contact-form
@@ -48,6 +48,7 @@ textarea {
   border-radius: 10px;
   box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  font-family: 'Spectral';
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -77,6 +78,7 @@ textarea {
     background: none;
     padding: 15px;
     color: #fff;
+    font-family: 'Spectral';
     font-weight: 300;
     font-size: 15px;
     letter-spacing: 0.5px;
@@ -88,6 +90,7 @@ textarea {
     padding: 1.5vh;
     min-height: 150px;
     border-radius: 22px;
+    font-family: 'Spectral';
     resize: none;
     overflow-y: auto;
   }

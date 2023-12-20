@@ -1,7 +1,7 @@
 import React from 'react';
 import Seller_Sidebar from './Seller_Sidebar';
 import Seller_Navbar from './Seller_Navbar';
-import '../../../Styles/Seller_Navbar.css';
+import '../../../Styles/Login.css';
 import {useEffect, useState} from 'react'
 
 const Seller_Cart = () => {
@@ -56,26 +56,60 @@ const Seller_Cart = () => {
       <div>
         <Seller_Navbar/>
         <Seller_Sidebar>
-        <div><h2>My Cart</h2></div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
-      {product.map((p)=> (
+  <div class="rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-white flex justify-start items-start border-2">
+  <div class="flex flex-col jusitfy-start items-start">
+  
+    <div>
+      <p class="text-md leading-4 text-gray-800 dark:text-white">Cart Items</p>
+    </div>
+    <div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Product List</h1>
+    </div>
+    <div class="mt-4">
+      <p class="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">{product.length} {product.length>1?"items":"item"}</p>
+    </div>
+    <div class="mt-10 lg:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-y-0">
+    {product.map((p)=> (
        
-        <div key={p._id} style={{ display: 'flex', backgroundColor: '#00a49c', border: '0.1vh solid #ddd', padding: '5vh' }} className='devices'>
-          <img src={p.Avatar} style={{ maxWidth: '30vh', height: '30vh', borderRadius: '1vh', marginBottom: '5vh' }} />
-          <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10vh', marginTop: '5vh' }}>
-
-          <div style={{ fontWeight: 'bold' }}>{p.Name}</div>
-          <div style={{ fontWeight: 'bold' }}>{p.SellingPrice}</div>
-          <div style={{ fontWeight: 'bold' }}>{p.selling_date}</div>
-
+      <div class="flex flex-col" key={p._id}>
+      
+      <div class="relative">
+        <img class="hidden lg:block" src={p.Avatar} alt={p.Name} />
+      </div>
+      <div class="mt-6 flex justify-between items-center">
+        <div class="flex justify-center items-center">
+          <p class="tracking-tight text-2xl font-semibold leading-6 text-gray-800 dark:text-white">{p.Name}</p>
+        </div> 
+      </div>
+      <div id="menu1" class="flex flex-col jusitfy-start items-start mt-12">
+        <div>
+          <p class="tracking-tight text-xs leading-3 text-gray-800 dark:text-white">MK617</p>
         </div>
+        <div class="mt-2">
+          <p class="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.Name}</p>
         </div>
-      ))}
+        <div class="mt-6">
+          <p class="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.SellingPrice}</p>
+        </div>
+        <div class="mt-6">
+          <p class="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.selling_date}</p>
+        </div>
+        
+      </div>
     </div>
 
-        </Seller_Sidebar>
-      </div>
+      ))}
+      
+    </div>
+  </div>
+</div>
+        
+        
+
+        
+    </Seller_Sidebar>
+    </div>
     );
 };
 

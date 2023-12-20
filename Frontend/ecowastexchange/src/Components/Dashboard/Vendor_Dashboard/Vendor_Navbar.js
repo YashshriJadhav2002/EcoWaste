@@ -76,8 +76,9 @@ const Vendor_Navbar = () => {
         <img src='Logo.png' alt="" />
       </div>
       <div className='Welcome-seller'>
-        <h2>WELCOME, {formData.Name}</h2>
+        <h2 className='head'>WELCOME, {formData.Name}</h2>
       </div>
+      <div className='button' onClick={()=>window.location.href='/vendorChat'}>Chat</div>
       <div className="navbar-links-container3" ref={dropdownContainerRef}>
         <div className='sellgadgetname'>
           <a href="#" onClick={() => setSellerOptions(!SellerOpen)}>Sell Gadget</a>

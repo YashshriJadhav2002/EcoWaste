@@ -4,58 +4,70 @@ require('dotenv').config() //attach the environment variables to process object
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
-const http = require("http");
 const cors = require("cors");
-const { Server } = require("socket.io");
+const Vendor=require("./models/buyerModel")
+
+const io = require('socket.io')(8000, {
+  cors: {
+      origin: 'http://localhost:3000',
+  }
+});
+
+const Users = require('./models/sellerModel');
+
+// Socket.io
+let users = [];
+io.on('connection', socket => {
+  console.log('User connected', socket.id);
+  socket.on('addUser', userId => {
+    
+      const isUserExist = users.find(user => user.userId === userId);
+      if (!isUserExist) {
+          const user = { userId, socketId: socket.id };
+          users.push(user);
+          io.emit('getUsers', users);
+      }
+  });
+
+  socket.on('sendMessage', async ({ senderId, receiverId, message, conversationId }) => {
+    let user;
+      const receiver = users.find(user => user.userId === receiverId);
+      const sender = users.find(user => user.userId === senderId);
+      user = await Users.findById(senderId);
+      if(!user)
+      user=await Vendor.find({_id:senderId});
+
+    //   if (receiver) {
+          io.to(receiver.socketId).to(sender.socketId).emit('getMessage', {
+              senderId,
+              message,
+              conversationId,
+              receiverId,
+              user: { id: user._id, Name: user.Name, Email: user.Email }
+          });
+        //   }else {
+        //       io.to(sender.socketId).emit('getMessage', {
+        //           senderId,
+        //           message,
+        //           conversationId,
+        //           receiverId,
+        //           user: { id: user._id, Name: user.Name, Email: user.Email }
+        //       });
+        //   }
+      });
+
+    
+
+  socket.on('disconnect', () => {
+      users = users.filter(user => user.socketId !== socket.id);
+      io.emit('getUsers', users);
+  });
+  // io.emit('getUsers', socket.userId);
+});
 
 
-// const server = http.createServer(app);
-// const io = new Server(server, {
-//   cors: {
-//     origin: "http://localhost:3000",
-//     methods: ["GET", "POST"],
-//   },
-// });
-
-// console.log(io)
-
-// // Listen for when the client connects via socket.io-client
-// // io.on('connection', (socket) => {
-// //   console.log(`User connected ${socket.id}`);
-
-// //   socket.on("disconnect",()=>{
-// //     console.log("User Disconnected",socket.id);
-// //   })
-
-// // });
 
 
-//   io.on('connection', (socket) => {
-//     console.log("user Connected",socket.id)
-//     try {
-//       socket.on('join', (userId) => {
-//         users[userId] = socket.id;
-//         console.log(socket.id);
-//       });
-  
-//       socket.on('offer', (data) => {
-//         io.to(users[data.callee]).emit('offer', { offer: data.offer, caller: data.caller });
-//       });
-  
-//       socket.on('answer', (data) => {
-//         io.to(users[data.caller]).emit('answer', { answer: data.answer });
-//       });
-  
-//       socket.on('ice-candidate', (data) => {
-//         io.to(users[data.target]).emit('ice-candidate', { candidate: data.candidate });
-//       });
-  
-      
-//     } catch (error) {
-//       console.error('Socket event error:', error);
-//     }
-// });
-  
   
 //Importing routes
 const buyerRegister = require('./routes/vendor/buyerRegister')
@@ -86,6 +98,11 @@ const vendorPricePrediction = require('./routes/vendor/vendorPricePrediction')
 const vendorSellPrice = require('./routes/vendor/VendorSellPrice')
 const sellRefurbishedProduct = require('./routes/vendor/sellRefurbishedProduct')
 const vendorCart = require('./routes/vendor/VendorCart')
+const sendMessage=require('./routes/sendMessage')
+const userConversation=require('./routes/userConversation')
+const vendorConversation=require('./routes/vendorConversation')
+const sendConversation=require('./routes/sendconversationuser') 
+const userData=require('./routes/vendor_message')
 
 const buyProduct = require('./routes/vendor/buyProduct')
 const vendorHistory = require('./routes/vendor/vendorHistory')
@@ -103,6 +120,7 @@ const companyAddToCart=require('./routes/companyAddToCart')
 const companyCart=require('./routes/companyCart')
 const companyHistory=require('./routes/companyHistory')
 const companyDeleteHistory=require('./routes/deleteCompanyHistory')
+const companyBuy=require('./routes/companybuyProduct')
 
 
 //middleware
@@ -131,6 +149,11 @@ app.use('/api/seller/home',sellerHome)
 app.use('/api/seller/exactprice',sellerExactPrice)
 app.use('/api/seller/product/buy',sellerBuyRefurbishedProduct)
 app.use('/api/seller/sellerSellingPrice',sellerSellingPrice)
+app.use('/api/message',sendMessage)
+app.use('/api/conversations/',userConversation)
+app.use('/api/message/',sendConversation)
+app.use('/api/conversation',vendorConversation)
+app.use('/api/users/',userData)
 
 app.use('/api/product/exactPrice',exactPrice)
 app.use('/api/product/sell',sellProduct)
@@ -162,6 +185,7 @@ app.use('/api/company/addtocart',companyAddToCart)
 app.use('/api/company/cart',companyCart)
 app.use('/api/company/history',companyHistory)
 app.use('/api/company/deletehistory',companyDeleteHistory)
+app.use('/api/buy/product/list',companyBuy)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

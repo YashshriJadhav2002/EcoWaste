@@ -1,6 +1,11 @@
 import React from 'react'
+import { useParams } from "react-router-dom";
 
-const cancel=()=>{
+
+const Cancel=()=>{
+
+    const { name } = useParams();
+
     const centeredContainerStyle = {
         textAlign: 'center',
         margin: '50px',
@@ -38,9 +43,9 @@ const cancel=()=>{
             />
             <div style={textContainerStyle}>
                
-                <button style={buttonStyle}>Go to home</button>
+                <button style={buttonStyle} onClick={window.location.href='/SellerHome'}>Go to home</button>
             </div>
         </div>
     );
 }
-export default cancel;
+export default Cancel;

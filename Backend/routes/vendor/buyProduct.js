@@ -30,8 +30,8 @@ router.post('/',fetchAuth,async(req,res)=>{
           },
         ],
         mode: 'payment',
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/cancel",
+        success_url: "http://localhost:3000/success/vendor",
+        cancel_url: "http://localhost:3000/cancel/vendor",
       });
      
       if (session.success_url === 'http://localhost:3000/success') {

@@ -45,6 +45,8 @@ import VendorVerify from './Components/Dashboard/Vendor_Dashboard/vendor_verify'
 import CompanyVerify from './Components/Dashboard/Company_Dashboard/Company_Verify';
 import CallVendor from './Components/Dashboard/Seller-Dashboard/call_vendor';
 import VendorProductList from './Components/Dashboard/Company_Dashboard/vendorProductList';
+import MessgaeVendor from  './Components/chatBox/chatbox/index';
+import MessageSeller from './Components/Dashboard/Vendor_Dashboard/index';
 
 function App() {
   return (
@@ -60,9 +62,9 @@ function App() {
       <Route path='/SellerRegister' element={<SellerRegister />}></Route>
       <Route path='/VendorRegister' element={<VendorRegister/>}></Route>
       <Route path='/CompanyRegister' element={<CompanyRegister />}></Route>
-      <Route path="/seller" element={<Login />} />
-      <Route path="/vendor" element={<Login />} />
-      <Route path="/company" element={<Login />} />
+      <Route path="/Seller" element={<Login />} />
+      <Route path="/Vendor" element={<Login />} />
+      <Route path="/Company" element={<Login />} />
       <Route path="/SellerHome" element={<Seller_Home/>}/>
       <Route path="/SellerCart" element={<Seller_Cart/>}/>     
       <Route path="/SellerHistory" element={<Seller_History/>}/>
@@ -77,6 +79,7 @@ function App() {
       <Route path='/verifyVendor/:token' element={<VendorVerify/>} />
       <Route path='/verifyCompany/:token' element={<CompanyVerify/>} />
       <Route path='/call/vendor' element={<CallVendor/>}/>
+      <Route path='/message/vendor' element={<MessgaeVendor/>}/>
 
       <Route path='/VendorExactPrice' element={<Vendor_Exact_Price/>} />
       <Route path='/VendorHome' element={<Vendor_Home/>} />
@@ -93,9 +96,9 @@ function App() {
       <Route path='/VendorLogout' element={<Vendor_Logout/>} />
       <Route path="/VendorExactPrice" element={<Vendor_Exact_Price/>}/>
       <Route path="/VendorSellRefurbished" element={<Vendor_Sell_Refurbished/>}/>
-
-      <Route path='/success' element={<Success/>}/>
-      <Route path='/cancel' element={<Cancel/>}/>
+      <Route path='/vendorChat' element={<MessageSeller/>}/>
+      <Route path='/success/:name' element={<Success/>}/>
+      <Route path='/cancel/:name' element={<Cancel/>}/>
       
       <Route path='/CompanyHome' element={<Company_Home/>} />
       <Route path='/CompanyCart' element={<Company_Cart/>} />
