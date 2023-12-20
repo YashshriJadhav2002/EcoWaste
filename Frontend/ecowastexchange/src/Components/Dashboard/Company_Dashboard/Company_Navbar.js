@@ -58,7 +58,7 @@ const [ProfileOpen, setProfileOptions] = useState(false);
 const [SellerOpen, setSellerOptions] = useState(false);
 const dropdownContainerRef = useRef(null);
 
-const sellerOptions = ["Smartphones", "Earbud", "Laptop"];
+//const sellerOptions = ["Smartphones", "Earbud", "Laptop"];
 const settingOptions = ["Settings", "Logout"];
 
 useEffect(() => {
@@ -82,14 +82,14 @@ useEffect(() => {
 
 return (
   <nav className='heading'>
-    <div className="">
+    <div className=""> 
       <img src='Logo.png' alt="" />
     </div>
     <div className='Welcome-seller'>
       <h2>WELCOME, {formData.Name}</h2>
     </div>
     <div className="navbar-links-container3" ref={dropdownContainerRef}>
-      <div className='sellgadgetname'>
+      {/* <div className='sellgadgetname'>
         <a href="#" onClick={() => setSellerOptions(!SellerOpen)}>Sell Gadget</a>
         {SellerOpen && (
           <div className="dropdown-menu-sellergadget">
@@ -100,7 +100,7 @@ return (
             ))}
           </div>
         )}
-      </div>
+      </div> */}
       
       <a href="#" onClick={() => setProfileOptions(!ProfileOpen)}>
         <img src={formData.Avatar} className='profilephoto' alt="" />

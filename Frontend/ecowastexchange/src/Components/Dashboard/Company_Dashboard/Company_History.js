@@ -91,11 +91,30 @@ const Company_History = () => {
     }
 }
 
+const [selectedOption, setSelectedOption] = useState('');
+
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
     return (
       <div>
       <Company_Navbar/>
       <Company_Sidebar>
+      <div>
+      <label>Select an option:</label>
+      <select value={selectedOption} onChange={handleSelectChange}>
+        <option value="">Select...</option>
+        <option value="productByVendor">Product bought by vendor</option>
+        <option value="productByCompany">Product bought by company</option>
+        <option value="sellerRefurbished">Seller bought refurbished product</option>
+      </select>
 
+      {selectedOption && (
+        <p>You selected: {selectedOption}</p>
+
+      )}
+    </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
       {product.map((p) => (
