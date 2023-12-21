@@ -7,6 +7,8 @@ function SmartPhones() {
     let name, buyingPrice, age, display, cond, second,newfile;
     const [image, setImage] = useState('');
     const hiddenFileInput = useRef(null);
+    const [session,useSession]=useState(localStorage.getItem("auth-token"))
+
 
     const [productData, setProductData] = useState({
 
@@ -199,6 +201,11 @@ function SmartPhones() {
 
   return (
     <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+    <div>
       <Seller_Navbar></Seller_Navbar>
 
     <div className="image-upload-container">
@@ -289,6 +296,8 @@ function SmartPhones() {
       </form>
     </div>
     </div>
+      }
+      </div>
   );
 }
 

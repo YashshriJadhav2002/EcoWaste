@@ -6,7 +6,8 @@ import Company_Navbar from "./Company_Navbar";
 
 const Company_Settings = () => { 
     
-   
+  const [session,useSession]=useState(localStorage.getItem("company-token"))
+
   const [formData, setFormData] = useState({
     Name: '',
     Phone: '',
@@ -131,6 +132,11 @@ const Company_Settings = () => {
   };
 
 return (
+  <div>
+    {
+      session===null?<div className="mt-3">
+    <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+  </div>:
     <div>
   <Company_Navbar></Company_Navbar>
 
@@ -232,6 +238,8 @@ return (
     </div>
   </div>
 </div>
+    }
+    </div>
 )
 }
 

@@ -5,7 +5,8 @@ import Vendor_Navbar from "./Vendor_Navbar";
 
 const Vendor_Settings = () => {
 
-    
+  const [session,useSession]=useState(localStorage.getItem("vendor-token"))
+
   const [formData, setFormData] = useState({
     Name: '',
     Phone: '',
@@ -135,7 +136,11 @@ const Vendor_Settings = () => {
     });
   };
     return (
-
+<div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
         <div >
         <Vendor_Navbar></Vendor_Navbar>
         <div className="sellersetting-container">
@@ -237,6 +242,8 @@ const Vendor_Settings = () => {
         </div>
       </div>
     </div>
+      }
+      </div>
   );
 }
 

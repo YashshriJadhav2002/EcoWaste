@@ -1,7 +1,4 @@
 import React, { useEffect,useState } from 'react';
-import phone from "../../../Images/phone_price.png"
-import About_us from "../../../Images/About_us.jpg"
-
 import Seller_Sidebar from './Seller_Sidebar';
 import Seller_Navbar from './Seller_Navbar';
 import '../../../Styles/Seller_Navbar.css';
@@ -9,13 +6,13 @@ import '../../../Styles/Seller_Navbar.css';
 
 const Seller_Home = () => {
   const [refurbishedProduct, setrefurbishedProductData] = useState([])
+  const [session,useSession]=useState(localStorage.getItem("auth-token"))
   
   useEffect(()=> {
 
     const fetchUser = async() => {
       let refurbishedProductData = []
       const token = localStorage.getItem("auth-token")
- 
       const res=await fetch('/api/seller/home',
       {
         method:"POST",
@@ -52,8 +49,13 @@ const Seller_Home = () => {
 
     return (
       <div>
-       <Seller_Navbar> </Seller_Navbar>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:<div>
+        <Seller_Navbar> </Seller_Navbar>
       <Seller_Sidebar> 
+      
       <div><h2 className='head'>Refurbished Products </h2></div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', padding: '20px' }} >
       {refurbishedProduct.map(refurbishedProduct => (
@@ -74,6 +76,9 @@ const Seller_Home = () => {
     </div>
       
       </Seller_Sidebar>
+        </div>
+      }
+       
     </div>
     );
 };

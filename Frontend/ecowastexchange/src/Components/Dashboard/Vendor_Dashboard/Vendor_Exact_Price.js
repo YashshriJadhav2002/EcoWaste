@@ -2,10 +2,10 @@ import React from 'react'
 import '../../../Styles/Seller_Exact_Price.css';
 import Vendor_Navbar from './Vendor_Navbar';
 import { useState ,useEffect} from 'react';
-import StripeCheckout from 'react-stripe-checkout'
 import {loadStripe} from '@stripe/stripe-js'
 
 function  Vendor_Exact_Price() {
+  const [session,useSession]=useState(localStorage.getItem("vendor-token"))
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -109,6 +109,11 @@ function  Vendor_Exact_Price() {
   
   return (
     <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+    <div>
         <Vendor_Navbar></Vendor_Navbar>
         <div className='product-image'>
       <img className='image' src={formData.Avatar}></img> 
@@ -152,6 +157,8 @@ function  Vendor_Exact_Price() {
       ))}
     </div>
     </div>
+      }
+      </div>
   )
 }
 

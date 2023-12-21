@@ -5,7 +5,8 @@ import '../../../Styles/Seller_Navbar.css';
 
 const  Vendor_Home = () => {
   const [product, setProductData] = useState([])
-  
+  const [session,useSession]=useState(localStorage.getItem("vendor-token"))
+
   useEffect(()=> {
 
     const fetchUser = async() => {
@@ -46,6 +47,11 @@ const  Vendor_Home = () => {
 
     return (
       <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+      <div>
        <Vendor_Navbar></Vendor_Navbar>
       <Vendor_Sidebar>
       <div><h2 className='head'>Electronic Products </h2></div> 
@@ -68,6 +74,8 @@ const  Vendor_Home = () => {
       
       </Vendor_Sidebar>
     </div>
+      }
+      </div>
     );
 };
 

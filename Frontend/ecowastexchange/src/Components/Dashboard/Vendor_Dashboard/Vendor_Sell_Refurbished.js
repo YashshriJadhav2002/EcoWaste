@@ -4,7 +4,9 @@ import Vendor_Navbar from './Vendor_Navbar';
 import { useState ,useEffect} from 'react';
 
 function Vendor_Sell_Refurbished() {
-   
+  const [session, useSession] = useState(localStorage.getItem("vendor-token"));
+ 
+
   const [formData, setFormData] = useState({
     Name: '',
     SellingPrice:'',
@@ -107,6 +109,12 @@ function Vendor_Sell_Refurbished() {
   };
   return (
     <div>
+      {session === null ? 
+        <div className="mt-3">
+          <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+        </div>
+       : 
+    <div>
         <Vendor_Navbar></Vendor_Navbar>
         <div className='product-image'>
       <img src={formData.Avatar} className='image'></img> 
@@ -149,6 +157,8 @@ function Vendor_Sell_Refurbished() {
       ))}
     </div>
     </div>
+      }
+      </div>
   )
 }
 

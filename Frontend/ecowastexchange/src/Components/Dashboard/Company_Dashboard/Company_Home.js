@@ -8,7 +8,8 @@ import { FaSearch } from 'react-icons/fa';
 
 
 const Company_Home = () => {
-  
+  const [session,useSession]=useState(localStorage.getItem("company-token"))
+
   const [cityName,setCityName]=useState([]);
   const [product, setProductData] = useState([]);
 
@@ -61,6 +62,11 @@ const handleSubmit=()=>{
 }
 
   return (
+    <div>
+    {
+      session===null?<div className="mt-3">
+    <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+  </div>:
       <div>
        <Company_Navbar> </Company_Navbar>
       <Company_Sidebar> 
@@ -111,6 +117,8 @@ const handleSubmit=()=>{
     </div>
     </div>
       </Company_Sidebar>
+    </div>
+    }
     </div>
     );
 };

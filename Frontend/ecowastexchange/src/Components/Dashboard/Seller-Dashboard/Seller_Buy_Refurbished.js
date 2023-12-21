@@ -6,6 +6,7 @@ import { useState ,useEffect} from 'react';
 import Seller_Navbar from './Seller_Navbar';
 
 function Buy_Refurbished() {
+  const [session, useSession] = useState(localStorage.getItem("auth-token"));
 
   
   const [formData, setFormData] = useState({
@@ -114,6 +115,11 @@ function Buy_Refurbished() {
   };
   return (
     <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+   <div>
         <Seller_Navbar></Seller_Navbar>
         <div className='product-image'>
       <img src={formData.Avatar} className='image'></img> 
@@ -156,6 +162,8 @@ function Buy_Refurbished() {
       ))}
     </div>
     </div>
+      }
+      </div>
   )
 }
 

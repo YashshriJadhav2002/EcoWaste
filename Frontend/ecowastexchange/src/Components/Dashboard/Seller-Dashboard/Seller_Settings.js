@@ -6,7 +6,8 @@ import Seller_Navbar from "./Seller_Navbar";
 
 const Seller_Settings = () => {
 
-    
+  const [session,useSession]=useState(localStorage.getItem("auth-token"))
+
   const [formData, setFormData] = useState({
     Name: '',
     Phone: '',
@@ -138,7 +139,11 @@ const Seller_Settings = () => {
     });
   };
     return (
-
+<div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
         <div >
 <Seller_Navbar></Seller_Navbar>
       <div className="sellersetting-container">
@@ -240,6 +245,8 @@ const Seller_Settings = () => {
         </div>
       </div>
     </div>
+      }
+      </div>
   );
 }
 
