@@ -103,6 +103,7 @@ const handleClick1 = () => {
     <div>
       <Company_Navbar/>
       <Company_Sidebar>
+      
 
 <div className="rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-white flex justify-start items-start border-2">
 <div className="flex flex-col jusitfy-start items-start">

@@ -55,7 +55,7 @@ const [ProfileOpen, setProfileOptions] = useState(false);
 const [SellerOpen, setSellerOptions] = useState(false);
 const dropdownContainerRef = useRef(null);
 
-const sellerOptions = ["Smartphones", "Earbud", "Laptop"];
+//const sellerOptions = ["Smartphones", "Earbud", "Laptop"];
 const settingOptions = ["Settings", "Logout"];
 
 useEffect(() => {
@@ -79,7 +79,7 @@ useEffect(() => {
 
 return (
   <nav className='heading'>
-    <div className="">
+    <div className=""> 
       <img src='Logo.png' alt="" />
     </div>
     <div className='Welcome-seller'>
