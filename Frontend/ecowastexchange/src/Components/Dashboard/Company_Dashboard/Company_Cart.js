@@ -10,7 +10,6 @@ import {loadStripe} from '@stripe/stripe-js'
 const Company_Cart = () => {
   const [session, useSession] = useState(localStorage.getItem("company-token"));
 
-  const [menuVisible, setMenuVisible] = useState(false);
   const [product, setProductData] = useState([])
   
   useEffect(()=> {
@@ -54,9 +53,10 @@ const Company_Cart = () => {
 
   }, [])
 
-  const handleClick1 = () => {
-    setMenuVisible(!menuVisible);
-  };
+  const totalSellingPrice = product.reduce((total, p) => total + p.SellingPrice, 0);
+  const shipping=80.00;
+  const totalCost = totalSellingPrice + shipping;
+
 
   const handleBuy = async() => {
 
@@ -99,83 +99,72 @@ const Company_Cart = () => {
         <div>
           <Company_Navbar />
           <Company_Sidebar>
-            <div className="rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-white flex justify-start items-start border-2">
-              <div className="flex flex-col jusitfy-start items-start">
-                <div>
-                  <p className="text-md leading-4 text-gray-800 dark:text-white">Cart Items</p>
-                </div>
-                <div className="mt-3">
-                  <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Product List</h1>
-                </div>
-                <div className="mt-4">
-                  <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">{product.length} {product.length > 1 ? "items" : "item"}</p>
-                </div>
-                <div className="mt-10 lg:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-y-0">
-                  {product.map((p) => (
-                    <div className="flex flex-col" key={p._id}>
-                      <div className="relative">
-                        <img style={{ height: "52vh",width:"50vw" }}  src={p.Avatar} alt={p.Name} />
-                      </div>
-                      <div className="mt-6 flex justify-between items-center">
-                        <div className="flex justify-center items-center">
-                          <p className="tracking-tight text-2xl font-semibold leading-6 text-gray-800 dark:text-white">{p.Name}</p>
-                        </div>
-                        <div className="flex justify-center items-center">
-                          <button
-                            aria-label="show menu"
-                            onClick={handleClick1}
-                            className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-2.5 px-2 bg-gray-800 dark:bg-white dark:text-gray-800 text-white hover:text-gray-400 hover:bg-gray-200"
-                          >
-                            <svg
-                              id="chevronUp1"
-                              className={menuVisible ? "hidden" : "fill-stroke"}
-                              width="10"
-                              height="6"
-                              viewBox="0 0 10 6"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M9 5L5 1L1 5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                            <svg
-                              id="chevronDown1"
-                              className={menuVisible ? "fill-stroke" : "hidden"}
-                              width="10"
-                              height="6"
-                              viewBox="0 0 10 6"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
-                      <div id="menu1" className={`flex flex-col jusitfy-start items-start mt-12 ${menuVisible ? '' : 'hidden'}`}>
-                        <div>
-                          <p className="tracking-tight text-xs leading-3 text-gray-800 dark:text-white">MK617</p>
-                        </div>
-                        <div className="mt-2">
-                          <p className="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.Name}</p>
-                        </div>
-                        <div className="mt-6">
-                          <p className="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.SellingPrice}</p>
-                        </div>
-                        <div className="mt-6">
-                          <p className="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.selling_date}</p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="mt-8 flex justify-between">
-                  <div></div>
-                  <button   style={{ backgroundColor: 'black' }} className="focus:outline-none focus:ring-gray-800 focus:ring-offset-2 focus:ring-2 text-white tracking-tight py-3 px-4 text-lg leading-4 hover:bg-black border border-red-500 dark:hover:bg-red-700 dark:hover:text-white rounded-md ml-auto" onClick={()=>handleBuy()}>Buy Products</button>
-                  </div>
-                </div>
-                
-              </div>
+          <div className="bg-gray-100">
+  <div className="container mx-auto mt-10 ">
+    <div className="flex shadow-md my-10">
+      <div className="w-3/4 bg-white px-10 py-10 border-2">
+        <div className="flex justify-between border-b pb-8">
+          <h1 className="font-semibold text-2xl">Shopping Cart</h1>
+          <h2 className="font-semibold text-2xl">{product.length} {product.length>1?"Items":"Item"}</h2>
+        </div>
+        <div className="flex mt-10 mb-5">
+          <h3 className="font-semibold text-black-600 text-xs uppercase w-2/5">Product Details</h3>
+          <h3 className="font-semibold text-center text-black-600 text-xs uppercase w-1/5 text-center">Quantity</h3>
+          <h3 className="font-semibold text-center text-black-600 text-xs uppercase w-1/5 text-center">Price</h3>
+          <h3 className="font-semibold text-center text-black-600 text-xs uppercase w-1/5 text-center">Total</h3>
+        </div>
+        {product.map((p)=> (
+          
+        <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" id={p._id}>
+          <div className="flex w-2/5"> 
+            <div className="w-20">
+              <img className="h-24" src={p.Avatar} alt=""/>
+            </div>
+            <div className="flex flex-col justify-between ml-4 flex-grow">
+              <span className="font-bold text-sm">{p.Name}</span>
+              <span className="text-red-500 text-xs">{p.Name}</span>
              
             </div>
+          </div>
+          <div className="flex justify-center w-1/5">
+            <input className="mx-2 border text-center w-8" type="text" value="1"/>
+          </div>
+          <span className="text-center w-1/5 font-semibold text-sm">{"Rs." + p.SellingPrice}</span>
+          <span className="text-center w-1/5 font-semibold text-sm">{"Rs "+ p.SellingPrice}</span>
+        </div>
+
+          
+
+        ))}
+      </div>
+
+      <div id="summary" className="w-1/4 px-8 py-10 bg-gray-400" >
+        <h1 className="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+        <div className="flex justify-between mt-10 mb-5">
+          <span className="font-semibold text-sm uppercase">{product.length>0?"Items":"Item"} {product.length}</span>
+          <span className="font-semibold text-sm">{`Rs ${totalSellingPrice}`}</span>
+        </div>
+        <div>
+          <label className="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
+          <select className="block p-2 text-gray-600 w-full text-sm">
+            <option>Standard shipping - {`Rs ${shipping}`}</option>
+          </select>
+        </div>
+        
+        <div className="border-t mt-8">
+          <div className="flex font-semibold justify-between py-6 text-sm uppercase">
+            <span>Total cost</span>
+            <span>{`Rs ${totalCost}`}</span>
+          </div>
+          <button className="bg-black font-semibold hover:bg-black-600 py-3 text-sm text-white uppercase w-full" onClick={()=>handleBuy()}>Checkout</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+          
           </Company_Sidebar>
         </div>
       )}

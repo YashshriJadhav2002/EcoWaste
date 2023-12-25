@@ -1,7 +1,9 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
-
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .heading {
   display: flex;
@@ -64,6 +66,12 @@ margin-bottom: -8vh;
 .devices:hover{
   transform: scale(1.1);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.custom-hover-effect:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border: 2px solid #ccc;
 }
 
 

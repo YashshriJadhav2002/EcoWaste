@@ -1,3 +1,7 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 .centered-modal {
   display: flex;
   flex-direction: column;
@@ -27,7 +31,7 @@
   display:flex;
   justify-content:center;
   align-items: center;
-  background: #00a49c;
+  background-color: #00a49c;
   border-radius: 5vh;
   color: #fff;
   font-size:19px;
@@ -140,8 +144,8 @@
         width: 0.2vw;
         height:7vh;
         background: black; 
-        margin-top: -7vh;
-        margin-left: 15vh;
+        margin-top: -5vh;
+        margin-left: 16vh;
     }
 .textclass{
     margin-left: 20vh;

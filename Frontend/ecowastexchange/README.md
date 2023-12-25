@@ -8,3 +8,4 @@ npm install @stripe/stripe-js
 npm install axios
 npm install tailwindcss
 npm install socket.io-client
+npm install react-toastify

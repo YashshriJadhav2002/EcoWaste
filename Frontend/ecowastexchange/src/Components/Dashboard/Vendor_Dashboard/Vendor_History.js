@@ -3,12 +3,13 @@ import Vendor_Sidebar from './Vendor_Sidebar';
 import Vendor_Navbar from './Vendor_Navbar';
 import '../../../Styles/Login.css';
 import { useEffect,useState } from 'react';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const  Vendor_History = () => {
 
   const [session,useSession]=useState(localStorage.getItem("vendor-token"))
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(true);
   const [product, setProductData] = useState([])
 
   useEffect(()=> {
@@ -50,7 +51,6 @@ const  Vendor_History = () => {
             productData.push(dataparse2);
             
           });
-          console.log(productData)
 
           setProductData([...product,...productData])
           
@@ -89,19 +89,35 @@ const  Vendor_History = () => {
 
     const data = await res.json()
     if(res.status === 200) {
-      window.alert(data.message)
-
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });
     }
     else {
-      window.alert(data.error);
-    }
+      toast.error(data.error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });    }
 }
 
 const handleClick1 = () => {
   setMenuVisible(!menuVisible);
 };
 
+
     return (
+      
       <div>
     {
       session===null?<div className="mt-3">
@@ -110,8 +126,8 @@ const handleClick1 = () => {
     <div>
       <Vendor_Navbar/>
       <Vendor_Sidebar>
-
-<div className="rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-white flex justify-start items-start border-2">
+<ToastContainer/>
+      <div class="rounded shadow-lg mb-6 bg-white flex justify-start items-start border-2" style={{"padding-left":" 4rem","padding-top": "3rem","paddingBottom":"3rem"}}>
 <div className="flex flex-col jusitfy-start items-start">
 
   <div>
@@ -123,13 +139,13 @@ const handleClick1 = () => {
   <div className="mt-4">
     <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">{product.length} {product.length>1?"items":"item"}</p>
   </div>
-  <div className="mt-10 lg:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-y-0">
+  <div className="mt-10 lg:mt-12 custom-grid">
   {product.map((p)=> (
      
-    <div className="flex flex-col" key={p._id}>
+    <div className="flex flex-col mt-6 mr-10" key={p._id}>
     
     <div className="relative">
-    <img style={{ height: "52vh",width:"50vw" }} src={p.Avatar} alt={p.Name} />
+    <img style={{ height: "44vh",width:"350px" }} src={p.Avatar} alt={p.Name} />
     </div>
     <div className="mt-6 flex justify-between items-center">
       <div className="flex justify-center items-center">

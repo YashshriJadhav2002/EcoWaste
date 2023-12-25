@@ -2,6 +2,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+  .custom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 7vw;
+    row-gap:2rem;
+    /* Add any other necessary styles */
+  }
+
+
 /* 
 @import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap'); 
 

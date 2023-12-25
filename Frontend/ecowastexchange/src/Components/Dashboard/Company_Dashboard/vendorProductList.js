@@ -3,7 +3,8 @@ import React from 'react';
 import Company_Sidebar from './Company_Sidebar';
 import Company_Navbar from './Company_Navbar';
 import '../../../Styles/Seller_Navbar.css';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const VendorProductList = () => {
   const [session,useSession]=useState(localStorage.getItem("company-token"))
@@ -69,12 +70,27 @@ const VendorProductList = () => {
   
     const data = await res.json()
     if(res.status === 200) {
-      window.alert(data.message)
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });
   
     }else {
   
-      window.alert(data.error)
-  
+      toast.error(data.error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });  
     }
         
     }
@@ -92,6 +108,7 @@ const VendorProductList = () => {
         <div>
           <Company_Navbar />
           <Company_Sidebar>
+          <ToastContainer/>
             <div className="rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-white flex justify-start items-start border-2">
               <div className="flex flex-col jusitfy-start items-start">
                 <div>

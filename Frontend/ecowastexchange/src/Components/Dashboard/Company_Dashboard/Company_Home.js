@@ -70,6 +70,8 @@ const handleSubmit=()=>{
       <div>
        <Company_Navbar> </Company_Navbar>
       <Company_Sidebar> 
+      <div class="rounded shadow-lg mb-6 bg-white flex justify-start items-start border-2" style={{"padding-left":" 3rem","padding-top": "3rem","paddingBottom":"3rem"}}>
+      <div className="flex flex-col justify-start items-start">
          <div>
          <FaSearch style={{ fontSize: '26px', marginBottom: '-10px' }}></FaSearch>
           <input
@@ -116,6 +118,9 @@ const handleSubmit=()=>{
       ))}
     </div>
     </div>
+    </div>
+    </div>
+
       </Company_Sidebar>
     </div>
     }
