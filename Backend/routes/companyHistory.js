@@ -7,7 +7,6 @@ router.post('/',auth,async(req,res)=>{
 
 
     const user_id=req.user
-    console.log(user_id)
     const product_details=await product.find({company_id:user_id, companybuy:true ,Status1:1,Status3:1,Status2:true})
     if(product_details){
 

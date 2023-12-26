@@ -147,14 +147,14 @@ const Company_Cart = () => {
         <div>
           <label className="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
           <select className="block p-2 text-gray-600 w-full text-sm">
-            <option>Standard shipping - {`Rs ${shipping}`}</option>
+            <option>Standard shipping - {product.length>0?`Rs. ${shipping}`:`Rs. 0.0`}</option>
           </select>
         </div>
         
         <div className="border-t mt-8">
           <div className="flex font-semibold justify-between py-6 text-sm uppercase">
             <span>Total cost</span>
-            <span>{`Rs ${totalCost}`}</span>
+            <span>{product.length>0?`Rs. ${totalCost}`:`Rs. 0`}</span>
           </div>
           <button className="bg-black font-semibold hover:bg-black-600 py-3 text-sm text-white uppercase w-full" onClick={()=>handleBuy()}>Checkout</button>
         </div>

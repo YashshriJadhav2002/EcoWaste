@@ -10,7 +10,6 @@ io.on('connection', (socket) => {
   try {
     socket.on('join', (userId) => {
       users[userId] = socket.id;
-      console.log(users[userId]);
     });
 
     socket.on('offer', (data) => {

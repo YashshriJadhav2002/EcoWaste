@@ -72,7 +72,6 @@ function SmartPhones() {
         };
         console.log(file)
         setImage(file)
-        console.log(image)
   
         if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
       {
@@ -85,7 +84,7 @@ function SmartPhones() {
           body:data,
   
         }).then((res)=>res.json()).then((data)=>{
-          console.log(data)
+          console.log(data.url.toString())
           setProductData({...productData,Avatar:data.url.toString()})
         }).catch((err)=>{
         })
@@ -137,7 +136,7 @@ function SmartPhones() {
 
       toast.success("Details Saved Successfully", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -155,7 +154,7 @@ function SmartPhones() {
       })
       setTimeout(() => {
         window.location.href = '/ExactPrice'
-      }, 5000);
+      }, 3000);
 
     
     }

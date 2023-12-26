@@ -86,7 +86,7 @@ function Buy_Refurbished() {
   if(res.status === 200) {
     toast.success(data.message, {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -96,13 +96,13 @@ function Buy_Refurbished() {
 
       setTimeout(() => {
         window.location.href = '/SellerHome'
-      }, 5000);
+      }, 3000);
 
   }else {
 
     toast.error(data.error, {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -127,7 +127,7 @@ function Buy_Refurbished() {
         if (i === index) {
           return { ...item, isOpen: !item.isOpen };
         } else {
-          return { ...item, isOpen: false }; // Close other sections when opening one
+          return { ...item, isOpen: false }; 
         }
       });
       return updatedItems;
@@ -142,15 +142,15 @@ function Buy_Refurbished() {
    <div>
         <Seller_Navbar></Seller_Navbar>
         <ToastContainer/>
-        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-lg">
-        <div className="w-full lg:w-1/2 mx-auto mb-4 ml-4 max-w-lg flex items-center justify-center"> {/* Adjusted max-w-lg */}
-            <img className="w-full rounded" src={formData.Avatar} alt={formData.Name} />
+        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-md mt-10">
+        <div className="w-full lg:w-1/2 mx-auto mb-4  max-w-lg">
+            <img className="w-full rounded" src={formData.Avatar} alt={formData.Name}  />
         </div>
 
-        <div className="w-full lg:w-1/2 mx-auto p-4 max-w-lg"> 
+        <div className="w-full lg:w-1/2 mx-auto max-w-lg mt-5"> 
     <h2 className="text-2xl font-semibold mb-2">{formData.Name}</h2>
     <span className="text-lg font-semibold text-green-600 mb-4">{formData.SellingPrice}</span>
-<br></br>
+    <br></br>
     <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 mt-3 ml-0 rounded focus:outline-none" onClick={handleBuy}>
       Buy
     </button>
@@ -165,7 +165,7 @@ function Buy_Refurbished() {
     
     <div className="verticleline" ></div>
     
-    <div className="textclass">
+    <div className="textclass" >
       <text>100% Safe</text>
     </div>
   </div>

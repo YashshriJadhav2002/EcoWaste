@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react';
 import Seller_Sidebar from './Seller_Sidebar';
 import Seller_Navbar from './Seller_Navbar';
-import styles from '../../../Styles/Seller_Navbar.css';
+import '../../../Styles/Seller_Navbar.css';
 
 
 const Seller_Home = () => {
@@ -67,14 +67,14 @@ const Seller_Home = () => {
                 </div>
                 <div className="mt-10 lg:mt-12 custom-grid ">
                   {refurbishedProduct.map((p) => (
-                    <div className="flex flex-col mt-6 custom-hover-effect px-4 py-3"  key={p._id} onClick={function() 
+                    <div className="flex flex-col mt-6 custom-hover-effect px-8 py-5 border-2"  key={p._id} onClick={function() 
                     {
                       localStorage.setItem("refurbishedProduct_id",p._id)
                       window.location.href = '/SellerBuyRefurbished'
                     }
                     }>
                       <div className="relative">
-                      <img style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '1vh', marginBottom: '5vh' }} src={p.Avatar} alt={p.Name} />
+                      <img style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '1vh', marginBottom: '5vh',width:'300px',height:'30vh'}} src={p.Avatar} alt={p.Name} />
                       </div>
                       <div className="mt-6 flex justify-between items-center px-2.5">
                         <div className="flex justify-center items-center">

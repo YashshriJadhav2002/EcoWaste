@@ -8,7 +8,6 @@ const router = express.Router()
 router.post('/',productToken, async (req,res)=> {
 
             const timestamp = new Date(Date.now()); // Replace this with your timestamp
-             console.log(timestamp)
             // Extract the date part (year, month, and day)
             const year = timestamp.getFullYear();
             const month = timestamp.getMonth() + 1; // Months are 0-indexed, so add 1
