@@ -2,6 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
 
 
+  .outernav {
+
+
+    display: flex;
+    flex-direction: row;
+    gap: 46vw;
+
+
+  }
+
+  .forimg {
+
+    width: 7vw;
+    height: 7vh;
+    margin-top: 1vh   ;
+    margin-left: 2vw;
+
+  }
+
+
   .navbar-links-container {
 
     display: flex;
@@ -93,6 +113,12 @@
 }
 
   
-  
-  
+/* img {
+
+    width: 14vw; 
+    margin-top: 2rem;
+    margin-left: 5vw
+    
+
+} */
     

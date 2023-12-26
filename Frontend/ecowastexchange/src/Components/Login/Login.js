@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import '../../Styles/Login.css'
 import { useLocation } from 'react-router-dom';
-import logo from '../../Images/Logo.png'
+import logo from '../../Images/l_new4.png'
 import login from '../../Images/loginback.png'
 
 const Login = () => {
@@ -110,9 +112,9 @@ const Login = () => {
             <div className="lg:w-1/2 xl:max-w-screen-sm">
                 <div className="py-12 bg-emerald-500 sm:bg-white flex justify-center lg:justify-start lg:px-12">
                     <div className="cursor-pointer flex items-center">
-                        <div>
+                        <div className='logo'>
                             <img src={logo}/>
-                            </div>
+                          </div>
                     </div>
                 </div>
                 <div className="mt-9 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-11 xl:px-24 xl:max-w-2xl">
@@ -132,8 +134,7 @@ const Login = () => {
                                         Password
                                     </div>
                                     <div>
-                                        <a className="text-xs font-display font-semibold text-headings hover:text-emerald-500
-                                        cursor-pointer">
+                                        <a className="text-xs font-display font-semibold text-headings hover:text-emerald-500cursor-pointer">
                                             Forgot Password?
                                         </a>
 
