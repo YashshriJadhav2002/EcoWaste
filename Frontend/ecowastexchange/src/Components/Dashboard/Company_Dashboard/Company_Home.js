@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Company_Sidebar from './Company_Sidebar';
 import Company_Navbar from './Company_Navbar';
 import '../../../Styles/Seller_Navbar.css';
-import { FaSearch } from 'react-icons/fa';
-
+import search  from '../../../Images/search.png';
 
 
 const Company_Home = () => {
@@ -70,10 +69,11 @@ const handleSubmit=()=>{
       <div>
        <Company_Navbar> </Company_Navbar>
       <Company_Sidebar> 
-      <div class="rounded shadow-lg mb-6 bg-white flex justify-start items-start border-2" style={{"padding-left":" 3rem","padding-top": "3rem","paddingBottom":"3rem"}}>
-      <div className="flex flex-col justify-start items-start">
+      <div class="rounded shadow-lg mb-6 bg-white flex justify-center items-center border-2" style={{"padding-left":" 3rem","padding-top": "3rem","paddingBottom":"3rem"}}>
+  <div className="flex flex-col justify-start items-start">
          <div>
-         <FaSearch style={{ fontSize: '26px', marginBottom: '-10px' }}></FaSearch>
+         <div><img src={search} style={{ width:"4vw",height:"6vh",marginLeft:"-40px",marginTop:"30px" }}></img>
+</div>
           <input
             placeholder='Type to search'
             value={cityName}
@@ -82,6 +82,8 @@ const handleSubmit=()=>{
               height: '40px', 
               padding: '5px',
               width:'300px',
+              marginTop:"-20px",
+              marginLeft:"20px"
             }}
           ></input>
           <button
@@ -92,7 +94,7 @@ const handleSubmit=()=>{
               padding: '5px',
               cursor: 'pointer',
               height: '40px',
-              marginTop:'7vh',
+              marginTop:"-5vh"
             }}
           >
             Submit

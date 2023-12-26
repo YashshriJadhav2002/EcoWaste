@@ -8,12 +8,12 @@
 .heading {
   display: flex;
   align-items: center;  
-  background-color:  linear-gradient(to right , white , green);
+  background:  linear-gradient(to bottom , white , #00a49c);
   justify-content: space-between;
   font-family: 'Spectral';
-  min-height: 10vh;
+  min-height: 8vh;
   margin-left: 0vh;
-  margin-right: 5vh;
+  
   margin-top: 0vh;
 }
 .navbar-menu-container3 {

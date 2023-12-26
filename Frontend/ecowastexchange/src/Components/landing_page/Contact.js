@@ -86,76 +86,76 @@ const Contact = () => {
     <ToastContainer/>
 
       <span ></span>
-      <img src="img/shape.png" class="square" alt="" />
-      <div class="form">
-        <div class="contact-info">
-          <h3 class="title">Let's get in touch</h3>
-          <p class="text">
+      <img src="img/shape.png" className="square" alt="" />
+      <div className="form">
+        <div className="contact-info">
+          <h3 className="title">Let's get in touch</h3>
+          <p className="text">
             
           </p>
 
-          <div class="info">
-            <div class="information">
-              <img src={location} class="icon" alt="" />
+          <div className="info">
+            <div className="information">
+              <img src={location} className="icon" alt="" />
               <p>House Of Peace, Shanti Nagar, Pune</p>
             </div>
-            <div class="information">
-              <img src={email} class="icon" alt="" />
+            <div className="information">
+              <img src={email} className="icon" alt="" />
               <p>ecowastexchange2023@gmail.com</p>
             </div>
-            <div class="information">
-              <img src={phone} class="icon" alt="" />
+            <div className="information">
+              <img src={phone} className="icon" alt="" />
               <p>8459777201</p>
             </div>
           </div>
 
-          <div class="social-media">
-            <p>Connect with us :</p>
-            <div class="social-icons">
+          <div className="social-media">
+            <h4  className="title">Connect with us </h4><br></br>
+            <div className="social-icons">
               <a href="https://instagram.com/the_economic_times?igshid=MzRlODBiNWFlZA==">
-              <img src={instagram}  alt="" style={{"width":"3vw"}}/>
+              <img src={instagram}  alt="instagram" className='icon'/>
               </a>
               <a href="https://twitter.com/">
-              <img src={twitter} alt="" style={{"width":"3vw"}}/>
+              <img src={twitter} alt="twitter" className='icon'/>
               </a>
               <a href="https://www.facebook.com/EconomicTimes">
-              <img src={facebook} alt="" style={{"width":"2.5vw"}} />
+              <img src={facebook} alt="facebook" className='icon' />
               </a>
               <a href="https://www.linkedin.com/in/rutuja-bhoyar-2953b7247">
-              <img src={linkedin} alt="" style={{"width":"2.5vw"}} />
+              <img src={linkedin} alt="linkedin" className='icon' />
               </a>
             </div>
           </div>
         </div>
 
-        <div class="contact-form">
+        <div className="contact-form">
           <form autocomplete="off">
-            <h3 class="title">Contact us</h3>
-            <div class="inputvalues-container">
-              <input type="text" placeholder="Name" class="contact-input" name="name" value={formData.name}
+            <h3 className="title">Contact us</h3>
+            <div className="inputvalues-container">
+              <input type="text" placeholder="Name" className="contact-input" name="name" value={formData.name}
               onChange={handleInputChange} />
               <label for=""></label>
               <span>Username</span>
             </div>
-            <div class="inputvalues-container">
-              <input type="email" placeholder="Email" class="contact-input" name="Email" value={formData.useremail}
+            <div className="inputvalues-container">
+              <input type="email" placeholder="Email" className="contact-input" name="Email" value={formData.useremail}
               onChange={handleInputChange} />
               <label for=""></label>
               <span>Email</span>
             </div>
-            <div class="inputvalues-container">
-              <input type="tel" placeholder="Phone" class="contact-input" name="phone" value={formData.phone} 
+            <div className="inputvalues-container">
+              <input type="tel" placeholder="Phone" className="contact-input" name="phone" value={formData.phone} 
               onChange={handleInputChange} />
               <label for=""></label>
               <span>Phone</span>
             </div>
-            <div class="inputvalues-container textarea">
-              <textarea name="message" placeholder="Message" class="contact-input" value={formData.message}
+            <div className="inputvalues-container textarea">
+              <textarea name="message" placeholder="Message" className="contact-input" value={formData.message}
               onChange={handleInputChange}></textarea>
               <label for=""></label>
               <span>Message</span>
             </div>
-            <input type="submit" value="Send" class="btn" onClick={sendEmail}/>
+            <input type="submit" value="Send" className="btn" onClick={sendEmail}/>
           </form>
         </div>
       </div>
