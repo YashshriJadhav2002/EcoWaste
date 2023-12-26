@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../../../src/Styles/Register.css';
 import Navbar from '../landing_page/Navbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const CompanyRegister = () => {
   let name,email,phone,address,city,state,password,database
 
@@ -79,7 +82,15 @@ const CompanyRegister = () => {
   if(res.status===200)
   {
     
-    window.alert(data.message)
+    toast.success(data.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+     
+      });
     setErrors({Name: '',
     Phone: '',
     Address: '',
@@ -90,7 +101,11 @@ const CompanyRegister = () => {
     Avatar: '',
     Database:"",
 })
-window.location.href='/Company'
+
+setTimeout(() => {
+  window.location.href='/Company'
+}, 5000);
+
     
   }
   else
@@ -140,7 +155,7 @@ window.location.href='/Company'
   return (
     <div>
     <Navbar></Navbar>
-    
+    <ToastContainer/>
   <div className="container mx-auto mt-10 " style={{ maxWidth: '70%' }}>
 
       <div className=" rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-headings">

@@ -1,12 +1,14 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import seller from "../../../Images/seller.jpg";
 import "../../../Styles/Seller_Settings.css";
 import Seller_Navbar from "./Seller_Navbar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Seller_Settings = () => {
 
-    
+  const [session,useSession]=useState(localStorage.getItem("auth-token"))
+
   const [formData, setFormData] = useState({
     Name: '',
     Phone: '',
@@ -84,9 +86,25 @@ const Seller_Settings = () => {
             const data= await res.json()
     
             if(res.status===200)
-            window.alert(data.message)
-            else
-            window.alert(data.error)
+            toast.success(data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+             
+              });            
+              else
+            toast.success(data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+             
+              });
 }
 
 
@@ -138,9 +156,14 @@ const Seller_Settings = () => {
     });
   };
     return (
-
+<div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
         <div >
 <Seller_Navbar></Seller_Navbar>
+<ToastContainer/>
       <div className="sellersetting-container">
         <div className="photo">
         <label htmlFor="avatarInput">
@@ -240,6 +263,8 @@ const Seller_Settings = () => {
         </div>
       </div>
     </div>
+      }
+      </div>
   );
 }
 

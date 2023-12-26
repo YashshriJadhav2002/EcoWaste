@@ -2,14 +2,14 @@ import React from 'react';
 import {useEffect, useState} from 'react'
 import Vendor_Sidebar from './Vendor_Sidebar';
 import Vendor_Navbar from './Vendor_Navbar';
-import phone from "../../../Images/phone_price.png"
-import About_us from "../../../Images/About_us.jpg"
-import '../../../Styles/Seller_Navbar.css';
+import message from '../../../Images/Messages.png'
+
+import '../../../Styles/Login.css';
 
 const  Vendor_Cart = () => {
-  
-
-  const [product, setProductData] = useState([])
+  const [session, useSession] = useState(localStorage.getItem("vendor-token"));
+  const [product, setProductData] = useState([]);
+  const [menuVisible, setMenuVisible] = useState(true);
   
   useEffect(()=> {
 
@@ -52,31 +52,100 @@ const  Vendor_Cart = () => {
 
   }, [])
 
+  const handleClick1 = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+
 
 
     return (
       <div>
-        <Vendor_Navbar/>
-        <Vendor_Sidebar>
-        <div><h2 className='head'>My Cart</h2></div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10vh', padding: '10vh' }} >
-      {product.map((p)=> (
-       
-        <div key={p._id} style={{ display: 'flex', backgroundColor: '#00a49c', border: '0.1vh solid #ddd', padding: '5vh' }} className='devices'>
-          <img src={p.Avatar} style={{ maxWidth: '30vh', height: '30vh', borderRadius: '1vh', marginBottom: '5vh' }} />
-          <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10vh', marginTop: '5vh' }}>
-
-          <div style={{ fontWeight: 'bold' }}>{p.Name}</div>
-          <div style={{ fontWeight: 'bold' }}>{p.SellingPrice}</div>
-          <div style={{ fontWeight: 'bold' }}>{p.selling_date}</div>
-
+      {session === null ? (
+        <div className="mt-3">
+          <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
         </div>
+      ) : (
+        <div>
+          <Vendor_Navbar />
+          <Vendor_Sidebar>
+          <div class="rounded shadow-lg mb-6 bg-white flex justify-start items-start border-2" style={{"padding-left":" 4rem","padding-top": "3rem","paddingBottom":"3rem"}}>
+              <div className="flex flex-col jusitfy-start items-start">
+                <div>
+                  <p className="text-md leading-4 text-gray-800 dark:text-white">Cart Items</p>
+                </div>
+                <div className="mt-3">
+                  <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Product List</h1>
+                </div>
+                <div className="mt-4">
+                  <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">{product.length} {product.length > 1 ? "items" : "item"}</p>
+                </div>
+                <div className="mt-10 lg:mt-12 custom-grid">
+                  {product.map((p) => (
+                    <div className="flex flex-col mt-6" key={p._id}>
+                      <div className="relative">
+                      <img style={{ height: "44vh",width:"350px" }} src={p.Avatar} alt={p.Name} />
+                      </div>
+                      <div className="mt-6 flex justify-between items-center">
+                        <div className="flex justify-center items-center">
+                          <p className="tracking-tight text-2xl font-semibold leading-6 text-gray-800 dark:text-white">{p.Name}</p>
+                        </div>
+                        <div className="flex justify-center items-center">
+                        <div className='button' onClick={()=>window.location.href='/vendorChat'}><img src={message} style={{"height":"35px","width":"35px","marginRight":"10px"}}></img></div>
+
+                          <button
+                            aria-label="show menu"
+                            onClick={handleClick1}
+                            className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-2.5 px-2 bg-gray-800 dark:bg-white dark:text-gray-800 text-white hover:text-gray-400 hover:bg-gray-200"
+                          >
+                            <svg
+                              id="chevronUp1"
+                              className={menuVisible ? "hidden" : "fill-stroke"}
+                              width="10"
+                              height="6"
+                              viewBox="0 0 10 6"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M9 5L5 1L1 5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            <svg
+                              id="chevronDown1"
+                              className={menuVisible ? "fill-stroke" : "hidden"}
+                              width="10"
+                              height="6"
+                              viewBox="0 0 10 6"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <div id="menu1" className={`flex flex-col jusitfy-start items-start mt-12 ${menuVisible ? '' : 'hidden'}`}>
+                        <div>
+                          <p className="tracking-tight text-xs leading-3 text-gray-800 dark:text-white">MK617</p>
+                        </div>
+                        <div className="mt-2">
+                          <p className="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.Name}</p>
+                        </div>
+                        <div className="mt-6">
+                          <p className="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.SellingPrice}</p>
+                        </div>
+                        <div className="mt-6">
+                          <p className="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.selling_date}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Vendor_Sidebar>
         </div>
-      ))}
+      )}
     </div>
-
-        </Vendor_Sidebar>
-      </div>
     );
 };
 

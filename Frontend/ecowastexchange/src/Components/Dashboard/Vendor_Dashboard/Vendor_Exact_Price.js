@@ -2,10 +2,13 @@ import React from 'react'
 import '../../../Styles/Seller_Exact_Price.css';
 import Vendor_Navbar from './Vendor_Navbar';
 import { useState ,useEffect} from 'react';
-import StripeCheckout from 'react-stripe-checkout'
 import {loadStripe} from '@stripe/stripe-js'
+import message from '../../../Images/Messages.png'
+
+
 
 function  Vendor_Exact_Price() {
+  const [session,useSession]=useState(localStorage.getItem("vendor-token"))
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -106,32 +109,46 @@ function  Vendor_Exact_Price() {
     });
   };
 
+  const handleGmail=()=>{
+    window.location.href='/vendorChat'
+  }
   
   return (
     <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+    <div>
         <Vendor_Navbar></Vendor_Navbar>
-        <div className='product-image'>
-      <img className='image' src={formData.Avatar}></img> 
-      </div> 
-    <div className='item-container'>
-      <div className='device-name'>
-      <h1>{formData.Name}</h1>
-      <h3>Selling Price:</h3>
-      <br></br>
-      <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1>
-      <br></br>
-      <button className='sellbutton' onClick={handleBuy}>Buy</button>
+         <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-lg">
+         <div className="w-full lg:w-1/2 mx-auto mb-4 ml-4 max-w-lg flex items-center justify-center"> {/* Adjusted max-w-lg */}
+            <img className="w-full rounded" src={formData.Avatar} alt={formData.Name} />
+        </div>
 
-       
-             <br></br>
-      <text>Fast <br></br>Payments</text>
-      <div className="verticleline">
-      </div>
-      <div className="textclass">
-      <text>100% Safe</text>
-      </div>
-      </div>
+        <div className="w-full lg:w-1/2 mx-auto p-4 max-w-lg"> 
+    <h2 className="text-2xl font-semibold mb-2">{formData.Name}</h2>
+    <span className="text-lg font-semibold text-green-600 mb-4">{formData.SellingPrice}</span>
+<br></br>
+    <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 mt-3 ml-0 rounded focus:outline-none" onClick={handleBuy}>
+      Buy
+    </button>
+    
+    <button className='gmailbutton' onClick={handleGmail}>
+      <img src={message} style={{ "height": "35px", "width": "35px", "marginLeft":"10px","marginTop":"5px"}} alt="Chat" />
+    </button>
+
+    <div className="mt-8">
+      <text>Fast Payments</text>
     </div>
+    
+    <div className="verticleline" ></div>
+    
+    <div className="textclass">
+      <text>100% Safe</text>
+    </div>
+  </div>
+</div>
     <div className='faq'>
     <h1>FAQ's</h1>
     </div>
@@ -152,6 +169,8 @@ function  Vendor_Exact_Price() {
       ))}
     </div>
     </div>
+      }
+      </div>
   )
 }
 

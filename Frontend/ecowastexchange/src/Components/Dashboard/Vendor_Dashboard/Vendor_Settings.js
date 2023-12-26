@@ -2,10 +2,13 @@ import React from "react";
 import {useState, useEffect} from "react";
 import "../../../Styles/Seller_Settings.css";
 import Vendor_Navbar from "./Vendor_Navbar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Vendor_Settings = () => {
 
-    
+  const [session,useSession]=useState(localStorage.getItem("vendor-token"))
+
   const [formData, setFormData] = useState({
     Name: '',
     Phone: '',
@@ -19,7 +22,6 @@ const Vendor_Settings = () => {
   const [editMode, setEditMode] = useState(false);
 
   const postData= async()=>{
-    console.log("Hello");
               const token =localStorage.getItem('vendor-token')
               const {Name,Email,Phone,Address,City,State,Avatar}=formData;
     
@@ -37,9 +39,25 @@ const Vendor_Settings = () => {
             const data= await res.json()
     
             if(res.status===200)
-            window.alert(data.message)
-            else
-            window.alert(data.error)
+            toast.success(data.message, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+             
+              });            
+              else
+            toast.error(data.error, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+             
+              });
 }
 
 
@@ -65,7 +83,6 @@ const Vendor_Settings = () => {
       })
 
         const data=await res.json()
-        console.log(data)
         if(res.status===200)
         {
           
@@ -135,9 +152,14 @@ const Vendor_Settings = () => {
     });
   };
     return (
-
+<div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
         <div >
         <Vendor_Navbar></Vendor_Navbar>
+        <ToastContainer/>
         <div className="sellersetting-container">
         <div className="photo">
         <label htmlFor="avatarInput">
@@ -237,6 +259,8 @@ const Vendor_Settings = () => {
         </div>
       </div>
     </div>
+      }
+      </div>
   );
 }
 

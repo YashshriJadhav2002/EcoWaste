@@ -1,21 +1,18 @@
 import React, { useEffect,useState } from 'react';
-import phone from "../../../Images/phone_price.png"
-import About_us from "../../../Images/About_us.jpg"
-
 import Seller_Sidebar from './Seller_Sidebar';
 import Seller_Navbar from './Seller_Navbar';
-import '../../../Styles/Seller_Navbar.css';
+import styles from '../../../Styles/Seller_Navbar.css';
 
 
 const Seller_Home = () => {
   const [refurbishedProduct, setrefurbishedProductData] = useState([])
+  const [session,useSession]=useState(localStorage.getItem("auth-token"))
   
   useEffect(()=> {
 
     const fetchUser = async() => {
       let refurbishedProductData = []
       const token = localStorage.getItem("auth-token")
- 
       const res=await fetch('/api/seller/home',
       {
         method:"POST",
@@ -52,28 +49,52 @@ const Seller_Home = () => {
 
     return (
       <div>
-       <Seller_Navbar> </Seller_Navbar>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:<div>
+        <Seller_Navbar> </Seller_Navbar>
       <Seller_Sidebar> 
-      <div><h2 className='head'>Refurbished Products </h2></div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', padding: '20px' }} >
-      {refurbishedProduct.map(refurbishedProduct => (
-        <div key={refurbishedProduct._id} style={{ backgroundColor: '#fff', border: '0.1vh solid #ddd', padding: '5vh', textAlign: 'center' }} className='devices' onClick={function() 
-        {
-          localStorage.setItem("refurbishedProduct_id",refurbishedProduct._id)
-          localStorage.setItem("vendor-id",refurbishedProduct.user_id)
-          window.location.href = '/SellerBuyRefurbished'
-        }
-        }>
-        <img src={refurbishedProduct.Avatar} alt={refurbishedProduct.Name} style={{ maxWidth: '100%', height: 'auto', borderRadius: '1vh', marginBottom: '5vh' }} />
-          <div style={{ fontWeight: 'bold' }}>{refurbishedProduct.Name}</div>
-          <div style={{ fontWeight: 'bold' }}>{refurbishedProduct.SellingPrice}</div>
-  
-
-        </div>
-      ))}
-    </div>
       
+      <div class="rounded shadow-lg mb-6 bg-white flex justify-start items-start border-2" style={{"padding-left":" 4rem","padding-top": "3rem","paddingBottom":"3rem"}}>
+              <div className="flex flex-col jusitfy-start items-start">
+               
+                <div className="mt-3">
+                  <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Electronic Products</h1>
+                </div>
+                <div className="mt-4">
+                  <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">{refurbishedProduct.length} {refurbishedProduct.length > 1 ? "items" : "item"}</p>
+                </div>
+                <div className="mt-10 lg:mt-12 custom-grid ">
+                  {refurbishedProduct.map((p) => (
+                    <div className="flex flex-col mt-6 custom-hover-effect px-4 py-3"  key={p._id} onClick={function() 
+                    {
+                      localStorage.setItem("refurbishedProduct_id",p._id)
+                      window.location.href = '/SellerBuyRefurbished'
+                    }
+                    }>
+                      <div className="relative">
+                      <img style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '1vh', marginBottom: '5vh' }} src={p.Avatar} alt={p.Name} />
+                      </div>
+                      <div className="mt-6 flex justify-between items-center px-2.5">
+                        <div className="flex justify-center items-center">
+                          <p className="tracking-tight text-2xl font-semibold leading-6 text-gray-800 dark:text-white">{p.Name}</p>
+                        </div>
+                        <div className="mt-6">
+                          <p className="tracking-tight text-base font-medium leading-4 text-gray-800 dark:text-white">{p.SellingPrice}</p>
+                      </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
       </Seller_Sidebar>
+      
+        </div>
+        
+      }
+       
     </div>
     );
 };

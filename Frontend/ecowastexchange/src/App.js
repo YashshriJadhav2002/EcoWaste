@@ -28,15 +28,11 @@ import Vendor_Settings from './Components/Dashboard/Vendor_Dashboard/Vendor_Sett
 import Vendor_Logout from './Components/Dashboard/Vendor_Dashboard/Vendor_Logout';
 import Vendor_Exact_Price from './Components/Dashboard/Vendor_Dashboard/Vendor_Exact_Price';
 import Company_Home from './Components/Dashboard/Company_Dashboard/Company_Home';
-import Company_Buy_Refurbished from './Components/Dashboard/Company_Dashboard/Company_Buy_Refurbished';
 import Company_Cart from './Components/Dashboard/Company_Dashboard/Company_Cart';
 import Company_History from './Components/Dashboard/Company_Dashboard/Company_History';
-import Company_SmartPhones from './Components/Dashboard/Company_Dashboard/Company_SmartPhones';
-import Company_Laptop from './Components/Dashboard/Company_Dashboard/Company_Laptop';
-import Company_Earbuds from './Components/Dashboard/Company_Dashboard/Company_Earbuds';
+
 import Company_Settings from './Components/Dashboard/Company_Dashboard/Company_Settings';
 import Company_Logout from './Components/Dashboard/Company_Dashboard/Company_Logout';
-import Company_Exact_Price from './Components/Dashboard/Company_Dashboard/Company_Exact_Price';
 import Vendor_Sell_Refurbished from './Components/Dashboard/Vendor_Dashboard/Vendor_Sell_Refurbished';
 import Success from './Components/Dashboard/Vendor_Dashboard/success';
 import Cancel from './Components/Dashboard/Vendor_Dashboard/cancel';
@@ -103,13 +99,8 @@ function App() {
       <Route path='/CompanyHome' element={<Company_Home/>} />
       <Route path='/CompanyCart' element={<Company_Cart/>} />
       <Route path='/CompanyHistory' element={<Company_History/>} />
-      <Route path='CompanyBuyRefurbished' element={<Company_Buy_Refurbished />} />
-      <Route path='/CompanySmartphones' element={<Company_SmartPhones/>} />
-      <Route path='/CompanyLaptop' element={<Company_Laptop/>} />
-      <Route path='/CompanyEarbud' element={<Company_Earbuds/>} />
       <Route path='/CompanySettings' element={<Company_Settings/>}/>
       <Route path='/CompanyLogout' element={<Company_Logout/>} />
-      <Route path="/CompanyExactPrice" element={<Company_Exact_Price/>}/>
 
       <Route path='/vendorProductList' element={<VendorProductList/>} />
 

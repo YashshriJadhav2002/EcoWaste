@@ -1,12 +1,15 @@
 import React, { useState, useRef } from "react";
 import '../../../Styles/SellerGadget.css';
 import Seller_Navbar from "./Seller_Navbar";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SmartPhones() {
     let name, buyingPrice, age, display, cond, second,newfile;
     const [image, setImage] = useState('');
     const hiddenFileInput = useRef(null);
+    const [session,useSession]=useState(localStorage.getItem("auth-token"))
+
 
     const [productData, setProductData] = useState({
 
@@ -132,8 +135,15 @@ function SmartPhones() {
 
       localStorage.setItem("product-token",data.data)
 
-      window.alert("Details saved successfully")
-    
+      toast.success("Details Saved Successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });    
       setErrors({
         Name : '',
         BuyingPrice: '',
@@ -143,7 +153,10 @@ function SmartPhones() {
         isSecond: ''
 
       })
-      window.location.href = '/ExactPrice'
+      setTimeout(() => {
+        window.location.href = '/ExactPrice'
+      }, 5000);
+
     
     }
     else {
@@ -199,8 +212,13 @@ function SmartPhones() {
 
   return (
     <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+    <div>
       <Seller_Navbar></Seller_Navbar>
-
+<ToastContainer/>
     <div className="image-upload-container">
       <div className="box-decoration">
         <label htmlFor="image-upload-input" className="image-upload-label">
@@ -289,6 +307,8 @@ function SmartPhones() {
       </form>
     </div>
     </div>
+      }
+      </div>
   );
 }
 

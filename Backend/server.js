@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const Vendor=require("./models/buyerModel")
+const Users = require('./models/sellerModel');
 
 const io = require('socket.io')(8000, {
   cors: {
@@ -13,7 +14,6 @@ const io = require('socket.io')(8000, {
   }
 });
 
-const Users = require('./models/sellerModel');
 
 // Socket.io
 let users = [];
@@ -48,15 +48,7 @@ io.on('connection', socket => {
               receiverId,
               user: { id: user._id, Name: user.Name, Email: user.Email }
           });
-        //   }else {
-        //       io.to(sender.socketId).emit('getMessage', {
-        //           senderId,
-        //           message,
-        //           conversationId,
-        //           receiverId,
-        //           user: { id: user._id, Name: user.Name, Email: user.Email }
-        //       });
-        //   }
+      
       });
 
     
@@ -129,13 +121,13 @@ const companyBuy=require('./routes/companybuyProduct')
 //middleware
 
 app.use(cors());
-
-
-
 app.use(express.json())
 app.use((req, res, next) => {
     next()
 })
+
+  
+
 
 //route 
 app.use('/api/seller/register',sellerRegister)

@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react";
 import '../../../Styles/SellerGadget.css';
 import Vendor_Navbar from "./Vendor_Navbar";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function  Vendor_Laptop() {
   
   let name, sellingPrice, age, display, cond, second,newfile;
-  
+  const [session,useSession]=useState(localStorage.getItem("vendor-token"))
+
   const [productData, setProductData] = useState({
 
     Name : '',
@@ -67,7 +69,6 @@ const handleImageChange = (event) => {
 
 
     };
-    console.log(file)
     setImage(file)
 
     if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
@@ -131,8 +132,15 @@ const handleContinue = async (e) => {
 
     localStorage.setItem("RefurbishedProduct-token",data.data)
 
-    window.alert("Details saved successfully")
-  
+    toast.success("Details Saved Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+     
+      });  
     setErrors({
       Name : '',
       SellingPrice: '',
@@ -142,12 +150,15 @@ const handleContinue = async (e) => {
       isSecond: ''
 
     })
-    window.location.href = '/VendorSellRefurbished'
+
+    setTimeout(() => {
+      window.location.href = '/VendorSellRefurbished'
+    }, 5000);
+
   
   }
   else {
 
-    console.log(productData)
 
     for(let i=0; i<data.error.length; i++) {
 
@@ -197,8 +208,13 @@ const handleClick = (event) => {
 
 return (
   <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+  <div>
     <Vendor_Navbar></Vendor_Navbar>
-
+<ToastContainer/>
   <div className="image-upload-container">
     <div className="box-decoration">
       <label htmlFor="image-upload-input" className="image-upload-label">
@@ -287,6 +303,8 @@ return (
     </form>
   </div>
   </div>
+      }
+      </div>
 );
 }
 

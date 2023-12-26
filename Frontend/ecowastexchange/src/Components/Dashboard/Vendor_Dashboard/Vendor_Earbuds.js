@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
 import '../../../Styles/SellerGadget.css';
-import Seller_Navbar from "./Vendor_Navbar";
 import Vendor_Navbar from "./Vendor_Navbar";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Vendor_Earbuds() {
       
-   
+  const [session,useSession]=useState(localStorage.getItem("vendor-token"))
+
   let name, sellingPrice, age, display, cond, second,newfile;
   
   const [productData, setProductData] = useState({
@@ -69,7 +70,6 @@ const handleImageChange = (event) => {
 
 
     };
-    console.log(file)
     setImage(file)
 
     if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
@@ -133,8 +133,15 @@ const handleContinue = async (e) => {
 
     localStorage.setItem("RefurbishedProduct-token",data.data)
 
-    window.alert("Details saved successfully")
-  
+    toast.success("Details Saved Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+     
+      });  
     setErrors({
       Name : '',
       SellingPrice: '',
@@ -144,12 +151,15 @@ const handleContinue = async (e) => {
       isSecond: ''
 
     })
-    window.location.href = '/VendorSellRefurbished'
+
+    setTimeout(() => {
+      window.location.href = '/VendorSellRefurbished'
+    }, 5000);
+
   
   }
   else {
 
-    console.log(productData)
 
     for(let i=0; i<data.error.length; i++) {
 
@@ -191,16 +201,20 @@ const handleContinue = async (e) => {
   }
 }
 
-  
-
 const handleClick = (event) => {
   hiddenFileInput.current.click();
 };
 
 return (
   <div>
+  
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+    <div>
     <Vendor_Navbar></Vendor_Navbar>
-
+<ToastContainer/>
   <div className="image-upload-container">
     <div className="box-decoration">
       <label htmlFor="image-upload-input" className="image-upload-label">
@@ -221,11 +235,11 @@ return (
           style={{ display: "none" }}
         />
       </div>
-
+     
       </div>
     </div>
     <div className='smartphone-container'>
-    <form >
+    <form method="post">
       <div className="smartphone-inputs">
       <label>What is the name of your product?</label>
         <div className="smartphone-input">
@@ -237,15 +251,15 @@ return (
         </div>
         <span className='spanmsg'>{errors.Name}</span>
 
-      <label>What is Selling cost of product?</label>
+      <label>What is Buying cost of product?</label>
         <div className="smartphone-input">
           <input
             type="text"
-            name="SellingPrice"
+            name="BuyingPrice"
             onChange={handleInputChange}
           />
         </div>
-        <label>How long will product will work fine</label>
+        <label>What is the Age of your product</label>
         <div className="smartphone-input">
           <input
             type="text"
@@ -256,7 +270,7 @@ return (
         <span className='spanmsg'>{errors.Age}</span>
        
         
-        <label>Is ths display of the phone real?</label>
+        <label>Is ths dislay of phone real?</label>
         <div>
         <input type="radio" value="Yes" name="isDisplay" checked={productData.isDisplay === 'Yes'} onChange={handleInputChange}/>Yes<br></br>
           <input type="radio" value="No" name="isDisplay" checked={productData.isDisplay=== 'No'} onChange={handleInputChange}/> No
@@ -274,7 +288,7 @@ return (
         </div>
         <span className='spanmsg'>{errors.isCond}</span>
 
-        <label>Is the internal sytem of the phone real ?</label>
+        <label>Is product is second handed?</label>
         <div>
         <input type="radio" value="Yes" name="isSecond" checked={productData.isSecond === 'Yes'} onChange={handleInputChange} />Yes<br></br>
           <input type="radio" value="No" name="isSecond" checked={productData.isSecond === 'No'} onChange={handleInputChange}/> No
@@ -288,6 +302,8 @@ return (
       
     </form>
   </div>
+  </div>
+      }
   </div>
 );
 }

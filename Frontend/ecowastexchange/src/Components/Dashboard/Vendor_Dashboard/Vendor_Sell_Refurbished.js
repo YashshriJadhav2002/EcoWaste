@@ -2,9 +2,14 @@ import React from 'react'
 import '../../../Styles/Seller_Exact_Price.css';
 import Vendor_Navbar from './Vendor_Navbar';
 import { useState ,useEffect} from 'react';
+import message from '../../../Images/Messages.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Vendor_Sell_Refurbished() {
-   
+  const [session, useSession] = useState(localStorage.getItem("vendor-token"));
+ 
+
   const [formData, setFormData] = useState({
     Name: '',
     SellingPrice:'',
@@ -31,7 +36,6 @@ function Vendor_Sell_Refurbished() {
       })
 
         const data=await res.json()
-        console.log(data)
         if(res.status===200)
         {
           
@@ -82,12 +86,32 @@ function Vendor_Sell_Refurbished() {
     const data = await res.json()
     if(res.status === 200) {
 
-        window.alert(data.message)
-        window.location.href = '/VendorHome'
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });
+
+        setTimeout(() => {
+          window.location.href = '/VendorHome'
+        }, 5000);
+    
 
     }
     else {
-        window.alert(data.error)
+      toast.error(data.error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });
     }
 
   }
@@ -107,28 +131,39 @@ function Vendor_Sell_Refurbished() {
   };
   return (
     <div>
+      {session === null ? 
+        <div className="mt-3">
+          <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+        </div>
+       : 
+    <div>
         <Vendor_Navbar></Vendor_Navbar>
-        <div className='product-image'>
-      <img src={formData.Avatar} className='image'></img> 
-      </div> 
-    <div className='item-container'>
-      <div className='device-name'>
-      <h1>{formData.Name}</h1>
-      <h3>Selling Price:</h3>
-      <br></br>
-      <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1>
-      <br></br>
-      <button className='sellbutton'onClick={handleSell}>Sell</button>
-      
-      <br></br>
-      <text>Fast <br></br>Payments</text>
-      <div className="verticleline">
-      </div>
-      <div className="textclass">
-      <text>100% Safe</text>
-      </div>
-      </div>
+        <ToastContainer/>
+        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-lg">
+        <div className="w-full lg:w-1/2 mx-auto mb-4 ml-4 max-w-lg flex items-center justify-center"> {/* Adjusted max-w-lg */}
+            <img className="w-full rounded" src={formData.Avatar} alt={formData.Name} />
+        </div>
+
+        <div className="w-full lg:w-1/2 mx-auto p-4 max-w-lg"> 
+    <h2 className="text-2xl font-semibold mb-2">{formData.Name}</h2>
+    <span className="text-lg font-semibold text-green-600 mb-4">{formData.SellingPrice}</span>
+<br></br>
+    <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 mt-3 ml-0 rounded focus:outline-none" onClick={handleSell}>
+      Sell
+    </button>
+  
+
+    <div className="mt-8">
+      <text>Fast Payments</text>
     </div>
+    
+    <div className="verticleline" ></div>
+    
+    <div className="textclass">
+      <text>100% Safe</text>
+    </div>
+  </div>
+</div>
     <div className='faq'>
     <h1>FAQ's</h1>
     </div>
@@ -149,6 +184,8 @@ function Vendor_Sell_Refurbished() {
       ))}
     </div>
     </div>
+      }
+      </div>
   )
 }
 

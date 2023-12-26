@@ -9,7 +9,8 @@ import facebook from '../../../src/Images/facebook.png';
 import linkedin from '../../../src/Images/linkedin.png';
 import '../../../src/Styles/Contact.css';
 import Navbar from './Navbar';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Contact = () => {
@@ -52,8 +53,16 @@ const Contact = () => {
       
               if(res.status===200)
               {
-                window.alert(data.message)
-                setFormData({
+                toast.success(data.message, {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                 
+                  });
+                  setFormData({
                   useremail:"",
                   message:"",
                   phone: "",
@@ -61,12 +70,21 @@ const Contact = () => {
                 })
               }
               else
-              window.alert(data.error)
-  };
+              toast.error(data.error, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+               
+                });  };
 
   return (
     <div >
     <Navbar></Navbar>
+    <ToastContainer/>
+
       <span ></span>
       <img src="img/shape.png" class="square" alt="" />
       <div class="form">

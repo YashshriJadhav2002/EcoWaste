@@ -9,4 +9,8 @@ npm install axios
 
 npm install tailwindcss
 npm install socket.io-client
+<<<<<<< HEAD
 
+=======
+npm install react-toastify
+>>>>>>> 53d25c51e0c152e64844c6f9f4469459ee439168

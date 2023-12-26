@@ -10,8 +10,8 @@ router.post('/',fetchAuth,async(req,res)=>{
     try
     {
         const u_id=req.product
-        const { SellingPrice} = req.body
-        const user=await productModel.findOneAndUpdate({_id:u_id},{SellingPrice:SellingPrice})
+        const SellingPrice = req.body.SellingPrice
+        const user=await productModel.findOneAndUpdate({_id:u_id},{SellingPrice:SellingPrice,isEdit:true}, { new: true } )
         if(user)
         {
             res.status(200).json({message:"Selling Price Updated Successfully !!"})

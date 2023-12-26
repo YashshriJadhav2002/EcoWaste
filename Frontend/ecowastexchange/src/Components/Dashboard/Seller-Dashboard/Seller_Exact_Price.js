@@ -3,10 +3,12 @@ import '../../../Styles/Seller_Exact_Price.css';
 import Seller_Navbar from './Seller_Navbar';
 import { useState,useEffect } from 'react';
 import Modal from 'react-modal';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Exact_Price() {
+  const [session,useSession]=useState(localStorage.getItem("auth-token"))
 
   const [formData, setFormData] = useState({
     Name: '',
@@ -82,13 +84,30 @@ function Exact_Price() {
     const data = await res.json()
     if(res.status === 200) {
 
-        window.alert(data.message)
-        window.location.href = '/SellerHome'
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });        
+        setTimeout(() => {
+          window.location.href = '/SellerHome'
+        }, 5000);
 
     }
     else {
-        window.alert(data.error)
-    }
+      toast.error(data.error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });    }
 
   }
 
@@ -97,6 +116,8 @@ function Exact_Price() {
 
   const openModal = () => {
     setModalIsOpen(true);
+    setUserInput(formData.SellingPrice);
+
   };
 
   const closeModal = () => {
@@ -110,9 +131,9 @@ function Exact_Price() {
   const handleFormSubmit = async(e) => {
     e.preventDefault();
     const token = localStorage.getItem("product-token")
-    setFormData({...formData,SellingPrice:userInput})
-    const {SellingPrice}=formData.SellingPrice;
-
+    const SellingPrice = userInput;
+    
+    
     const res=await fetch('/api/seller/sellerSellingPrice',{
       method:"POST",
       headers:{
@@ -127,12 +148,30 @@ function Exact_Price() {
   const data= await res.json();
 
   if(res.status===200)
-  window.alert(data.message)
-  else
-  window.alert(data.error)
-  
+  toast.success(data.message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+   
+    });
+      else
+  toast.error(data.error, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+   
+    });  
     
     closeModal();
+
+    setFormData({ ...formData, SellingPrice });
+
   }; 
 
   const toggleAccordionItem = (index) => {
@@ -149,54 +188,81 @@ function Exact_Price() {
   };
   return (
     <div>
+      {
+        session===null?<div class="mt-3">
+      <h1 class="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+    </div>:
+    <div>
         <Seller_Navbar></Seller_Navbar>
-         <div className='product-image'>
-      <img className='image'    src={formData.Avatar}></img> 
-      </div> 
-    <div className='item-container'>
-       
-      <div className='device-name'>
-      <h1>{formData.Name}</h1>
-      <h3>Selling Price:</h3>
+        <ToastContainer/>
+        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-md">
+        <div className="w-full lg:w-1/5 mx-auto mb-4 ml-4 max-w-xs">
+            <img className="w-full rounded" src={formData.Avatar} alt={formData.Name} />
+        </div>
+
+  <div className="w-full lg:w-2/3 mx-auto p-4">
+    <h2 className="text-2xl font-semibold mb-2">{formData.Name}</h2>
+    <span className="text-lg font-semibold text-green-600 mb-4">{formData.SellingPrice}</span>
+<br></br>
+<button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded ml-0 focus:outline-none mt-5" onClick={openModal}>Edit</button>
+        <br></br>
+      <button   className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 mt-5 ml-0 rounded focus:outline-none" onClick={handleSell}>Sell</button>
       <br></br>
-      <h1 style={{"color":"red"}}>{formData.SellingPrice}</h1><button className='editname' onClick={openModal}>Edit</button>
+  
+    <div className="mt-8">
+      <text>Fast Payments</text>
+    </div>
+    
+    <div className="verticleline" ></div>
+    
+    <div className="textclass">
+      <text>100% Safe</text>
+    </div>
+  </div>
 
       
+     
+
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Input Modal"
-        className="centered-modal" // Add a custom class for styling
-        >
-          <div className="modal-container">
-          <h2 style={{ textAlign: 'center' }}>Enter Selling Price:</h2>
-          
-        <form >
-          <input
-            type="text"
-            className='inputtext'
-            value={userInput}
-            onChange={handleInputChange}
-          /><br></br>
-          <button type="submit" className='editsubmitbutton' onClick={handleFormSubmit}>Submit</button>
-          <br></br>
-          <button className='editcancelbutton' onClick={closeModal}>Cancel</button>
-        </form>
-        </div>
-       
-      </Modal>
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel="Input Modal"
+  className="centered-modal"
+>
+  <div className="modal-container bg-white p-8 rounded shadow-lg max-w-md mx-auto">
+    <h2 className="text-2xl font-semibold mb-4 text-center">Enter Selling Price:</h2>
+    
+    <form className="flex flex-col items-center">
+      <input
+        type="text"
+        className="inputtext mb-4 w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
+        value={userInput}
+        onChange={handleInputChange}
+        placeholder="Enter Selling Price"
+      />
+       <div className="flex">
+      <button
+        type="submit"
+        className="editsubmitbutton bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded focus:outline-none"
+        onClick={handleFormSubmit}
+      >
+        Submit
+      </button>
       
-      <br></br>
-      <button className='sellbutton'onClick={handleSell}>Sell</button>
+      <button
+        className="editcancelbutton bg-black-500 hover:bg-black-600 text-white px-4 py-2 mt-5 rounded focus:outline-none"
+        onClick={closeModal}
+      >
+        Cancel
+      </button>
+      </div>
+    </form>
+  </div>
+</Modal>
       
-      <br></br>
-      <text>Fast <br></br>Payments</text>
-      <div className="verticleline">
-      </div>
-      <div className="textclass">
-      <text>100% Safe</text>
-      </div>
-      </div>
+      
+      
+     
     </div>
     <div className='faq'>
     <h1>FAQ's</h1>
@@ -218,6 +284,10 @@ function Exact_Price() {
       ))}
     </div>
     </div>
+    
+      }
+      
+      </div>
   )
 }
 

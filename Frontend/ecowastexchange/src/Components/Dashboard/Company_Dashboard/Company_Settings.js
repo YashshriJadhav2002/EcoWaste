@@ -1,12 +1,14 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import seller from "../../../Images/seller.jpg";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../../../Styles/Seller_Settings.css";
 import Company_Navbar from "./Company_Navbar";
 
 const Company_Settings = () => { 
     
-   
+  const [session,useSession]=useState(localStorage.getItem("company-token"))
+
   const [formData, setFormData] = useState({
     Name: '',
     Phone: '',
@@ -38,10 +40,25 @@ const Company_Settings = () => {
         const data= await res.json();
 
         if(res.status===200)
-        window.alert(data.message)
+        toast.success(data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+         
+          });
         else
-        window.alert(data.error)
-        
+        toast.error(data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+         
+          });        
 }
 
 
@@ -121,19 +138,23 @@ const Company_Settings = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    const file = e.target.files[0];
+
     setFormData({
       ...formData,
       [name]: value,
-       Avatar: URL.createObjectURL(file),
-       avatarFile: file,
+      
     });
   };
 
 return (
+  <div>
+    {
+      session===null?<div className="mt-3">
+    <h1 className="text-3xl lg:text-4xl tracking-tight font-semibold leading-8 lg:leading-9 text-gray-800 dark:text-white dark:text-white">Your session has expired</h1>
+  </div>:
     <div>
   <Company_Navbar></Company_Navbar>
-
+<ToastContainer/>
   <div className="sellersetting-container">
     <div className="photo">
       <label htmlFor="avatarInput">
@@ -232,6 +253,8 @@ return (
     </div>
   </div>
 </div>
+    }
+    </div>
 )
 }
 

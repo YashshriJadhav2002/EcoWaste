@@ -5,7 +5,8 @@ import '../../Styles/Login.css'
 import { useLocation } from 'react-router-dom';
 import logo from '../../Images/l_new4.png'
 import login from '../../Images/loginback.png'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
 
 
@@ -61,23 +62,41 @@ const Login = () => {
       })
      
       
-      window.alert(data.message)
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });
       if (page === "Seller") {
         localStorage.setItem("auth-token", data.data)
         localStorage.setItem("user",data.id)
 
-        window.location.href = '/SellerHome'
+        setTimeout(() => {
+          window.location.href = '/SellerHome'
+        }, 5000);
+
       }
 
       else if (page === "Vendor") {
         localStorage.setItem("vendor-token", data.data)
         localStorage.setItem("user",data.id)
-        window.location.href = '/VendorHome'
+
+        setTimeout(() => {
+          window.location.href = '/VendorHome'
+        }, 5000);
+
+
       }
       else if(page === "Company"){
  
         localStorage.setItem("company-token", data.data)
-        window.location.href = '/CompanyHome'
+        setTimeout(() => {
+          window.location.href = '/CompanyHome'
+        }, 5000);
       }
       
     }
@@ -109,6 +128,7 @@ const Login = () => {
   return (
     
       <div className="lg:flex">
+      <ToastContainer/>
             <div className="lg:w-1/2 xl:max-w-screen-sm">
                 <div className="py-12 bg-emerald-500 sm:bg-white flex justify-center lg:justify-start lg:px-12">
                     <div className="cursor-pointer flex items-center">
