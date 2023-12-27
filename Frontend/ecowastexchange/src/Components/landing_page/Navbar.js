@@ -41,7 +41,7 @@ const Navbar = () => {
         
 
                 <a href="/">Home</a>
-                <a href="aboutUs">About Us</a>
+                <a href="aboutUs">About</a>
                 <a href="vision">Vision</a>
                 <a href="contact">Contact</a>
                 <a href="#" onClick={() => setLoginMenuOpen(!loginMenuOpen)}>
