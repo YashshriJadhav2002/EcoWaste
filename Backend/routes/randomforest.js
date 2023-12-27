@@ -31,7 +31,6 @@ class MyRandomForestRegressor {
           trainingData.push(parsedRow);
         })
         .on('end', () => {
-          console.log('Training data loaded from CSV file');
           resolve(trainingData);
         })
         .on('error', (error) => {
@@ -78,16 +77,13 @@ class MyRandomForestRegressor {
     }
 
     // Assuming inputFeatures is an object with properties 'cost' and 'Age'
-    console.log(" Input features" +inputFeatures)
     const inputTensor = tf.tensor2d([[inputFeatures.cost, inputFeatures.Age]]);
-    console.log("inputTensor" , inputTensor)
-    console.log('Input Tensor:', inputTensor.arraySync());
+    
     if (!inputFeatures || typeof inputFeatures.cost !== 'number' || typeof inputFeatures.Age !== 'number') {
       console.log('Invalid input features');
     }
     const prediction = this.model.predict(inputTensor);
-    console.log("Predicted value ",prediction)
-    console.log('Raw Prediction:', prediction.arraySync());
+    
     return prediction.dataSync()[0];
   }
 }

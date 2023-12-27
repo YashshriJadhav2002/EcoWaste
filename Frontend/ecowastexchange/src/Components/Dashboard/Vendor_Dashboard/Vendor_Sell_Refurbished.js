@@ -88,7 +88,7 @@ function Vendor_Sell_Refurbished() {
 
       toast.success(data.message, {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -98,14 +98,14 @@ function Vendor_Sell_Refurbished() {
 
         setTimeout(() => {
           window.location.href = '/VendorHome'
-        }, 5000);
+        }, 3000);
     
 
     }
     else {
       toast.error(data.error, {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -139,7 +139,7 @@ function Vendor_Sell_Refurbished() {
     <div>
         <Vendor_Navbar></Vendor_Navbar>
         <ToastContainer/>
-        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-lg">
+        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-lg mt-10">
         <div className="w-full lg:w-1/2 mx-auto mb-4 ml-4 max-w-lg flex items-center justify-center"> {/* Adjusted max-w-lg */}
             <img className="w-full rounded" src={formData.Avatar} alt={formData.Name} />
         </div>

@@ -135,7 +135,7 @@ const handleContinue = async (e) => {
 
     toast.success("Details Saved Successfully", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -153,7 +153,7 @@ const handleContinue = async (e) => {
     })
     setTimeout(() => {
       window.location.href = '/ExactPrice'
-    }, 5000);
+    }, 3000);
   
   }
   else {

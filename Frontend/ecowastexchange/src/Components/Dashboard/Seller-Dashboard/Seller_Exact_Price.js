@@ -150,7 +150,7 @@ function Exact_Price() {
   if(res.status===200)
   toast.success(data.message, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -160,7 +160,7 @@ function Exact_Price() {
       else
   toast.error(data.error, {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -195,12 +195,12 @@ function Exact_Price() {
     <div>
         <Seller_Navbar></Seller_Navbar>
         <ToastContainer/>
-        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-md">
-        <div className="w-full lg:w-1/5 mx-auto mb-4 ml-4 max-w-xs">
-            <img className="w-full rounded" src={formData.Avatar} alt={formData.Name} />
+        <div className="container mx-auto p-4 mt-50 flex bg-white p-8 rounded shadow-lg max-w-md mt-10">
+        <div className="w-full lg:w-1/2 mx-auto mb-2  max-w-lg">
+            <img className="w-full rounded" src={formData.Avatar} alt={formData.Name} style={{marginTop:"15px",width:"12vw",height:"35vh"}} />
         </div>
 
-  <div className="w-full lg:w-2/3 mx-auto p-4">
+        <div className="w-full lg:w-1/2 mx-auto max-w-lg mt-5" style={{marginLeft:"12px"}}> 
     <h2 className="text-2xl font-semibold mb-2">{formData.Name}</h2>
     <span className="text-lg font-semibold text-green-600 mb-4">{formData.SellingPrice}</span>
 <br></br>

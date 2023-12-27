@@ -6,7 +6,6 @@ const vendorModel=require('./../models/buyerModel')
 router.post('/',async(req,res)=>{
 
     const cityname=req.body.cityname
-    //const details=await companyModel.findById(userid).select("-Password")
 
     const vendorModel_details=await vendorModel.find({City:cityname})
     if(vendorModel_details){

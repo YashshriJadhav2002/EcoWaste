@@ -44,7 +44,6 @@ router.post('/',async(req,res)=>{
               try {
                 await Promise.all(
                   product.map(async (product) => {
-                    console.log("id",product._id)
                     const productDetails = await productModel.findOneAndUpdate(
                       { _id: product._id },
                       { Status3: 1, buying_date: formattedDate }

@@ -8,14 +8,14 @@
 .heading {
   display: flex;
   align-items: center;  
-  background-color:  linear-gradient(to right , white , green);
+  background:  linear-gradient(to bottom , white , #00a49c);
   justify-content: space-between;
   font-family: 'Spectral';
-  min-height: 10vh;
+  min-height: 8vh;
   margin-left: 0vh;
-  margin-right: 5vh;
-  margin-top: 0vh;
+  height:16vh;
 }
+
 .navbar-menu-container3 {
   display: none;
   margin-top: 0vh;
@@ -30,18 +30,18 @@ margin-bottom: -8vh;
 }
 
 .profilephoto{
-  width: 8vw;
+  width: 7vw;
   height: 10vh;
   width: 4vw;
-  height: auto;
   border-radius: 50%;
+  margin-right:3vw;
 
 }
 
 .photo img
 {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 30px;
   border-radius: 50%;
 
 }
@@ -63,9 +63,11 @@ margin-bottom: -8vh;
   font-size: 1.15rem;
 }
 
-.devices:hover{
-  transform: scale(1.1);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 4vw;
+  row-gap:2rem;
 }
 
 .custom-hover-effect:hover {
@@ -78,13 +80,12 @@ margin-bottom: -8vh;
 
 .dropdown-menu3 {
   position: absolute;
-  margin-top: -1vh; /* Adjust the top position as needed */
+  margin-top: -1vh; 
   right: 2vh;
-   /* Add your desired background color */
   padding: 10px;
   display: flex;
   flex-direction: column;
-  min-width: 120px; /* Adjust the minimum width as needed */
+  min-width: 120px; 
   z-index: 1;
 }
 
@@ -97,6 +98,5 @@ margin-bottom: -8vh;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  
   min-width: 120px; /* Adjust the minimum width as needed */
 }

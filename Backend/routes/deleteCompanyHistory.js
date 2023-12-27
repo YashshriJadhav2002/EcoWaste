@@ -8,7 +8,6 @@ router.post('/', async(req, res) => {
 
     
     const product_id =req.body.product_id;
-    console.log(product_id)
     try
     {
         details=await Product.findById({_id:product_id})

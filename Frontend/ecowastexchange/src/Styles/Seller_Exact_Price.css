@@ -148,13 +148,13 @@
         margin-left: 16vh;
     }
 .textclass{
-    margin-left: 20vh;
+    margin-left: 18vh;
     margin-top: -5vh;
     height: 10vh;
+    width:5vw;
 }
-/* Accordion.css */
 .accordion {
-    width: 65vw; /* Adjust the width according to your design */
+    width: 65vw; 
     margin-left: 35vh;
     margin-top: 2vh;
     padding-bottom: 10vh;

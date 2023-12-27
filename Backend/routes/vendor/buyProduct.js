@@ -34,21 +34,19 @@ router.post('/',fetchAuth,async(req,res)=>{
         cancel_url: "http://localhost:3000/cancel/vendor",
       });
      
-      if (session.success_url === 'http://localhost:3000/success') {
-          console.log(session.success_url)
+      if (session.success_url === 'http://localhost:3000/success/vendor') {
             const timestamp = new Date(Date.now()); 
             const year = timestamp.getFullYear();
             const month = timestamp.getMonth() + 1; // Months are 0-indexed, so add 1
             const day = timestamp.getDate();
             const formattedDate = `${day}-${String(month).padStart(2, '0')}-${String(year).padStart(2, '0')}`;
 
-    const productDetails = await product.findOneAndUpdate({_id:product_id},{Status1:1,vendor_id:vendor_id,buying_date:formattedDate})
+    const productDetails = await product.findByIdAndUpdate({_id:product_id},{Status1:1,vendor_id:vendor_id,buying_date:formattedDate})
   
         const user_id = productDetails.user_id;
         const userDetails = await user.findOne({_id:user_id})
         if(userDetails) {
 
-            // const phone = userDetails.Phone
             const email=userDetails.Email
 
             const vonage = new Vonage({
@@ -94,7 +92,7 @@ router.post('/',fetchAuth,async(req,res)=>{
             
             
                          })
-                        .catch(err => {res.status(400).json({error:"Something went wrong while sending message"}); console.error(err); });
+                        .catch(err => {res.status(400).json({error:"Something went wrong while sending message"}); console.log(err); });
                 }
 
                 sendSMS();

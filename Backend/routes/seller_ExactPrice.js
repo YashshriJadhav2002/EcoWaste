@@ -11,7 +11,6 @@ router.post('/',async(req, res) => {
         
         const product = await Product.findById(product_id)
 
-        console.log(product);
         if(product) {
 
             res.status(200).json({data:
