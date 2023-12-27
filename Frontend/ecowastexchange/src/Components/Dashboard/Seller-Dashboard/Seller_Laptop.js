@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import '../../../Styles/SellerGadget.css';
 import Seller_Navbar from "./Seller_Navbar";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Laptop() {
   let name, buyingPrice, age, display, cond, second,newfile;
@@ -69,9 +70,7 @@ function Laptop() {
 
 
       };
-      console.log(file)
       setImage(file)
-      console.log(image)
 
       if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
     {
@@ -134,8 +133,15 @@ const handleContinue = async (e) => {
 
     localStorage.setItem("product-token",data.data)
 
-    window.alert("Details saved successfully")
-  
+    toast.success("Details Saved Successfully", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+     
+      });  
     setErrors({
       Name : '',
       BuyingPrice: '',
@@ -145,7 +151,9 @@ const handleContinue = async (e) => {
       isSecond: ''
 
     })
-    window.location.href = '/ExactPrice'
+    setTimeout(() => {
+      window.location.href = '/ExactPrice'
+    }, 3000);
   
   }
   else {
@@ -207,7 +215,7 @@ return (
     </div>:
   <div>
     <Seller_Navbar></Seller_Navbar>
-
+<ToastContainer/>
   <div className="image-upload-container">
     <div className="box-decoration">
       <label htmlFor="image-upload-input" className="image-upload-label">

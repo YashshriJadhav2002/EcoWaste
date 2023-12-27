@@ -1,4 +1,4 @@
-
+console.log('Server is starting...');
 require('dotenv').config() //attach the environment variables to process object
 
 const mongoose = require("mongoose");
@@ -17,6 +17,9 @@ const io = require('socket.io')(8000, {
 
 // Socket.io
 let users = [];
+
+console.log('Server is starting...');
+
 io.on('connection', socket => {
   console.log('User connected', socket.id);
   socket.on('addUser', userId => {

@@ -203,7 +203,7 @@ textarea.contact-input {
 }
 
 .icon {
-  width: 28px;
+  width: 2vw;
   margin-right: 0.7rem;
 }
 
@@ -218,20 +218,15 @@ textarea.contact-input {
 .social-icons {
   display: flex;
   margin-top: 0.5rem;
-  width: 1vw;
   height: 2vh;
 }
 
 .social-icons a {
   width: 5vw;
   height: 1vh;
-  
-  background: linear-gradient(45deg, white);
-  color: #fff;
+  color:turquoise;
   text-align: center;
-  
-  margin-right: 0.5rem;
-  
+    
   
 }
 

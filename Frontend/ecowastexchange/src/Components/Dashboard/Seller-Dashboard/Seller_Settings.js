@@ -1,8 +1,9 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import seller from "../../../Images/seller.jpg";
 import "../../../Styles/Seller_Settings.css";
 import Seller_Navbar from "./Seller_Navbar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Seller_Settings = () => {
 
@@ -85,9 +86,25 @@ const Seller_Settings = () => {
             const data= await res.json()
     
             if(res.status===200)
-            window.alert(data.message)
-            else
-            window.alert(data.error)
+            toast.success(data.message, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+             
+              });            
+              else
+            toast.success(data.message, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+             
+              });
 }
 
 
@@ -146,6 +163,7 @@ const Seller_Settings = () => {
     </div>:
         <div >
 <Seller_Navbar></Seller_Navbar>
+<ToastContainer/>
       <div className="sellersetting-container">
         <div className="photo">
         <label htmlFor="avatarInput">

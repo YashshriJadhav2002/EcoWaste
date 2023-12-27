@@ -12,3 +12,4 @@ npm install stripe
 npm install nodemailer
 npm install cors
 npm install socket.io
+npm install dotenv

@@ -1,3 +1,6 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .buyitem-container{
     display: flex;
@@ -49,8 +52,8 @@
         width: 0.2vw;
         height:7vh;
         background: black; 
-        margin-top: -7vh;
-        margin-left: 15vh;
+        margin-top: -5vh;
+        margin-left: 16vh;
     }
 .buytextclass{
     margin-left: 20vh;

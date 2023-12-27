@@ -6,8 +6,6 @@ const Company=require('../models/companyModel')
 router.get('/', async (req, res) => {
     try {
         const token = req.query.token;
-        console.log(token)
-      // Verify the token
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
       // Update user's isVerified status
       const user=await Company.findOneAndUpdate({ Email: decoded.email }, { isVerified: true });

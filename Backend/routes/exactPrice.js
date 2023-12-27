@@ -12,19 +12,21 @@ router.post('/',fetchProduct, async(req, res) => {
 
     try{
         const product_id=req.product;
-        console.log("Product id ", product_id)
         const product = await Product.findById(product_id)
-        console.log("product data ",product)
         if(product) {
             const inputFeatures = {'cost':product.BuyingPrice,'Age':product.Age};
             const prediction = myModel.predict(inputFeatures);
+            if(!product.isEdit)
+            {
             const newdata=await Product.findOneAndUpdate({_id:product_id},{SellingPrice:prediction})
-           // res.json({ prediction });
-           console.log("predicted value",prediction)
-           console.log("new product data",newdata)
-            res.status(200).json({data:
-               newdata
-            })
+            res.status(200).json({data:newdata})
+            }
+            else
+            {
+                res.status(200).json({data:product})
+
+            }
+            
         }
     }
         catch(err)

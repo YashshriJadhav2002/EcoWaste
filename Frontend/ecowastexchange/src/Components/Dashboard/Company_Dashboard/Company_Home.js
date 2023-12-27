@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Company_Sidebar from './Company_Sidebar';
 import Company_Navbar from './Company_Navbar';
 import '../../../Styles/Seller_Navbar.css';
-import { FaSearch } from 'react-icons/fa';
-
+import search  from '../../../Images/search.png';
 
 
 const Company_Home = () => {
@@ -70,52 +69,64 @@ const handleSubmit=()=>{
       <div>
        <Company_Navbar> </Company_Navbar>
       <Company_Sidebar> 
-         <div>
-         <FaSearch style={{ fontSize: '26px', marginBottom: '-10px' }}></FaSearch>
-          <input
-            placeholder='Type to search'
-            value={cityName}
-            onChange={(e)=>handleChange(e.target.value)}
-            style={{
-              height: '40px', 
-              padding: '5px',
-              width:'300px',
-            }}
-          ></input>
-          <button
-            onClick={handleSubmit}
-            style={{
-              backgroundColor: 'green',
-              color: 'white',
-              padding: '5px',
-              cursor: 'pointer',
-              height: '40px',
-              marginTop:'7vh',
+      <div className="rounded shadow-lg mb-6 bg-white flex justify-center items-center border-2" style={{"padding-left": "5rem", "padding-top": "3rem", "paddingBottom": "3rem", "width": "80vw","margin-left":"20px"}}>
+  <div className="flex flex-col justify-start items-start">
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <img src={search} style={{ width: '2.5vw', height: '4vh', marginLeft: '-40px', marginTop: '40px' }} />
+      <input
+        placeholder='Type to search'
+        value={cityName}
+        onChange={(e) => handleChange(e.target.value)}
+        style={{
+          height: '40px',
+          padding: '5px',
+          width: '60vw',
+          marginTop: '35px',
+          marginLeft: '10px',
+          border: '2px solid black',
+        }}
+      />
+      <button
+        onClick={handleSubmit}
+        style={{
+          backgroundColor: '#00a49c',
+          color: 'white',
+          padding: '7px',
+          cursor: 'pointer',
+          height: '40px',
+          marginTop: '5vh',
+          marginLeft: '10px',
+        }}
+        type='submit'
+      >
+
+        Search
+      </button>
+    </div>
+    <div>
+    <div className="mt-10 lg:mt-12 custom-grid ">
+        {product.map((product) => (
+          <div
+            key={product._id}
+            className="flex flex-col mt-6 custom-hover-effect px-8 py-5 border-2"
+            onClick={function () {
+              localStorage.setItem('vendor_id', product._id);
+              window.location.href = '/vendorProductList';
             }}
           >
-            Submit
-          </button>
-         </div>
-      <div>
-      {/* <text>Search Result of Vendors for city {cityName}</text> */}
-         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', padding: '20px' }} >
-      {product.map(product => (
-        <div key={product._id} style={{ backgroundColor: '#fff', border: '0.1vh solid #ddd', padding: '5vh', textAlign: 'center' }} className='devices' onClick={function() 
-        {
-          localStorage.setItem("vendor_id",product._id)
-          window.location.href = '/vendorProductList'
-        }
-        }>
-          <img src={product.Avatar} alt={product.Name} style={{ maxWidth: '100%', height: 'auto', borderRadius: '1vh', marginBottom: '5vh' }} />
-          <div style={{ fontWeight: 'bold' }}>Name : {product.Name}</div>
-          <div style={{ fontWeight: 'bold' }}>Phone :{product.Phone}</div>
-          <div style={{ fontWeight: 'bold' }}>Address :{product.Address}</div>
-  
+            
+            <img style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '1vh', marginBottom: '5vh',width:'240px',height:'42vh'}} src={product.Avatar} alt={product.Name} />
 
-        </div>  
-      ))}
+            
+            <div style={{ fontWeight: 'bold' }}>Name : {product.Name}</div>
+            <div style={{ fontWeight: 'bold' }}>Phone : {product.Phone}</div>
+            <div style={{ fontWeight: 'bold' }}>Address : {product.Address}</div>
+          </div>
+        ))}
+      </div>
     </div>
-    </div>
+  </div>
+</div>
       </Company_Sidebar>
     </div>
     }

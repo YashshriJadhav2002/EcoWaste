@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import '../../../Styles/SellerGadget.css';
 import Vendor_Navbar from "./Vendor_Navbar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Vendor_SmartPhones() {
       
@@ -131,8 +133,15 @@ function Vendor_SmartPhones() {
   
         localStorage.setItem("RefurbishedProduct-token",data.data)
   
-        window.alert("Details saved successfully")
-      
+        toast.success("Details Saved Successfully", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+         
+          });      
         setErrors({
           Name : '',
           SellingPrice: '',
@@ -142,12 +151,14 @@ function Vendor_SmartPhones() {
           isSecond: ''
   
         })
-        window.location.href = '/VendorSellRefurbished'
+        
+        setTimeout(() => {
+          window.location.href = '/VendorSellRefurbished'
+        }, 3000);
       
       }
       else {
   
-        console.log(productData)
   
         for(let i=0; i<data.error.length; i++) {
   
@@ -203,7 +214,7 @@ function Vendor_SmartPhones() {
     </div>:
       <div>
         <Vendor_Navbar></Vendor_Navbar>
-  
+  <ToastContainer/>
       <div className="image-upload-container">
         <div className="box-decoration">
           <label htmlFor="image-upload-input" className="image-upload-label">

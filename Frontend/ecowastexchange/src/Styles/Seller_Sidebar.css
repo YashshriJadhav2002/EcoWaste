@@ -40,8 +40,8 @@ main{
     transition: all 0.5s;
 }
 .link:hover{
-    background:#00a49c;
-    color: #00a49c;
+    background:#74dcd7;
+    color: #000;
     transition: all 0.5s;
 }
 .active{

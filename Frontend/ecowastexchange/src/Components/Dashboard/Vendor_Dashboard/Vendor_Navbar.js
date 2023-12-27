@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import '../../../Styles/Seller_Navbar.css';
+import logo from '../../../Images/l_new4.png'
 
 const Vendor_Navbar = () => {
   const [formData, setFormData] = useState({
@@ -73,12 +74,11 @@ const Vendor_Navbar = () => {
   return (
     <nav className='heading'>
       <div className="">
-        <img src='Logo.png' alt="" />
+      <img src={logo} style={{width:"6vw",height:"11vh"}}/>
       </div>
       <div className='Welcome-seller'>
         <h2 className='head'>WELCOME, {formData.Name}</h2>
       </div>
-      <div className='button' onClick={()=>window.location.href='/vendorChat'}>Chat</div>
       <div className="navbar-links-container3" ref={dropdownContainerRef}>
         <div className='sellgadgetname'>
           <a href="#" onClick={() => setSellerOptions(!SellerOpen)}>Sell Gadget</a>
@@ -95,7 +95,7 @@ const Vendor_Navbar = () => {
         
         <a href="#" onClick={() => setProfileOptions(!ProfileOpen)}>
 
-          <img src={formData.Avatar} className='profilephoto' alt="" /><ArrowDropDownIcon />
+          <img src={formData.Avatar} className='profilephoto' alt="" />
         </a>
         {ProfileOpen && (
           <div className="dropdown-menu3">

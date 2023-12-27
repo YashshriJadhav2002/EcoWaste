@@ -3,7 +3,8 @@ import React from 'react';
 import Company_Sidebar from './Company_Sidebar';
 import Company_Navbar from './Company_Navbar';
 import '../../../Styles/Seller_Navbar.css';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const VendorProductList = () => {
   const [session,useSession]=useState(localStorage.getItem("company-token"))
@@ -69,12 +70,27 @@ const VendorProductList = () => {
   
     const data = await res.json()
     if(res.status === 200) {
-      window.alert(data.message)
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });
   
     }else {
   
-      window.alert(data.error)
-  
+      toast.error(data.error, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });  
     }
         
     }
@@ -92,7 +108,8 @@ const VendorProductList = () => {
         <div>
           <Company_Navbar />
           <Company_Sidebar>
-            <div className="rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-white flex justify-start items-start border-2">
+          <ToastContainer/>
+          <div class="rounded shadow-lg mb-6 bg-white flex justify-start items-start border-2" style={{"padding-left":" 4rem","padding-top": "3rem","paddingBottom":"3rem"}}>
               <div className="flex flex-col jusitfy-start items-start">
                 <div>
                   <p className="text-md leading-4 text-gray-800 dark:text-white">Cart Items</p>
@@ -104,15 +121,16 @@ const VendorProductList = () => {
                   <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">{product.length} {product.length > 1 ? "items" : "item"}</p>
                 </div>
                 <div className="mt-10 lg:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-y-0">
-                  {product.map((p) => (
-                    <div className="flex flex-col" key={p._id} onClick={function() 
+                  {
+                    product.map((p) => (
+                    <div className="flex flex-col mt-6" key={p._id} onClick={function() 
                       {
                         localStorage.setItem("product_id",p._id)
                         handleCart()
                       }
                       }>
                       <div className="relative">
-                        <img style={{ height: "52vh",width:"50vw" }}  src={p.Avatar} alt={p.Name} />
+                        <img style={{ height: "45vh",width:"20vw" }}  src={p.Avatar} alt={p.Name} />
                       </div>
                       <div className="mt-6 flex justify-between items-center">
                         <div className="flex justify-center items-center">

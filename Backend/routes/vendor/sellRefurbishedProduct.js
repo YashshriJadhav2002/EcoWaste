@@ -8,7 +8,6 @@ const router = express.Router()
 router.post('/',productToken, async (req,res)=> {
 
             const timestamp = new Date(Date.now()); // Replace this with your timestamp
-             console.log(timestamp)
             const year = timestamp.getFullYear();
             const month = timestamp.getMonth() + 1; // Months are 0-indexed, so add 1
             const day = timestamp.getDate();
@@ -22,7 +21,6 @@ router.post('/',productToken, async (req,res)=> {
         try
         {
             const value=await product.findOneAndUpdate({_id:productId},{ Status1:0,Status2:true, selling_date: formattedDate })
-            console.log(value)
             if(value)
             res.status(200).json({message:"Product added to cart"})
             else

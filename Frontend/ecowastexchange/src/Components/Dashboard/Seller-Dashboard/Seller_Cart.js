@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Seller_Sidebar from './Seller_Sidebar';
 import Seller_Navbar from './Seller_Navbar';
 import '../../../Styles/Login.css';
+import message from '../../../Images/Messages.png'
+
 
 const Seller_Cart = () => {
   const [session, useSession] = useState(localStorage.getItem("auth-token"));
   const [product, setProductData] = useState([]);
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -41,6 +43,12 @@ const Seller_Cart = () => {
   const handleClick1 = () => {
     setMenuVisible(!menuVisible);
   };
+  const handleGmail=()=>{
+    window.location.href = '/message/vendor'
+
+
+  }
+
 
   return (
     <div>
@@ -52,7 +60,7 @@ const Seller_Cart = () => {
         <div>
           <Seller_Navbar />
           <Seller_Sidebar>
-            <div className="rounded shadow-lg p-4 px-4 md:p-8 mb-6 bg-white flex justify-start items-start border-2">
+          <div class="rounded shadow-lg mb-6 bg-white flex justify-start items-start border-2" style={{"padding-left":" 4rem","padding-top": "3rem","paddingBottom":"3rem"}}>
               <div className="flex flex-col jusitfy-start items-start">
                 <div>
                   <p className="text-md leading-4 text-gray-800 dark:text-white">Cart Items</p>
@@ -63,17 +71,19 @@ const Seller_Cart = () => {
                 <div className="mt-4">
                   <p className="text-2xl tracking-tight leading-6 text-gray-600 dark:text-white">{product.length} {product.length > 1 ? "items" : "item"}</p>
                 </div>
-                <div className="mt-10 lg:mt-12 grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-y-0">
+                <div className="mt-10 lg:mt-12 custom-grid">
                   {product.map((p) => (
-                    <div className="flex flex-col" key={p._id}>
+                    <div className="flex flex-col mt-6" key={p._id}>
                       <div className="relative">
-                        <img style={{ height: "52vh",width:"50vw" }}  src={p.Avatar} alt={p.Name} />
+                      <img style={{ height: "44vh",width:"350px" }} src={p.Avatar} alt={p.Name} />
                       </div>
                       <div className="mt-6 flex justify-between items-center">
                         <div className="flex justify-center items-center">
                           <p className="tracking-tight text-2xl font-semibold leading-6 text-gray-800 dark:text-white">{p.Name}</p>
                         </div>
                         <div className="flex justify-center items-center">
+                        <button className='gmailbutton' onClick={handleGmail}><img src={message} style={{"height":"35px","width":"35px","marginRight":"10px"}}></img></button>
+
                           <button
                             aria-label="show menu"
                             onClick={handleClick1}

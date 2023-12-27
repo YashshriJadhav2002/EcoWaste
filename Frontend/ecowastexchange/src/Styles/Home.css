@@ -2,6 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Spectral&family=Spectral:ital@1&family=Courgette&family=Kanit&display=swap');
 
 
+  .outernav {
+
+
+    display: flex;
+    flex-direction: row;
+    gap: 35vw;
+
+  }
+
+  .forimg {
+
+    width: 7vw;
+    height: 7vh;
+    margin-top: 1vh;
+    margin-left: 2vw;
+    position:relative;
+
+  }
+
+
   .navbar-links-container {
 
     display: flex;
@@ -9,9 +29,10 @@
     margin-top: 2rem;
     font-size: 1.5rem;
     font-weight: 900;
+    position: relative;
     font-family: 'Spectral';
     font-style: italic;
-    margin-right:2.5rem;
+    margin-left:8rem;
 
 
   }
@@ -41,9 +62,7 @@
 
   .navbar-links-container a:hover {
     
-    
-    /* color: green; */
-    color : #00a49c; 
+        color : #00a49c; 
 
     transform: scale(1.2); /* Increase the size on hover */
 
@@ -71,6 +90,7 @@
     font-size: 5rem;
     color: black;
     font-family: 'Kanit';
+    position: relative;
 
   }
 
@@ -83,6 +103,7 @@
     font-family: 'Courgette';
     font-size: 1.7rem;
     font-weight: 500;
+    position: relative;
     
     
   }
@@ -93,6 +114,5 @@
 }
 
   
-  
-  
+
     

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import '../../../Styles/Seller_Navbar.css';
+import logo from '../../../Images/l_new4.png'
 
 
 const Seller_Navbar = () => {
@@ -82,7 +82,8 @@ const Seller_Navbar = () => {
   return (
     <nav className='heading'>
       <div className="">
-        {/* <img src='Logo.png' alt="" /> */}
+      <img src={logo} style={{width:"6vw",height:"11vh"}}/>
+
       </div>
       <div className='Welcome-seller'>
         <h2 className='head'>WELCOME, {formData.Name}</h2>

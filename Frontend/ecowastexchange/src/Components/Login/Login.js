@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import '../../Styles/Login.css'
 import { useLocation } from 'react-router-dom';
-import logo from '../../Images/Logo.png'
+import logo from '../../Images/l_new4.png'
 import login from '../../Images/loginback.png'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
 
 
@@ -59,23 +62,41 @@ const Login = () => {
       })
      
       
-      window.alert(data.message)
+      toast.success(data.message, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+       
+        });
       if (page === "Seller") {
         localStorage.setItem("auth-token", data.data)
         localStorage.setItem("user",data.id)
 
-        window.location.href = '/SellerHome'
+        setTimeout(() => {
+          window.location.href = '/SellerHome'
+        }, 3000);
+
       }
 
       else if (page === "Vendor") {
         localStorage.setItem("vendor-token", data.data)
         localStorage.setItem("user",data.id)
-        window.location.href = '/VendorHome'
+
+        setTimeout(() => {
+          window.location.href = '/VendorHome'
+        }, 3000);
+
+
       }
       else if(page === "Company"){
  
         localStorage.setItem("company-token", data.data)
-        window.location.href = '/CompanyHome'
+        setTimeout(() => {
+          window.location.href = '/CompanyHome'
+        }, 3000);
       }
       
     }
@@ -107,17 +128,18 @@ const Login = () => {
   return (
     
       <div className="lg:flex">
+      <ToastContainer/>
             <div className="lg:w-1/2 xl:max-w-screen-sm">
-                <div className="py-12 bg-emerald-500 sm:bg-white flex justify-center lg:justify-start lg:px-12">
-                    <div className="cursor-pointer flex items-center">
-                        <div>
-                            <img src={logo}/>
-                            </div>
-                    </div>
+            <div className=" bg-emerald-500 sm:bg-white flex justify-start items-center lg:px-0">
+              <div className="cursor-pointer">
+                <div className='logo' style={{ marginTop: '1rem', marginLeft: '1rem',width:"6vw",height:"8vh" }}>
+                  <img src={logo} alt="Logo" />
                 </div>
-                <div className="mt-9 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-11 xl:px-24 xl:max-w-2xl">
-                    <h2 className="text-center text-4xl text-headings font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">Log in</h2>
-                    <div className="mt-12">
+              </div>
+            </div>
+                <div className="mt-13 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-11 xl:px-24 xl:max-w-2xl py-16">
+                    <h2 className="text-center text-4xl text-headings font-display font-semibold lg:text-left xl:text-5xl xl:text-bold ">Log in</h2>
+                    <div className="mt-10">
                         <form>
                             <div>
 
@@ -132,8 +154,7 @@ const Login = () => {
                                         Password
                                     </div>
                                     <div>
-                                        <a className="text-xs font-display font-semibold text-headings hover:text-emerald-500
-                                        cursor-pointer">
+                                        <a className="text-xs font-display font-semibold text-headings hover:text-emerald-500cursor-pointer">
                                             Forgot Password?
                                         </a>
 

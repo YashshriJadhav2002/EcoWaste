@@ -1,24 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Company_Logout = () => {
 
-    
-   
+
     function Logout() {
-
-        window.alert(
-            "Logged out"
-        )
-        localStorage.clear()
-        window.location.href = '/';
-
+        toast.success("Logged Out", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+        });
+        setTimeout(() => {
+            localStorage.clear();
+            window.location.href = '/';
+        }, 3000);
     }
-    return (
-     
-        <>
-       {Logout()}
-        </>
 
+    return (
+        <>
+            <ToastContainer/>
+            {Logout()}
+        </>
     );
 };
 

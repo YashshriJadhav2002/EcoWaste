@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../../../src/Styles/Home.css';
-import Logo from '../../../src/Images/Logo.png';
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import logo from '../../Images/l_new4.png'
+
 
 const Navbar = () => {
   const [loginMenuOpen, setLoginMenuOpen] = useState(false);
@@ -25,27 +25,35 @@ const Navbar = () => {
 
   return (
     <nav>
-      {/* <div className="">
-        <a href='./Home.js'>EcoWasteXchange</a>
-      </div> */}
-      <div className="navbar-links-container" ref={dropdownContainerRef}>
-        <a href="/">Home</a>
-        <a href="aboutUs">About Us</a>
-        <a href="vision">Vision</a>
-        <a href="contact">Contact</a>
-        <a href="#" onClick={() => setLoginMenuOpen(!loginMenuOpen)}>
-          Login 
-        </a>
-        {loginMenuOpen && (
-          <div className="dropdown-menu" style={{ marginTop:"5vh" , marginRight:"-5vh",display:'flex',flexDirection:'column'}}>
-            {loginMenuOptions.map((option, index) => (
-              <a href={option} key={option}>
-                {option}
-              </a>
-            ))}
-          </div>
-        )}
+      
+      <div className="outernav">
+
+            <div className="forimg">
+                <img src={logo}/>
+
+            </div>
+            <div className="navbar-links-container" ref={dropdownContainerRef}>
+      
+                <a href="/">Home</a>
+                <a href="aboutUs">About</a>
+                <a href="vision">Vision</a>
+                <a href="contact">Contact</a>
+                <a href="#" onClick={() => setLoginMenuOpen(!loginMenuOpen)}>
+                  Login 
+                </a>
+                {loginMenuOpen && (
+                  <div className="dropdown-menu" style={{ marginTop:"5vh",display:'flex',flexDirection:'column'}}>
+                    {loginMenuOptions.map((option, index) => (
+                      <a href={option} key={option}>
+                        {option}
+                      </a>
+                    ))}
+                  </div>
+                )}
+            </div>
+
       </div>
+      
     </nav>
   );
 };

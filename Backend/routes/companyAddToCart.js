@@ -8,7 +8,6 @@ const router = express.Router()
 
 router.post('/',auth, async (req,res)=> {
         const user_id = req.user
-        console.log(user_id)
         const productId = req.body.product_id
         const value=await product.findOneAndUpdate({_id:productId},{ companybuy:true ,company_id:user_id})
 

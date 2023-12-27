@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import '../../../Styles/SellerGadget.css';
-import Seller_Navbar from "./Vendor_Navbar";
 import Vendor_Navbar from "./Vendor_Navbar";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Vendor_Earbuds() {
       
@@ -70,7 +70,6 @@ const handleImageChange = (event) => {
 
 
     };
-    console.log(file)
     setImage(file)
 
     if(file.type==='image/jpg'||file.type==='image/png'||file.type==='image/jpeg'||file.type==='image/JPG'||file.type==='image/PNG'||file.type==='image/JPEG' ||file.type==='image/WEBP' ||file.type==='image/webp')
@@ -134,8 +133,15 @@ const handleContinue = async (e) => {
 
     localStorage.setItem("RefurbishedProduct-token",data.data)
 
-    window.alert("Details saved successfully")
-  
+    toast.success("Details Saved Successfully", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+     
+      });  
     setErrors({
       Name : '',
       SellingPrice: '',
@@ -145,12 +151,15 @@ const handleContinue = async (e) => {
       isSecond: ''
 
     })
-    window.location.href = '/VendorSellRefurbished'
+
+    setTimeout(() => {
+      window.location.href = '/VendorSellRefurbished'
+    }, 3000);
+
   
   }
   else {
 
-    console.log(productData)
 
     for(let i=0; i<data.error.length; i++) {
 
@@ -205,7 +214,7 @@ return (
     </div>:
     <div>
     <Vendor_Navbar></Vendor_Navbar>
-
+<ToastContainer/>
   <div className="image-upload-container">
     <div className="box-decoration">
       <label htmlFor="image-upload-input" className="image-upload-label">

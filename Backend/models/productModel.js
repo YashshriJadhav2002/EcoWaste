@@ -23,7 +23,6 @@ const ProductSchema = new schema({
 
     SellingPrice: {
         type: Number,
-        default:2000
     },
 
     
@@ -70,12 +69,14 @@ const ProductSchema = new schema({
 
     },
     selling_date: {
-       
         type:String,
-        
-
     },
-    
+
+    isEdit:{
+        type:Boolean,
+        default:false,
+    },
+
     buying_date : {
         type:String
     },

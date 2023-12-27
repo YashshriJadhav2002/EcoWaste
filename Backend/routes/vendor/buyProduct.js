@@ -35,7 +35,6 @@ router.post('/',fetchAuth,async(req,res)=>{
       });
      
       if (session.success_url === 'http://localhost:3000/success') {
-          console.log(session.success_url)
             const timestamp = new Date(Date.now()); 
             const year = timestamp.getFullYear();
             const month = timestamp.getMonth() + 1; // Months are 0-indexed, so add 1
@@ -48,7 +47,6 @@ router.post('/',fetchAuth,async(req,res)=>{
         const userDetails = await user.findOne({_id:user_id})
         if(userDetails) {
 
-            // const phone = userDetails.Phone
             const email=userDetails.Email
 
             const vonage = new Vonage({

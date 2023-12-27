@@ -13,7 +13,6 @@ router.post('/',fetchAuth, async (req, res) => {
     const vendor_id = req.user
 
     const timestamp = new Date(Date.now()); // Replace this with your timestamp
-             console.log(timestamp)
             const year = timestamp.getFullYear();
             const month = timestamp.getMonth() + 1; // Months are 0-indexed, so add 1
             const day = timestamp.getDate();
