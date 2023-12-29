@@ -23,7 +23,6 @@ console.log('Server is starting...');
 io.on('connection', socket => {
   console.log('User connected', socket.id);
   socket.on('addUser', userId => {
-    
       const isUserExist = users.find(user => user.userId === userId);
       if (!isUserExist) {
           const user = { userId, socketId: socket.id };

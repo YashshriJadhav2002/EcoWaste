@@ -47,6 +47,7 @@ const Success=()=>{
                 </h1>
                 <button style={buttonStyle} onClick={function(){
                     if(name=="company")window.location.href='/CompanyHome'
+                    else if(name==="seller")window.location.href='/SellerHome'
                     else window.location.href='/VendorHome'
                 }}>Go to home</button>
             </div>

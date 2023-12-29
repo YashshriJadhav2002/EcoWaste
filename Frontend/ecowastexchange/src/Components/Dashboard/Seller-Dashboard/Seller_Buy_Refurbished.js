@@ -5,6 +5,7 @@ import { useState ,useEffect} from 'react';
 import Seller_Navbar from './Seller_Navbar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {loadStripe} from '@stripe/stripe-js'
 
 function Buy_Refurbished() {
   const [session, useSession] = useState(localStorage.getItem("auth-token"));
@@ -70,6 +71,8 @@ function Buy_Refurbished() {
 
     const product_id = localStorage.getItem('refurbishedProduct_id')
     const auth_token = localStorage.getItem('auth-token')
+    const stripe=await loadStripe('pk_test_51OA6VNSBOVYSI6906LeR8tlp1rY2vRPDCGBX8VzqA1mimmrm8dekOrR09S5oq0r9gOsrgA8OW9NpuXp5liGKuoWx002DnlMiyO')
+
     const res = await fetch('/api/seller/product/buy', {
       method:"POST",
       headers: {
@@ -83,33 +86,13 @@ function Buy_Refurbished() {
   })
 
   const data = await res.json()
-  if(res.status === 200) {
-    toast.success(data.message, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-     
-      });
+  const result=stripe.redirectToCheckout({
+    sessionId:data.id
+  });
 
-      setTimeout(() => {
-        window.location.href = '/SellerHome'
-      }, 3000);
-
-  }else {
-
-    toast.error(data.error, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-     
-      });
-
+  if(result.error)
+  {
+    console.log(result.error)
   }
       
   }
@@ -147,7 +130,7 @@ function Buy_Refurbished() {
             <img className="w-full rounded" src={formData.Avatar} alt={formData.Name}  />
         </div>
 
-        <div className="w-full lg:w-1/2 mx-auto max-w-lg mt-5"> 
+        <div className="w-full lg:w-1/2 mx-auto max-w-lg mt-5 ml-4"> 
     <h2 className="text-2xl font-semibold mb-2">{formData.Name}</h2>
     <span className="text-lg font-semibold text-green-600 mb-4">{formData.SellingPrice}</span>
     <br></br>
