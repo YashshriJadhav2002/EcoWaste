@@ -74,7 +74,7 @@ const handleSubmit=()=>{
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <img src={search} style={{ width: '2.5vw', height: '4vh', marginLeft: '-40px', marginTop: '40px' }} />
       <input
-        placeholder='Type to search'
+        placeholder='Enter city name to search vendors'
         value={cityName}
         onChange={(e) => handleChange(e.target.value)}
         style={{
