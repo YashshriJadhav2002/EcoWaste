@@ -66,7 +66,7 @@ router.post('/',[
                 {
                     const data={user:buyer.id}
                     const token=jwt.sign(data,process.env.SECRET_KEY)
-    
+                    console.log(data)
                     return res.status(200).json({message:"Login Successfull", data:token,id:buyer.id})
                 }
                 

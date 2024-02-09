@@ -25,12 +25,23 @@ router.get('/', async (req, res) => {
             res.status(200).json(await messageUserData);
         }
         const conversationId = req.query.conversationId;
+        const senderId = req.query.senderId;  // Add this line
+        const receiverId = req.query.receiverId;  
+
         if (conversationId === 'new') {
-            const checkConversation = await Conversations.find({senderId:req.query.senderId, receiverId:req.query.receiverId} );
+            const checkConversation = await Conversations.find({senderId:senderId, receiverId:receiverId} );
             if (checkConversation.length > 0) {
                 checkMessages(checkConversation[0]._id);
             } else {
-                return res.status(200).json([])
+                let user = await Users.findById(receiverId);
+                if (user) {
+                    const data = { user: { id: user._id, Email: user.Email, Name: user.Name, Avatar: user.Avatar },message:[] };
+                    res.status(200).json([data]); // Wrap data in an array for consistency
+                } else {
+                    user = await Vendor.findById(receiverId);
+                    const data = { user: { id: user._id, Email: user.Email, Name: user.Name, Avatar: user.Avatar },message:[]};
+                    res.status(200).json([data]); // Wrap data in an array for consistency
+                }
             }
         } else {
             checkMessages(conversationId);

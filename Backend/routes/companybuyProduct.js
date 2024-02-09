@@ -61,15 +61,15 @@ router.post('/',async(req,res)=>{
             const vendorEmails = await vendor.find({ _id: { $in: uniqueVendorIds } }).distinct('Email');
         if(vendorEmails) {
 
-            const vonage = new Vonage({
-                apiKey: "0efa11fa",
-                apiSecret: "kDjOqur1ygMUizcA"
-              })
+          const vonage = new Vonage({
+            apiKey: "a4c2fa16",
+            apiSecret: "ve037kQZcYjmKy1P"
+          })
 
 
               const from = "Vonage APIs"
-                const to = `918459777201`
-                const text = 'Dear User, Congratulations! Your product has been sold. Please check history for further details'
+              const to = `919579385191`
+              const text = 'Dear User, Congratulations! Your product has been sold. Please check history for further details'
 
                 async function sendSMS() {
                 await vonage.sms.send({to, from, text})

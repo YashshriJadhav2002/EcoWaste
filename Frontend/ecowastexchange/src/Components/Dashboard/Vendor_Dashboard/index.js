@@ -5,6 +5,8 @@ import { io } from 'socket.io-client'
 
 const Dashboard = () => {
 	const [currentuser, setUser] = useState(localStorage.getItem('user'))
+	const userId=localStorage.getItem('product_id')
+
 	const [conversations, setConversations] = useState([])
 	const [messages, setMessages] = useState({})
 	const [message, setMessage] = useState('')
@@ -44,7 +46,6 @@ const Dashboard = () => {
 		  })
 	
 			const data=await res.json()
-			console.log(data)
 			if(res.status===200)
 			{
 			  
@@ -96,41 +97,71 @@ const Dashboard = () => {
 				}
 			});
 			const resData = await res.json()
-			localStorage.setItem('vendor-id',resData[0].user.receiverId)
-			console.log(resData)
 			setConversations(resData)
 		}
 		fetchConversations()
 	}, [])
 
 	useEffect(() => {
-		const fetchUsers = async () => {
-			const userId=localStorage.getItem('vendor-id')
-			const res = await fetch(`/api/users/?userId=${userId}`, {
+		if(userId!=null)
+		{
+			const fetchUsers = async () => {
+				const res1=await fetch('/api/vendor/exactprice',{
+					method:'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body:JSON.stringify({
+						product_id:userId
+					  })
+				});
+				const data=await res1.json()
+				const id=data.data.user_id
+				const res = await fetch(`/api/users/?userId=${id}`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					}
+					
+				});
+				const resData = await res.json()
+				setUsers(resData)
+			}
+			fetchUsers()
+
+		}
+
+		
+	}, [])
+
+	const fetchMessages = async (conversationId, receiver) => {
+		if (conversationId === 'new') {
+			const user = await fetchUserData(receiver); 
+			setMessages({ messages: [], receiver: user, conversationId: 'new' });
+
+		} else {
+			const res = await fetch(`/api/message/?conversationId=${conversationId}&senderId=${currentuser}&receiverId=${receiver}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
 				}
-				
 			});
-			const resData = await res.json()
-			console.log(resData)
-			setUsers(resData)
+			const resData = await res.json();
+			setMessages({ messages: resData, receiver, conversationId });
+			console.log(messages?.receiver)
 		}
-		fetchUsers()
-	}, [])
-
-	const fetchMessages = async (conversationId, receiver) => {
-		
-		const res = await fetch(`/api/message/?conversationId=${conversationId}&senderId=${currentuser}&receiverId=${receiver?.receiverId}`, {
+	};
+	
+	const fetchUserData = async (userId) => {
+		const res = await fetch(`/api/users/?userId=${userId}`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			}
 		});
-		const resData = await res.json()
-		setMessages({ messages: resData, receiver, conversationId})
-	}
+		const resData = await res.json();
+		return resData[0].user; // Assuming the response structure is an array with a single user object
+	};
 
 	const sendMessage = async (e) => {
 		setMessages(prev => ({

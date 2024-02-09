@@ -8,7 +8,6 @@ router.post('/',async(req, res) => {
 
     try{
         const product_id=req.body.product_id;
-        
         const product = await Product.findById(product_id)
 
         if(product) {

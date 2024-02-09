@@ -5,7 +5,7 @@ import { io } from 'socket.io-client'
 
 const Dashboard = () => {
 	const [currentuser, setUser] = useState(localStorage.getItem('user'))
-	const [auth_token,setToken]=useState(localStorage.getItem('vendor-id'))
+	const userId=localStorage.getItem('refurbishedProduct_id')
 	
 	const [conversations, setConversations] = useState([])
 	const [messages, setMessages] = useState({})
@@ -100,31 +100,63 @@ const Dashboard = () => {
 	}, [])
 
 	useEffect(() => {
-		const fetchUsers = async () => {
-			const res = await fetch(`/api/users/?userId=${auth_token}`, {
+		if(userId!=null)
+		{
+			const fetchUsers = async () => {
+				const res1=await fetch('/api/seller/exactprice',{
+					method:'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body:JSON.stringify({
+						product_id:userId
+					  })
+				});
+				const data=await res1.json()
+				const id=data.data.user_id
+				const res = await fetch(`/api/users/?userId=${id}`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					}
+					
+				});
+				const resData = await res.json()
+				setUsers(resData)
+			}
+			fetchUsers()
+
+		}
+
+	}, [])
+
+	const fetchMessages = async (conversationId, receiver) => {
+		if (conversationId === 'new') {
+			const user = await fetchUserData(receiver); 
+			setMessages({ messages: [], receiver: user, conversationId: 'new' });
+
+		} else {
+			const res = await fetch(`/api/message/?conversationId=${conversationId}&senderId=${currentuser}&receiverId=${receiver}`, {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
 				}
-				
 			});
-			const resData = await res.json()
-			setUsers(resData)
+			const resData = await res.json();
+			setMessages({ messages: resData, receiver, conversationId });
 		}
-		fetchUsers()
-	}, [])
-
-	const fetchMessages = async (conversationId, receiver) => {
-		const res = await fetch(`/api/message/?conversationId=${conversationId}&senderId=${currentuser}&receiverId=${receiver?.receiverId}`, {
+	};
+	
+	const fetchUserData = async (userId) => {
+		const res = await fetch(`/api/users/?userId=${userId}`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			}
 		});
-		const resData = await res.json()
-		
-		setMessages({ messages: resData, receiver, conversationId})
-	}
+		const resData = await res.json();
+		return resData[0].user; 
+	};
 
 	const sendMessage = async (e) => {
 		setMessages(prev => ({
@@ -162,7 +194,7 @@ const Dashboard = () => {
 				<div><img src={formData?.Avatar} className=" w-[60px] h-[60px] rounded-full p-[2px] border border-primary" /></div>
 
 					<div className='ml-8'>
-						<h3 className='text-2xl'>{formData.Name}</h3>
+						<h3 className='text-xl font-semibold'>{formData.Name}</h3>
 						<p className=' text-lg font-light'>My Account</p>
 					</div>
 				</div>
@@ -265,10 +297,10 @@ const Dashboard = () => {
 					{
 						
 						users.length > 0 ?
-							users.map(({ userId, user }) => {
+							users.map(({user }) => {
 								return (
 									<div className=' flex items-center py-8 border-b border-b-gray-300'>
-										<div className=' cursor-pointer flex items-center' onClick={() => fetchMessages('new', user)}>
+										<div className=' cursor-pointer flex items-center' onClick={() => fetchMessages('new', user.receiverId)}>
 											<div><img src={user?.Avatar} className=" w-[60px] h-[60px] rounded-full p-[2px] border border-primary" /></div>
 											<div className=' ml-6'>
 												<h3 className=' text-lg font-semibold'>{user?.Name}</h3>

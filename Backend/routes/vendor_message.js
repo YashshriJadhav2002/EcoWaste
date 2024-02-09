@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
     {
     const userId = req.query.userId;
     let users = await vendor.findById(userId) || await Users.findById(userId);
-    
     if (users) 
     {
         const usersData = [{
